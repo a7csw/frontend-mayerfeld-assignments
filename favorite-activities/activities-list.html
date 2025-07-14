@@ -4,23 +4,412 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Favorite Activities - List</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
+            min-height: 100vh;
+            color: #fff;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 60px;
+            animation: slideInDown 0.8s ease-out;
+        }
+
+        @keyframes slideInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .header h1 {
+            font-size: 3.8rem;
+            font-weight: 800;
+            color: #ffffff;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
+            letter-spacing: 1px;
+            background: linear-gradient(45deg, #ffffff, #e0e6ff, #d4dbff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .header p {
+            font-size: 1.4rem;
+            color: #b8c5ff;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
+            margin-bottom: 2rem;
+        }
+
+        .activities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 50px;
+            margin-bottom: 60px;
+        }
+
+        .activity-card {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(20px);
+            border-radius: 25px;
+            padding: 45px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .activity-card:nth-child(1) {
+            animation-delay: 0.2s;
+        }
+
+        .activity-card:nth-child(2) {
+            animation-delay: 0.4s;
+        }
+
+        .activity-card:nth-child(3) {
+            animation-delay: 0.6s;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .activity-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea, #764ba2, #f093fb);
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .activity-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .activity-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 35px 70px rgba(0, 0, 0, 0.4);
+        }
+
+        .activity-icon {
+            font-size: 4.5rem;
+            margin-bottom: 25px;
+            display: block;
+            text-align: center;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.08);
+            }
+        }
+
+        .activity-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 20px;
+            text-decoration: none;
+            display: block;
+            transition: color 0.3s ease;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+        }
+
+        .activity-title:hover {
+            color: #c4d3ff;
+        }
+
+        .activity-summary {
+            font-size: 1.2rem;
+            color: #d0deff;
+            margin-bottom: 30px;
+            line-height: 1.8;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        .read-more {
+            display: inline-block;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: #ffffff;
+            padding: 14px 35px;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+            position: relative;
+            overflow: hidden;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .read-more::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .read-more:hover::before {
+            left: 100%;
+        }
+
+        .read-more:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(102, 126, 234, 0.6);
+            background: linear-gradient(45deg, #7c8df8, #8e5cc6);
+        }
+
+        .tech-card {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.15) 0%, rgba(118, 75, 162, 0.15) 100%);
+            border: 1px solid rgba(102, 126, 234, 0.3);
+        }
+
+        .tech-card .activity-title {
+            color: #c4d3ff;
+        }
+
+        .tech-card .activity-summary {
+            color: #dde4ff;
+        }
+
+        .fitness-card {
+            background: linear-gradient(135deg, rgba(78, 205, 196, 0.15) 0%, rgba(68, 160, 141, 0.15) 100%);
+            border: 1px solid rgba(78, 205, 196, 0.3);
+        }
+
+        .fitness-card .activity-title {
+            color: #c2f4ef;
+        }
+
+        .fitness-card .activity-summary {
+            color: #ddf7f4;
+        }
+
+        .family-card {
+            background: linear-gradient(135deg, rgba(255, 107, 107, 0.15) 0%, rgba(238, 90, 82, 0.15) 100%);
+            border: 1px solid rgba(255, 107, 107, 0.3);
+        }
+
+        .family-card .activity-title {
+            color: #ffcccc;
+        }
+
+        .family-card .activity-summary {
+            color: #ffe0e0;
+        }
+
+        .colored-card .read-more {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: #ffffff;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .colored-card .read-more:hover {
+            background: linear-gradient(45deg, #7c8df8, #8e5cc6);
+            border-color: rgba(255, 255, 255, 0.4);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        .nav-section {
+            text-align: center;
+            margin-top: 60px;
+        }
+
+        .nav-link {
+            display: inline-block;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: #ffffff;
+            padding: 18px 40px;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(20px);
+            border: 2px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .nav-link:hover {
+            background: linear-gradient(45deg, #7c8df8, #8e5cc6);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(102, 126, 234, 0.6);
+        }
+
+        .background-decoration {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .bg-circle {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(102, 126, 234, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            animation: floatBackground 25s infinite linear;
+        }
+
+        .bg-circle:nth-child(1) {
+            width: 250px;
+            height: 250px;
+            top: 10%;
+            left: 80%;
+            animation-delay: 0s;
+            background: rgba(102, 126, 234, 0.08);
+        }
+
+        .bg-circle:nth-child(2) {
+            width: 180px;
+            height: 180px;
+            top: 70%;
+            left: 5%;
+            animation-delay: 8s;
+            background: rgba(118, 75, 162, 0.08);
+        }
+
+        .bg-circle:nth-child(3) {
+            width: 120px;
+            height: 120px;
+            top: 40%;
+            left: 90%;
+            animation-delay: 16s;
+            background: rgba(240, 147, 251, 0.08);
+        }
+
+        @keyframes floatBackground {
+            0% {
+                transform: translateY(0px) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-80px) rotate(180deg);
+            }
+            100% {
+                transform: translateY(0px) rotate(360deg);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .activities-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .header h1 {
+                font-size: 2.8rem;
+            }
+            
+            .activity-card {
+                padding: 35px;
+            }
+            
+            .activity-title {
+                font-size: 1.7rem;
+            }
+
+            .nav-link {
+                padding: 16px 35px;
+                font-size: 1.1rem;
+            }
+        }
+    </style>
 </head>
 <body>
-    <h1>My Three Favorite Activities</h1>
-    <p>Click on any activity to learn more about it!</p>
-    
-    <h2><a href="activities/learning-tech.html">Learning & Exploring New Technologies</a></h2>
-    <p>Continuously expanding my knowledge in programming, AI, and cutting-edge technologies that shape our digital world.</p>
-    <a href="activities/learning-tech.html">Read More</a>
-    
-    <h2><a href="activities/workout.html">Weekly Workout & Calisthenics Training</a></h2>
-    <p>Staying fit and strong through dedicated calisthenics training and armwrestling practice every week.</p>
-    <a href="activities/workout.html">Read More</a>
-    
-    <h2><a href="activities/family-time.html">Quality Time with Family & Friends</a></h2>
-    <p>Creating meaningful memories through coffee shop visits, movie nights, and memorable vacations with loved ones.</p>
-    <a href="activities/family-time.html">Read More</a>
-    
-    <a href="index.html">Back to Home</a>
+    <div class="background-decoration">
+        <div class="bg-circle"></div>
+        <div class="bg-circle"></div>
+        <div class="bg-circle"></div>
+    </div>
+
+    <div class="container">
+        <div class="header">
+            <h1>My Three Favorite Activities</h1>
+            <p>Click on any activity to learn more about it!</p>
+        </div>
+        
+        <div class="activities-grid">
+            <div class="activity-card tech-card">
+                <div class="activity-icon">🚀</div>
+                <a href="activities/learning-tech.html" class="activity-title">Learning & Exploring New Technologies</a>
+                <p class="activity-summary">
+                    Continuously expanding my knowledge in programming, AI, and cutting-edge technologies that shape our digital world.
+                </p>
+                <a href="activities/learning-tech.html" class="read-more colored-card">Read More →</a>
+            </div>
+            
+            <div class="activity-card fitness-card">
+                <div class="activity-icon">💪</div>
+                <a href="activities/workout.html" class="activity-title">Weekly Workout & Calisthenics Training</a>
+                <p class="activity-summary">
+                    Staying fit and strong through dedicated calisthenics training and armwrestling practice every week.
+                </p>
+                <a href="activities/workout.html" class="read-more colored-card">Read More →</a>
+            </div>
+            
+            <div class="activity-card family-card">
+                <div class="activity-icon">❤️</div>
+                <a href="activities/family-time.html" class="activity-title">Quality Time with Family & Friends</a>
+                <p class="activity-summary">
+                    Creating meaningful memories through coffee shop visits, movie nights, and memorable vacations with loved ones.
+                </p>
+                <a href="activities/family-time.html" class="read-more colored-card">Read More →</a>
+            </div>
+        </div>
+        
+        <div class="nav-section">
+            <a href="index.html" class="nav-link">← Back to Home</a>
+        </div>
+    </div>
 </body>
 </html> 

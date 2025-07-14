@@ -4,31 +4,462 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Learning & Exploring New Technologies</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0a0a1a 0%, #1a1a2e 50%, #16213e 100%);
+            min-height: 100vh;
+            color: #fff;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 60px;
+            animation: slideInDown 0.8s ease-out;
+        }
+
+        @keyframes slideInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .header h1 {
+            font-size: 3.8rem;
+            font-weight: 800;
+            color: #ffffff;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
+            letter-spacing: 1px;
+            background: linear-gradient(45deg, #667eea, #764ba2, #f093fb);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .header p {
+            font-size: 1.4rem;
+            color: #b8c5ff;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
+            margin-bottom: 2rem;
+        }
+
+        .content-section {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(20px);
+            border-radius: 25px;
+            padding: 50px;
+            margin-bottom: 40px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            position: relative;
+            overflow: hidden;
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .content-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea, #764ba2, #f093fb);
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            0% {
+                background-position: -200px 0;
+            }
+            100% {
+                background-position: 200px 0;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .content-section h2 {
+            font-size: 2.8rem;
+            color: #ffffff;
+            margin-bottom: 30px;
+            position: relative;
+            padding-left: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+        }
+
+        .content-section h2::before {
+            content: '💡';
+            position: absolute;
+            left: -20px;
+            font-size: 2.2rem;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-10px);
+            }
+            60% {
+                transform: translateY(-5px);
+            }
+        }
+
+        .content-section p {
+            font-size: 1.3rem;
+            color: #d0deff;
+            margin-bottom: 25px;
+            line-height: 1.8;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        .focus-areas {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.2) 0%, rgba(118, 75, 162, 0.2) 100%);
+            color: #ffffff;
+            padding: 45px;
+            border-radius: 20px;
+            margin: 30px 0;
+            box-shadow: 0 20px 40px rgba(102, 126, 234, 0.3);
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(102, 126, 234, 0.3);
+        }
+
+        .focus-areas::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(102, 126, 234, 0.1) 0%, transparent 70%);
+            animation: rotate 25s linear infinite;
+            pointer-events: none;
+        }
+
+        @keyframes rotate {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .focus-areas h3 {
+            font-size: 2.3rem;
+            margin-bottom: 35px;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            color: #ffffff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .tech-item {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 30px;
+            border-radius: 18px;
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(15px);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tech-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .tech-item:hover::before {
+            left: 100%;
+        }
+
+        .tech-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .tech-item strong {
+            font-size: 1.4rem;
+            display: block;
+            margin-bottom: 12px;
+            color: #c4d3ff;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        .tech-item p {
+            color: #e8eeff;
+            font-size: 1.1rem;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
+        }
+
+        .passion-section {
+            background: linear-gradient(135deg, rgba(240, 147, 251, 0.2) 0%, rgba(255, 107, 107, 0.2) 100%);
+            color: #ffffff;
+            margin: 40px 0;
+            border: 1px solid rgba(240, 147, 251, 0.3);
+        }
+
+        .passion-section h2 {
+            color: #ffffff;
+        }
+
+        .passion-section h2::before {
+            content: '🔥';
+        }
+
+        .passion-section p {
+            color: #f0e6ff;
+        }
+
+        .project-highlight {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 30px;
+            border-radius: 18px;
+            margin: 30px 0;
+            border-left: 5px solid #f093fb;
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .project-highlight strong {
+            color: #ffeb3b;
+            font-size: 1.2rem;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        .project-highlight p {
+            color: #ffffff;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
+        }
+
+        .nav-section {
+            text-align: center;
+            margin-top: 60px;
+        }
+
+        .nav-button {
+            display: inline-block;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: #ffffff;
+            padding: 18px 35px;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            margin: 0 15px;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+            position: relative;
+            overflow: hidden;
+            border: 2px solid rgba(255, 255, 255, 0.15);
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .nav-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .nav-button:hover::before {
+            left: 100%;
+        }
+
+        .nav-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(102, 126, 234, 0.6);
+            background: linear-gradient(45deg, #7c8df8, #8e5cc6);
+        }
+
+        .secondary-button {
+            background: linear-gradient(45deg, #4ecdc4, #44a08d);
+            box-shadow: 0 10px 30px rgba(78, 205, 196, 0.4);
+        }
+
+        .secondary-button:hover {
+            box-shadow: 0 15px 35px rgba(78, 205, 196, 0.6);
+            background: linear-gradient(45deg, #5fd9ce, #52b5a0);
+        }
+
+        .floating-icons {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .floating-icon {
+            position: absolute;
+            font-size: 2.5rem;
+            color: rgba(102, 126, 234, 0.15);
+            animation: floatIcon 18s infinite ease-in-out;
+        }
+
+        .floating-icon:nth-child(1) {
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .floating-icon:nth-child(2) {
+            top: 60%;
+            right: 15%;
+            animation-delay: 6s;
+        }
+
+        .floating-icon:nth-child(3) {
+            bottom: 30%;
+            left: 80%;
+            animation-delay: 12s;
+        }
+
+        @keyframes floatIcon {
+            0%, 100% {
+                transform: translateY(0px) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-60px) rotate(180deg);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2.8rem;
+            }
+            
+            .content-section {
+                padding: 35px;
+            }
+            
+            .tech-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-button {
+                display: block;
+                margin: 10px 0;
+                padding: 16px 30px;
+                font-size: 1.1rem;
+            }
+        }
+    </style>
 </head>
 <body>
-    <h1>Learning & Exploring New Technologies</h1>
-    <p>Fueling my passion for innovation and continuous growth</p>
-    
-    <h2>My Tech Journey</h2>
-    <p>As a third-year Software Engineering student, I've discovered that my greatest passion lies in continuously learning and exploring new technologies. This isn't just about keeping up with trends - it's about feeding my curiosity and strengthening my foundation for the future.</p>
-    
-    <p>Every day presents an opportunity to dive deeper into the world of programming, artificial intelligence, and emerging technologies. Whether it's mastering a new programming language, understanding complex algorithms, or exploring the latest frameworks, I approach each learning opportunity with enthusiasm and dedication.</p>
-    
-    <h3>Current Focus Areas:</h3>
-    <ul>
-        <li><strong>Artificial Intelligence & Machine Learning</strong> - Exploring neural networks, deep learning, and AI applications</li>
-        <li><strong>Full Stack Development</strong> - Building end-to-end web applications with modern frameworks</li>
-        <li><strong>Data Science</strong> - Analyzing data patterns and extracting meaningful insights</li>
-        <li><strong>Cloud Computing</strong> - Understanding scalable architectures and deployment strategies</li>
-        <li><strong>Mobile Development</strong> - Creating cross-platform applications for iOS and Android</li>
-    </ul>
-    
-    <h2>Why I Love Tech Learning</h2>
-    <p>Technology is constantly evolving, and that's what makes it so exciting! Each new concept I master opens doors to countless possibilities. From building my own projects like <strong>UmmahBoard</strong> (an Islamic social media platform) to developing <strong>PathStarter</strong> (a full-stack internship platform), every learning experience translates into real-world impact.</p>
-    
-    <p>The satisfaction of solving complex problems, the thrill of seeing code come to life, and the endless possibilities for innovation keep me motivated to push further and learn more every single day.</p>
-    
-    <a href="../activities-list.html">Back to Activities</a>
-    <a href="workout.html">Next: Workout</a>
+    <div class="floating-icons">
+        <div class="floating-icon">💻</div>
+        <div class="floating-icon">🤖</div>
+        <div class="floating-icon">⚡</div>
+    </div>
+
+    <div class="container">
+        <div class="header">
+            <h1>🚀 Learning & Exploring New Technologies</h1>
+            <p>Fueling my passion for innovation and continuous growth</p>
+        </div>
+        
+        <div class="content-section">
+            <h2>My Tech Journey</h2>
+            <p>As a third-year Software Engineering student, I've discovered that my greatest passion lies in continuously learning and exploring new technologies. This isn't just about keeping up with trends - it's about feeding my curiosity and strengthening my foundation for the future.</p>
+            
+            <p>Every day presents an opportunity to dive deeper into the world of programming, artificial intelligence, and emerging technologies. Whether it's mastering a new programming language, understanding complex algorithms, or exploring the latest frameworks, I approach each learning opportunity with enthusiasm and dedication.</p>
+            
+            <div class="focus-areas">
+                <h3>🎯 Current Focus Areas</h3>
+                <div class="tech-grid">
+                    <div class="tech-item">
+                        <strong>Artificial Intelligence & Machine Learning</strong>
+                        <p>Exploring neural networks, deep learning, and AI applications</p>
+                    </div>
+                    <div class="tech-item">
+                        <strong>Full Stack Development</strong>
+                        <p>Building end-to-end web applications with modern frameworks</p>
+                    </div>
+                    <div class="tech-item">
+                        <strong>Data Science</strong>
+                        <p>Analyzing data patterns and extracting meaningful insights</p>
+                    </div>
+                    <div class="tech-item">
+                        <strong>Cloud Computing</strong>
+                        <p>Understanding scalable architectures and deployment strategies</p>
+                    </div>
+                    <div class="tech-item">
+                        <strong>Mobile Development</strong>
+                        <p>Creating cross-platform applications for iOS and Android</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="content-section passion-section">
+            <h2>Why I Love Tech Learning</h2>
+            <p>Technology is constantly evolving, and that's what makes it so exciting! Each new concept I master opens doors to countless possibilities. From building my own projects to developing innovative solutions, every learning experience translates into real-world impact.</p>
+            
+            <div class="project-highlight">
+                <p>From building my own projects like <strong>UmmahBoard</strong> (an Islamic social media platform) to developing <strong>PathStarter</strong> (a full-stack internship platform), every learning experience translates into real-world impact.</p>
+            </div>
+            
+            <p>The satisfaction of solving complex problems, the thrill of seeing code come to life, and the endless possibilities for innovation keep me motivated to push further and learn more every single day.</p>
+        </div>
+        
+        <div class="nav-section">
+            <a href="../activities-list.html" class="nav-button">← Back to Activities</a>
+            <a href="workout.html" class="nav-button secondary-button">Next: Workout →</a>
+        </div>
+    </div>
 </body>
 </html> 

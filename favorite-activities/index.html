@@ -4,17 +4,578 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Favorite Activities</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
+            min-height: 100vh;
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 20%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 80%, rgba(255, 119, 198, 0.3) 0%, transparent 50%),
+                        radial-gradient(circle at 40% 40%, rgba(120, 219, 255, 0.2) 0%, transparent 50%);
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 {
+            font-size: 4.5rem;
+            font-weight: 800;
+            color: #ffffff;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
+            letter-spacing: 2px;
+            background: linear-gradient(45deg, #ffffff, #e0e6ff, #d4dbff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+        }
+
+        .hero h1::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #667eea, #764ba2, #667eea, transparent);
+            animation: underlineGlow 3s ease-in-out infinite;
+        }
+
+        @keyframes underlineGlow {
+            0%, 100% {
+                opacity: 0.5;
+                transform: translateX(-50%) scaleX(0.8);
+            }
+            50% {
+                opacity: 1;
+                transform: translateX(-50%) scaleX(1.2);
+            }
+        }
+
+        .hero h2 {
+            font-size: 2.2rem;
+            font-weight: 400;
+            color: #b8c5ff;
+            margin-bottom: 2rem;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
+            letter-spacing: 1px;
+        }
+
+        .intro-section {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            padding: 3.5rem;
+            border-radius: 25px;
+            margin: 2rem 0;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .intro-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #667eea, #764ba2, #f093fb);
+            animation: shimmer 3s infinite;
+        }
+
+        .intro-section::after {
+            content: '';
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            border-radius: 50%;
+            opacity: 0.1;
+            animation: pulse 4s ease-in-out infinite;
+        }
+
+        @keyframes shimmer {
+            0% {
+                background-position: -200px 0;
+            }
+            100% {
+                background-position: 200px 0;
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 0.1;
+            }
+            50% {
+                transform: scale(1.5);
+                opacity: 0.3;
+            }
+        }
+
+        .intro-section p {
+            font-size: 1.3rem;
+            line-height: 1.9;
+            margin-bottom: 1.8rem;
+            color: #e8eeff;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        .intro-section p:first-of-type {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #ffffff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+        }
+
+        .cta-container {
+            margin-top: 3.5rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: #ffffff;
+            padding: 20px 50px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.2rem;
+            transition: all 0.4s ease;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+            position: relative;
+            overflow: hidden;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transition: left 0.6s;
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(102, 126, 234, 0.6);
+            background: linear-gradient(45deg, #7c8df8, #8e5cc6);
+        }
+
+        .floating-elements {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .floating-circle {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(102, 126, 234, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            animation: float 8s ease-in-out infinite;
+        }
+
+        .floating-circle:nth-child(1) {
+            width: 120px;
+            height: 120px;
+            top: 15%;
+            left: 8%;
+            animation-delay: 0s;
+            background: rgba(102, 126, 234, 0.15);
+        }
+
+        .floating-circle:nth-child(2) {
+            width: 180px;
+            height: 180px;
+            top: 60%;
+            right: 10%;
+            animation-delay: 3s;
+            background: rgba(118, 75, 162, 0.15);
+        }
+
+        .floating-circle:nth-child(3) {
+            width: 100px;
+            height: 100px;
+            bottom: 15%;
+            left: 15%;
+            animation-delay: 6s;
+            background: rgba(240, 147, 251, 0.15);
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px) translateX(0px);
+            }
+            33% {
+                transform: translateY(-30px) translateX(10px);
+            }
+            66% {
+                transform: translateY(-15px) translateX(-10px);
+            }
+        }
+
+        .constellation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .star {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: #ffffff;
+            border-radius: 50%;
+            animation: twinkle 6s infinite;
+        }
+
+        .star:nth-child(1) {
+            top: 10%;
+            left: 20%;
+            animation-delay: 0s;
+        }
+
+        .star:nth-child(2) {
+            top: 30%;
+            left: 70%;
+            animation-delay: 2s;
+        }
+
+        .star:nth-child(3) {
+            top: 70%;
+            left: 40%;
+            animation-delay: 4s;
+        }
+
+        .star:nth-child(4) {
+            top: 20%;
+            right: 20%;
+            animation-delay: 1s;
+        }
+
+        .star:nth-child(5) {
+            bottom: 30%;
+            left: 80%;
+            animation-delay: 3s;
+        }
+
+        .star:nth-child(6) {
+            bottom: 20%;
+            right: 30%;
+            animation-delay: 5s;
+        }
+
+        @keyframes twinkle {
+            0%, 100% {
+                opacity: 0.3;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.8);
+            }
+        }
+
+        .morphing-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .morph-shape {
+            position: absolute;
+            background: linear-gradient(45deg, rgba(102, 126, 234, 0.05), rgba(118, 75, 162, 0.05));
+            border-radius: 50%;
+            animation: morph 20s ease-in-out infinite;
+        }
+
+        .morph-shape:nth-child(1) {
+            width: 400px;
+            height: 400px;
+            top: -200px;
+            left: -200px;
+            animation-delay: 0s;
+        }
+
+        .morph-shape:nth-child(2) {
+            width: 300px;
+            height: 300px;
+            bottom: -150px;
+            right: -150px;
+            animation-delay: 7s;
+        }
+
+        .morph-shape:nth-child(3) {
+            width: 250px;
+            height: 250px;
+            top: 50%;
+            left: 50%;
+            animation-delay: 14s;
+            transform: translate(-50%, -50%);
+        }
+
+        @keyframes morph {
+            0%, 100% {
+                border-radius: 50%;
+                transform: rotate(0deg) scale(1);
+            }
+            25% {
+                border-radius: 60% 40% 30% 70%/60% 30% 70% 40%;
+                transform: rotate(90deg) scale(1.1);
+            }
+            50% {
+                border-radius: 30% 60% 70% 40%/50% 60% 30% 60%;
+                transform: rotate(180deg) scale(0.9);
+            }
+            75% {
+                border-radius: 40% 60% 60% 40%/60% 40% 60% 40%;
+                transform: rotate(270deg) scale(1.05);
+            }
+        }
+
+        .energy-orb {
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            background: radial-gradient(circle, rgba(102, 126, 234, 0.3) 0%, transparent 70%);
+            border-radius: 50%;
+            top: 20%;
+            right: 10%;
+            animation: energyPulse 8s ease-in-out infinite;
+            z-index: 1;
+        }
+
+        @keyframes energyPulse {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 0.3;
+            }
+            50% {
+                transform: scale(1.5);
+                opacity: 0.7;
+            }
+        }
+
+        .dynamic-grid {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.1;
+        }
+
+        .grid-line {
+            position: absolute;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            animation: gridFlow 12s linear infinite;
+        }
+
+        .grid-line.horizontal {
+            width: 100%;
+            height: 1px;
+            top: 25%;
+            animation-delay: 0s;
+        }
+
+        .grid-line.horizontal:nth-child(2) {
+            top: 50%;
+            animation-delay: 4s;
+        }
+
+        .grid-line.horizontal:nth-child(3) {
+            top: 75%;
+            animation-delay: 8s;
+        }
+
+        .grid-line.vertical {
+            height: 100%;
+            width: 1px;
+            left: 25%;
+            animation-delay: 2s;
+        }
+
+        .grid-line.vertical:nth-child(5) {
+            left: 50%;
+            animation-delay: 6s;
+        }
+
+        .grid-line.vertical:nth-child(6) {
+            left: 75%;
+            animation-delay: 10s;
+        }
+
+        @keyframes gridFlow {
+            0% {
+                opacity: 0;
+                transform: translateX(-100%);
+            }
+            50% {
+                opacity: 0.3;
+            }
+            100% {
+                opacity: 0;
+                transform: translateX(100%);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 3rem;
+            }
+            
+            .hero h2 {
+                font-size: 1.8rem;
+            }
+            
+            .intro-section {
+                padding: 2.5rem;
+                margin: 1rem 0;
+            }
+            
+            .intro-section p {
+                font-size: 1.1rem;
+            }
+
+            .cta-button {
+                padding: 16px 35px;
+                font-size: 1.1rem;
+            }
+
+            .morph-shape {
+                display: none;
+            }
+        }
+    </style>
 </head>
 <body>
-    <h1>Welcome to My World</h1>
-    <h2>Discover My Favorite Activities</h2>
-    
-    <p>Hello! I'm Abdulrahman, a third-year Software Engineering student passionate about technology, fitness, and meaningful connections. This website showcases the three activities that bring me the most joy and fulfillment in life.</p>
-    
-    <p>Each activity represents a different aspect of my personality and interests - from my love for continuous learning and technology exploration, to my dedication to physical fitness and strength training, to my deep appreciation for quality time with the people I care about most.</p>
-    
-    <p>Take a journey through my favorite activities and discover what makes me tick!</p>
-    
-    <a href="activities-list.html">Explore My Activities</a>
+    <div class="constellation">
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+    </div>
+
+    <div class="morphing-bg">
+        <div class="morph-shape"></div>
+        <div class="morph-shape"></div>
+        <div class="morph-shape"></div>
+    </div>
+
+    <div class="dynamic-grid">
+        <div class="grid-line horizontal"></div>
+        <div class="grid-line horizontal"></div>
+        <div class="grid-line horizontal"></div>
+        <div class="grid-line vertical"></div>
+        <div class="grid-line vertical"></div>
+        <div class="grid-line vertical"></div>
+    </div>
+
+    <div class="hero">
+        <div class="floating-elements">
+            <div class="floating-circle"></div>
+            <div class="floating-circle"></div>
+            <div class="floating-circle"></div>
+        </div>
+        
+        <div class="energy-orb"></div>
+        
+        <div class="container">
+            <div class="hero-content">
+                <h1>Welcome to My World</h1>
+                <h2>Discover My Favorite Activities</h2>
+                
+                <div class="intro-section">
+                    <p>Hello! I'm Abdulrahman, a third-year Software Engineering student passionate about technology, fitness, and meaningful connections. This website showcases the three activities that bring me the most joy and fulfillment in life.</p>
+                    
+                    <p>Each activity represents a different aspect of my personality and interests - from my love for continuous learning and technology exploration, to my dedication to physical fitness and strength training, to my deep appreciation for quality time with the people I care about most.</p>
+                    
+                    <p>Take a journey through my favorite activities and discover what makes me tick!</p>
+                    
+                    <div class="cta-container">
+                        <a href="activities-list.html" class="cta-button">Explore My Activities →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html> 

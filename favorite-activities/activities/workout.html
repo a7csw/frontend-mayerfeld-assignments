@@ -4,40 +4,581 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weekly Workout & Calisthenics Training</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0a1a0a 0%, #1a2e1a 50%, #162e21 100%);
+            min-height: 100vh;
+            color: #fff;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 60px;
+            animation: slideInDown 0.8s ease-out;
+        }
+
+        @keyframes slideInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .header h1 {
+            font-size: 3.8rem;
+            font-weight: 800;
+            color: #ffffff;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
+            letter-spacing: 1px;
+            background: linear-gradient(45deg, #4ecdc4, #44a08d, #2dd4bf);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .header p {
+            font-size: 1.4rem;
+            color: #b8ffcc;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
+            margin-bottom: 2rem;
+        }
+
+        .content-section {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(20px);
+            border-radius: 25px;
+            padding: 50px;
+            margin-bottom: 40px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            position: relative;
+            overflow: hidden;
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .content-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #4ecdc4, #44a08d, #2dd4bf);
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            0% {
+                background-position: -200px 0;
+            }
+            100% {
+                background-position: 200px 0;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .content-section h2 {
+            font-size: 2.8rem;
+            color: #ffffff;
+            margin-bottom: 30px;
+            position: relative;
+            padding-left: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+        }
+
+        .content-section h2::before {
+            content: '💪';
+            position: absolute;
+            left: -20px;
+            font-size: 2.2rem;
+            animation: flex 2s infinite;
+        }
+
+        @keyframes flex {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.2);
+            }
+        }
+
+        .content-section p {
+            font-size: 1.3rem;
+            color: #d0ffde;
+            margin-bottom: 25px;
+            line-height: 1.8;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        .schedule-section {
+            background: linear-gradient(135deg, rgba(78, 205, 196, 0.2) 0%, rgba(68, 160, 141, 0.2) 100%);
+            color: #ffffff;
+            padding: 45px;
+            border-radius: 20px;
+            margin: 30px 0;
+            box-shadow: 0 20px 40px rgba(78, 205, 196, 0.3);
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(78, 205, 196, 0.3);
+        }
+
+        .schedule-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(78, 205, 196, 0.1) 0%, transparent 70%);
+            animation: rotate 25s linear infinite;
+            pointer-events: none;
+        }
+
+        @keyframes rotate {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .schedule-section h3 {
+            font-size: 2.3rem;
+            margin-bottom: 35px;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            color: #ffffff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+        }
+
+        .schedule-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .schedule-item {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 30px;
+            border-radius: 18px;
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(15px);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .schedule-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .schedule-item:hover::before {
+            left: 100%;
+        }
+
+        .schedule-item:hover {
+            transform: translateY(-8px) scale(1.03);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .schedule-item strong {
+            font-size: 1.5rem;
+            display: block;
+            margin-bottom: 12px;
+            color: #2dd4bf;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        .schedule-item p {
+            color: #ffffff;
+            font-size: 1.2rem;
+            margin-bottom: 8px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
+        }
+
+        .schedule-item em {
+            font-style: italic;
+            color: #b8ffcc;
+            font-size: 1rem;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
+        }
+
+        .benefits-section {
+            background: linear-gradient(135deg, rgba(45, 212, 191, 0.2) 0%, rgba(34, 197, 94, 0.2) 100%);
+            color: #ffffff;
+            margin: 40px 0;
+            border: 1px solid rgba(45, 212, 191, 0.3);
+        }
+
+        .benefits-section h3 {
+            font-size: 2.3rem;
+            margin-bottom: 35px;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            color: #ffffff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+        }
+
+        .benefits-section h3::before {
+            content: '🏆';
+            margin-right: 10px;
+            animation: trophy 2s infinite;
+        }
+
+        @keyframes trophy {
+            0%, 100% {
+                transform: rotate(0deg);
+            }
+            25% {
+                transform: rotate(-10deg);
+            }
+            75% {
+                transform: rotate(10deg);
+            }
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .benefit-item {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 30px;
+            border-radius: 18px;
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(15px);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .benefit-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .benefit-item strong {
+            font-size: 1.4rem;
+            display: block;
+            margin-bottom: 12px;
+            color: #2dd4bf;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        .benefit-item p {
+            color: #e8fff0;
+            font-size: 1.1rem;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
+        }
+
+        .armwrestling-section {
+            background: linear-gradient(135deg, rgba(34, 197, 94, 0.2) 0%, rgba(20, 184, 166, 0.2) 100%);
+            color: #ffffff;
+            margin: 40px 0;
+            border: 1px solid rgba(34, 197, 94, 0.3);
+        }
+
+        .armwrestling-section h2 {
+            color: #ffffff;
+        }
+
+        .armwrestling-section h2::before {
+            content: '🤼';
+        }
+
+        .armwrestling-section p {
+            color: #e8fff0;
+        }
+
+        .strength-highlight {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 30px;
+            border-radius: 18px;
+            margin: 30px 0;
+            border-left: 5px solid #2dd4bf;
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .strength-highlight p {
+            color: #ffffff;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
+        }
+
+        .nav-section {
+            text-align: center;
+            margin-top: 60px;
+        }
+
+        .nav-button {
+            display: inline-block;
+            background: linear-gradient(45deg, #4ecdc4, #44a08d);
+            color: #ffffff;
+            padding: 18px 35px;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            margin: 0 15px;
+            box-shadow: 0 10px 30px rgba(78, 205, 196, 0.4);
+            position: relative;
+            overflow: hidden;
+            border: 2px solid rgba(255, 255, 255, 0.15);
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .nav-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .nav-button:hover::before {
+            left: 100%;
+        }
+
+        .nav-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(78, 205, 196, 0.6);
+            background: linear-gradient(45deg, #5fd9ce, #52b5a0);
+        }
+
+        .primary-button {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+        }
+
+        .primary-button:hover {
+            box-shadow: 0 15px 35px rgba(102, 126, 234, 0.6);
+            background: linear-gradient(45deg, #7c8df8, #8e5cc6);
+        }
+
+        .secondary-button {
+            background: linear-gradient(45deg, #ff6b6b, #ee5a52);
+            box-shadow: 0 10px 30px rgba(255, 107, 107, 0.4);
+        }
+
+        .secondary-button:hover {
+            box-shadow: 0 15px 35px rgba(255, 107, 107, 0.6);
+            background: linear-gradient(45deg, #ff7979, #fab1a0);
+        }
+
+        .floating-icons {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .floating-icon {
+            position: absolute;
+            font-size: 2.5rem;
+            color: rgba(78, 205, 196, 0.15);
+            animation: floatIcon 18s infinite ease-in-out;
+        }
+
+        .floating-icon:nth-child(1) {
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .floating-icon:nth-child(2) {
+            top: 60%;
+            right: 15%;
+            animation-delay: 6s;
+        }
+
+        .floating-icon:nth-child(3) {
+            bottom: 30%;
+            left: 80%;
+            animation-delay: 12s;
+        }
+
+        @keyframes floatIcon {
+            0%, 100% {
+                transform: translateY(0px) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-60px) rotate(180deg);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2.8rem;
+            }
+            
+            .content-section {
+                padding: 35px;
+            }
+            
+            .schedule-grid,
+            .benefits-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-button {
+                display: block;
+                margin: 10px 0;
+                padding: 16px 30px;
+                font-size: 1.1rem;
+            }
+        }
+    </style>
 </head>
 <body>
-    <h1>Weekly Workout & Calisthenics Training</h1>
-    <p>Building strength, discipline, and resilience through bodyweight training</p>
-    
-    <h2>My Fitness Philosophy</h2>
-    <p>Staying physically fit is not just about looking good - it's about feeling strong, maintaining discipline, and building the mental resilience that carries over into every aspect of life. My weekly workout routine centers around <strong>calisthenics training</strong> and <strong>armwrestling practice</strong>, both of which have become integral parts of my identity.</p>
-    
-    <p>I believe in the power of bodyweight exercises and functional strength. Calisthenics teaches you to master your own body weight, building not just muscle but also coordination, flexibility, and control. Combined with armwrestling, which demands explosive power and technique, my training regimen keeps me challenged and motivated.</p>
-    
-    <h3>My Weekly Training Schedule:</h3>
-    <ul>
-        <li><strong>Monday</strong> - Upper Body Calisthenics: Pull-ups, Push-ups, Dips</li>
-        <li><strong>Tuesday</strong> - Armwrestling Practice: Technique & Strength</li>
-        <li><strong>Wednesday</strong> - Lower Body Power: Squats, Lunges, Pistols</li>
-        <li><strong>Thursday</strong> - Core & Flexibility: Planks, L-sits, Stretching</li>
-        <li><strong>Friday</strong> - Full Body Circuit: Burpees, Mountain climbers</li>
-        <li><strong>Weekend</strong> - Active Recovery: Light cardio, mobility work</li>
-    </ul>
-    
-    <h3>Why I Love This Routine:</h3>
-    <ul>
-        <li><strong>Builds Functional Strength:</strong> Every exercise translates to real-world movement patterns</li>
-        <li><strong>Develops Mental Toughness:</strong> Pushing through challenging workouts builds character</li>
-        <li><strong>Improves Focus:</strong> Physical training enhances my ability to concentrate on studies</li>
-        <li><strong>Stress Relief:</strong> Exercise is my go-to method for managing academic pressure</li>
-        <li><strong>Consistent Progress:</strong> Weekly routine ensures steady improvement and habit formation</li>
-    </ul>
-    
-    <h2>The Armwrestling Connection</h2>
-    <p>Armwrestling has taught me that strength isn't just about size - it's about technique, leverage, and mental strategy. The sport demands explosive power, grip strength, and the ability to adapt tactics mid-match. These skills have made me more strategic in my approach to both fitness and life challenges.</p>
-    
-    <a href="learning-tech.html">Previous: Tech Learning</a>
-    <a href="../activities-list.html">Back to Activities</a>
-    <a href="family-time.html">Next: Family Time</a>
+    <div class="floating-icons">
+        <div class="floating-icon">💪</div>
+        <div class="floating-icon">🏋️</div>
+        <div class="floating-icon">🔥</div>
+    </div>
+
+    <div class="container">
+        <div class="header">
+            <h1>💪 Weekly Workout & Calisthenics Training</h1>
+            <p>Building strength, discipline, and resilience through bodyweight training</p>
+        </div>
+        
+        <div class="content-section">
+            <h2>My Fitness Philosophy</h2>
+            <p>Staying physically fit is not just about looking good - it's about feeling strong, maintaining discipline, and building the mental resilience that carries over into every aspect of life. My weekly workout routine centers around <strong>calisthenics training</strong> and <strong>armwrestling practice</strong>, both of which have become integral parts of my identity.</p>
+            
+            <p>I believe in the power of bodyweight exercises and functional strength. Calisthenics teaches you to master your own body weight, building not just muscle but also coordination, flexibility, and control. Combined with armwrestling, which demands explosive power and technique, my training regimen keeps me challenged and motivated.</p>
+            
+            <div class="schedule-section">
+                <h3>🏋️‍♂️ My Weekly Training Schedule</h3>
+                <div class="schedule-grid">
+                    <div class="schedule-item">
+                        <strong>Monday</strong>
+                        <p>Upper Body Calisthenics</p>
+                        <em>Pull-ups, Push-ups, Dips</em>
+                    </div>
+                    <div class="schedule-item">
+                        <strong>Tuesday</strong>
+                        <p>Armwrestling Practice</p>
+                        <em>Technique & Strength</em>
+                    </div>
+                    <div class="schedule-item">
+                        <strong>Wednesday</strong>
+                        <p>Lower Body Power</p>
+                        <em>Squats, Lunges, Pistols</em>
+                    </div>
+                    <div class="schedule-item">
+                        <strong>Thursday</strong>
+                        <p>Core & Flexibility</p>
+                        <em>Planks, L-sits, Stretching</em>
+                    </div>
+                    <div class="schedule-item">
+                        <strong>Friday</strong>
+                        <p>Full Body Circuit</p>
+                        <em>Burpees, Mountain climbers</em>
+                    </div>
+                    <div class="schedule-item">
+                        <strong>Weekend</strong>
+                        <p>Active Recovery</p>
+                        <em>Light cardio, mobility work</em>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="content-section benefits-section">
+            <h3>Why I Love This Routine</h3>
+            <div class="benefits-grid">
+                <div class="benefit-item">
+                    <strong>Builds Functional Strength</strong>
+                    <p>Every exercise translates to real-world movement patterns</p>
+                </div>
+                <div class="benefit-item">
+                    <strong>Develops Mental Toughness</strong>
+                    <p>Pushing through challenging workouts builds character</p>
+                </div>
+                <div class="benefit-item">
+                    <strong>Improves Focus</strong>
+                    <p>Physical training enhances my ability to concentrate on studies</p>
+                </div>
+                <div class="benefit-item">
+                    <strong>Stress Relief</strong>
+                    <p>Exercise is my go-to method for managing academic pressure</p>
+                </div>
+                <div class="benefit-item">
+                    <strong>Consistent Progress</strong>
+                    <p>Weekly routine ensures steady improvement and habit formation</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="content-section armwrestling-section">
+            <h2>The Armwrestling Connection</h2>
+            <p>Armwrestling has taught me that strength isn't just about size - it's about technique, leverage, and mental strategy. The sport demands explosive power, grip strength, and the ability to adapt tactics mid-match.</p>
+            
+            <div class="strength-highlight">
+                <p>These skills have made me more strategic in my approach to both fitness and life challenges, teaching me that success comes from the perfect combination of preparation, technique, and mental fortitude.</p>
+            </div>
+        </div>
+        
+        <div class="nav-section">
+            <a href="learning-tech.html" class="nav-button primary-button">← Previous: Tech Learning</a>
+            <a href="../activities-list.html" class="nav-button">Back to Activities</a>
+            <a href="family-time.html" class="nav-button secondary-button">Next: Family Time →</a>
+        </div>
+    </div>
 </body>
 </html> 
