@@ -8,32 +8,24 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>My Favorite Activities - Welcome</title>
     <style>
-        /* Premium Animations - Connected to Favorite Activities Theme */
+        /* Calm & Clean Premium Animations */
         * {
             margin: 0;
             padding: 0;
-            -webkit-box-sizing: border-box;
-            -moz-box-sizing: border-box;
             box-sizing: border-box;
         }
 
         :root {
-            --primary-bg: #0a0a0f;
-            --secondary-bg: rgba(255, 255, 255, 0.03);
+            --primary-bg: #0f0f23;
+            --secondary-bg: rgba(255, 255, 255, 0.05);
             --primary-text: #ffffff;
             --secondary-text: #b8c5ff;
             --accent-text: #e8eeff;
-            --tech-color: #00ffff;
-            --fitness-color: #ff6b35;
-            --family-color: #ff69b4;
-            --gradient-tech: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #00ffff 100%);
-            --gradient-fitness: linear-gradient(135deg, #ff6b35 0%, #f7931e 50%, #ffdd59 100%);
-            --gradient-family: linear-gradient(135deg, #ff69b4 0%, #ff1744 50%, #ffc107 100%);
-            --dynamic-gradient: linear-gradient(45deg, #667eea, #764ba2, #00ffff, #ff6b35, #ff69b4);
+            --tech-color: #64ffda;
+            --fitness-color: #ff6b6b;
+            --family-color: #ff9ff3;
             --border-color: rgba(255, 255, 255, 0.1);
-            --glow-tech: 0 0 30px rgba(0, 255, 255, 0.3);
-            --glow-fitness: 0 0 30px rgba(255, 107, 53, 0.3);
-            --glow-family: 0 0 30px rgba(255, 105, 180, 0.3);
+            --subtle-glow: 0 0 20px rgba(100, 255, 218, 0.2);
         }
 
         html {
@@ -42,7 +34,7 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Segoe UI', system-ui, sans-serif;
             background: var(--primary-bg);
             color: var(--primary-text);
             line-height: 1.6;
@@ -51,7 +43,7 @@
             position: relative;
         }
 
-        /* Dynamic Background Animation */
+        /* Subtle Background Gradient */
         body::before {
             content: '';
             position: fixed;
@@ -59,23 +51,12 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: var(--dynamic-gradient);
-            background-size: 400% 400%;
-            animation: dynamicBackground 20s ease infinite;
-            opacity: 0.1;
+            background: radial-gradient(ellipse at center, rgba(100, 255, 218, 0.03) 0%, transparent 70%);
             z-index: -1;
         }
 
-        @keyframes dynamicBackground {
-            0% { background-position: 0% 50%; }
-            25% { background-position: 100% 50%; }
-            50% { background-position: 100% 100%; }
-            75% { background-position: 0% 100%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        /* Floating Activity Icons */
-        .floating-icons {
+        /* Minimal Floating Elements */
+        .floating-elements {
             position: fixed;
             top: 0;
             left: 0;
@@ -86,64 +67,25 @@
             overflow: hidden;
         }
 
-        .activity-icon {
+        .floating-element {
             position: absolute;
-            font-size: 24px;
-            opacity: 0.6;
-            animation: float 15s ease-in-out infinite;
+            font-size: 20px;
+            opacity: 0.3;
+            animation: gentleFloat 20s ease-in-out infinite;
         }
 
-        .tech-icon {
-            color: var(--tech-color);
-            text-shadow: var(--glow-tech);
-            animation-delay: 0s;
-        }
-
-        .fitness-icon {
-            color: var(--fitness-color);
-            text-shadow: var(--glow-fitness);
-            animation-delay: 5s;
-        }
-
-        .family-icon {
-            color: var(--family-color);
-            text-shadow: var(--glow-family);
-            animation-delay: 10s;
-        }
-
-        @keyframes float {
+        @keyframes gentleFloat {
             0%, 100% {
-                transform: translateY(100vh) translateX(0px) rotate(0deg);
+                transform: translateY(100vh) translateX(0px);
                 opacity: 0;
             }
-            10% {
-                opacity: 0.6;
-            }
-            90% {
-                opacity: 0.6;
+            10%, 90% {
+                opacity: 0.3;
             }
             50% {
-                transform: translateY(-20vh) translateX(50px) rotate(180deg);
-                opacity: 0.8;
+                transform: translateY(-20vh) translateX(30px);
+                opacity: 0.4;
             }
-        }
-
-        /* Skip link */
-        .skip-link {
-            position: absolute;
-            top: -40px;
-            left: 6px;
-            background: var(--tech-color);
-            color: black;
-            padding: 8px;
-            text-decoration: none;
-            border-radius: 4px;
-            z-index: 1000;
-            transition: all 0.3s ease;
-        }
-
-        .skip-link:focus {
-            top: 6px;
         }
 
         .container {
@@ -151,7 +93,7 @@
             margin: 0 auto;
             padding: 0 20px;
             position: relative;
-            z-index: 100;
+            z-index: 1000;
         }
 
         .hero {
@@ -161,41 +103,16 @@
             justify-content: center;
             text-align: center;
             position: relative;
-            perspective: 1000px;
-        }
-
-        /* Parallax Hero Background */
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(ellipse at center, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.05) 50%, transparent 100%);
-            animation: parallaxPulse 8s ease-in-out infinite alternate;
-            z-index: -1;
-        }
-
-        @keyframes parallaxPulse {
-            0% {
-                transform: scale(1) translateZ(0);
-                opacity: 0.1;
-            }
-            100% {
-                transform: scale(1.1) translateZ(10px);
-                opacity: 0.2;
-            }
         }
 
         .hero-content {
             width: 100%;
-            animation: heroReveal 2s ease-out forwards;
+            animation: fadeInUp 1.5s ease-out forwards;
             opacity: 0;
-            transform: translateY(50px);
+            transform: translateY(30px);
         }
 
-        @keyframes heroReveal {
+        @keyframes fadeInUp {
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -206,28 +123,18 @@
             font-size: clamp(2.5rem, 5vw, 4.5rem);
             font-weight: 800;
             margin-bottom: 1rem;
-            background: var(--gradient-tech);
+            background: linear-gradient(135deg, var(--tech-color), var(--fitness-color), var(--family-color));
             background-size: 200% 200%;
             -webkit-background-clip: text;
             background-clip: text;
             -webkit-text-fill-color: transparent;
-            animation: gradientShift 4s ease-in-out infinite, textGlow 3s ease-in-out infinite alternate;
-            letter-spacing: 2px;
-            position: relative;
+            animation: subtleGradientShift 8s ease-in-out infinite;
+            letter-spacing: 1px;
         }
 
-        @keyframes gradientShift {
+        @keyframes subtleGradientShift {
             0%, 100% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
-        }
-
-        @keyframes textGlow {
-            0% {
-                filter: drop-shadow(0 0 10px rgba(0, 255, 255, 0.3));
-            }
-            100% {
-                filter: drop-shadow(0 0 20px rgba(0, 255, 255, 0.6));
-            }
         }
 
         .hero h2 {
@@ -235,114 +142,24 @@
             font-weight: 400;
             color: var(--secondary-text);
             margin-bottom: 3rem;
-            animation: subtitleFade 2.5s ease-out 0.5s forwards;
+            animation: fadeInUp 1.8s ease-out 0.3s forwards;
             opacity: 0;
-            transform: translateY(30px);
-        }
-
-        @keyframes subtitleFade {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Activity-Themed Particles */
-        .activity-particles {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            overflow: hidden;
-            z-index: 1;
-            pointer-events: none;
-        }
-
-        .particle {
-            position: absolute;
-            width: 4px;
-            height: 4px;
-            border-radius: 50%;
-            animation: particleFloat 20s linear infinite;
-        }
-
-        .particle.tech {
-            background: var(--tech-color);
-            box-shadow: var(--glow-tech);
-        }
-
-        .particle.fitness {
-            background: var(--fitness-color);
-            box-shadow: var(--glow-fitness);
-        }
-
-        .particle.family {
-            background: var(--family-color);
-            box-shadow: var(--glow-family);
-        }
-
-        @keyframes particleFloat {
-            0% {
-                transform: translateY(100vh) translateX(0px);
-                opacity: 0;
-            }
-            10%, 90% {
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(-10vh) translateX(100px);
-                opacity: 0;
-            }
+            transform: translateY(20px);
         }
 
         .intro-section {
             background: var(--secondary-bg);
-            backdrop-filter: blur(20px);
+            backdrop-filter: blur(10px);
             border: 1px solid var(--border-color);
             padding: 3rem;
             border-radius: 20px;
             margin: 3rem 0;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 
-                        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
             position: relative;
-            z-index: 10;
-            overflow: hidden;
-            animation: sectionReveal 2s ease-out 1s forwards;
+            z-index: 100;
+            animation: fadeInUp 2s ease-out 0.6s forwards;
             opacity: 0;
-            transform: translateY(50px) scale(0.95);
-        }
-
-        @keyframes sectionReveal {
-            to {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
-        }
-
-        /* Interactive Hover Effect for Section */
-        .intro-section:hover {
-            transform: translateY(-5px) scale(1.02);
-            box-shadow: 0 25px 50px rgba(102, 126, 234, 0.2), 
-                        inset 0 1px 0 rgba(255, 255, 255, 0.2);
-            transition: all 0.4s ease;
-        }
-
-        .intro-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.05), transparent);
-            animation: shimmer 3s ease-in-out infinite;
-        }
-
-        @keyframes shimmer {
-            0% { left: -100%; }
-            50% { left: 100%; }
-            100% { left: 100%; }
+            transform: translateY(20px);
         }
 
         .intro-section p {
@@ -350,208 +167,83 @@
             line-height: 1.8;
             margin-bottom: 1.5rem;
             color: var(--accent-text);
-            animation: textReveal 2.5s ease-out 1.5s forwards;
-            opacity: 0;
-            transform: translateX(-20px);
-        }
-
-        .intro-section p:nth-child(2) { animation-delay: 1.7s; }
-        .intro-section p:nth-child(3) { animation-delay: 1.9s; }
-        .intro-section p:nth-child(4) { animation-delay: 2.1s; }
-
-        @keyframes textReveal {
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
         }
 
         .intro-section p:first-of-type {
-            font-size: calc(clamp(1rem, 2vw, 1.3rem) + 0.1rem);
             font-weight: 600;
             color: var(--primary-text);
         }
 
         .cta-container {
             margin-top: 3rem;
-            animation: ctaReveal 2s ease-out 2.5s forwards;
+            animation: fadeInUp 2.3s ease-out 0.9s forwards;
             opacity: 0;
-            transform: translateY(30px);
-        }
-
-        @keyframes ctaReveal {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            transform: translateY(20px);
         }
 
         .cta-button {
             display: inline-block;
-            background: var(--gradient-tech);
+            background: linear-gradient(135deg, var(--tech-color), var(--fitness-color));
             background-size: 200% 200%;
-            color: var(--primary-text);
-            padding: 20px 45px;
+            color: #000000;
+            padding: 18px 40px;
             text-decoration: none;
             border-radius: 50px;
             font-weight: 700;
             font-size: 1.2rem;
-            box-shadow: 0 15px 35px rgba(102, 126, 234, 0.4),
-                        inset 0 1px 0 rgba(255, 255, 255, 0.2);
-            border: 2px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            box-shadow: var(--subtle-glow);
+            border: none;
+            transition: all 0.3s ease;
             cursor: pointer;
             position: relative;
-            overflow: hidden;
-            animation: buttonGlow 2s ease-in-out infinite alternate;
+            z-index: 1000;
+            animation: subtleGlow 3s ease-in-out infinite alternate;
         }
 
-        @keyframes buttonGlow {
+        @keyframes subtleGlow {
             0% {
-                box-shadow: 0 15px 35px rgba(102, 126, 234, 0.4),
-                           inset 0 1px 0 rgba(255, 255, 255, 0.2);
+                box-shadow: var(--subtle-glow);
             }
             100% {
-                box-shadow: 0 20px 40px rgba(102, 126, 234, 0.6),
-                           inset 0 1px 0 rgba(255, 255, 255, 0.3),
-                           0 0 30px rgba(0, 255, 255, 0.3);
+                box-shadow: 0 0 25px rgba(100, 255, 218, 0.4);
             }
-        }
-
-        .cta-button::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: left 0.6s ease;
-        }
-
-        .cta-button:hover::before {
-            left: 100%;
         }
 
         .cta-button:hover {
-            transform: translateY(-8px) scale(1.05);
+            transform: translateY(-3px) scale(1.02);
             background-position: 100% 50%;
-            box-shadow: 0 25px 50px rgba(102, 126, 234, 0.7),
-                        inset 0 2px 0 rgba(255, 255, 255, 0.3),
-                        0 0 40px rgba(0, 255, 255, 0.5);
+            box-shadow: 0 15px 30px rgba(100, 255, 218, 0.4);
         }
 
         .cta-button:focus {
-            outline: 3px solid var(--tech-color);
-            outline-offset: 3px;
-            transform: translateY(-8px) scale(1.05);
-        }
-
-        /* Mouse Follower Effect */
-        .cursor-glow {
-            position: fixed;
-            width: 20px;
-            height: 20px;
-            background: radial-gradient(circle, var(--tech-color) 0%, transparent 70%);
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 9999;
-            mix-blend-mode: screen;
-            opacity: 0;
-            transition: opacity 0.3s ease;
+            outline: 2px solid var(--tech-color);
+            outline-offset: 2px;
         }
 
         /* Responsive Design */
         @media (max-width: 768px) {
             .container { padding: 0 15px; }
             .intro-section { padding: 2rem; margin: 2rem 0; }
-            .cta-button { padding: 18px 40px; font-size: 1.1rem; width: 100%; max-width: 300px; }
-            .activity-icon { font-size: 18px; }
-            .particle { width: 3px; height: 3px; }
-        }
-
-        @media (max-width: 480px) {
-            .hero h1 { font-size: 2.5rem; }
-            .hero h2 { font-size: 1.5rem; }
-            .intro-section { padding: 1.5rem; }
+            .cta-button { padding: 16px 35px; font-size: 1.1rem; }
         }
 
         /* Reduced motion support */
         @media (prefers-reduced-motion: reduce) {
-            *,
-            *::before,
-            *::after {
+            *, *::before, *::after {
                 animation-duration: 0.01ms !important;
                 animation-iteration-count: 1 !important;
                 transition-duration: 0.01ms !important;
-            }
-            
-            .cta-button:hover,
-            .intro-section:hover {
-                transform: none;
-            }
-        }
-
-        /* Print styles */
-        @media print {
-            body { background: white !important; color: black !important; }
-            .floating-icons, .activity-particles, .cursor-glow { display: none; }
-            .cta-button { background: #333333 !important; color: white !important; }
-        }
-
-        /* High contrast mode */
-        @media (prefers-contrast: high) {
-            :root {
-                --primary-text: #ffffff;
-                --secondary-text: #ffffff;
-                --accent-text: #ffffff;
-                --tech-color: #00ffff;
-                --fitness-color: #ffff00;
-                --family-color: #ff00ff;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Skip to main content link -->
-    <a href="#main-content" class="skip-link">Skip to main content</a>
-    
-    <!-- Floating Activity Icons -->
-    <div class="floating-icons" aria-hidden="true">
-        <div class="activity-icon tech-icon" style="left: 10%; animation-delay: 0s;">💻</div>
-        <div class="activity-icon tech-icon" style="left: 80%; animation-delay: 3s;">⚡</div>
-        <div class="activity-icon tech-icon" style="left: 20%; animation-delay: 6s;">🚀</div>
-        <div class="activity-icon tech-icon" style="left: 70%; animation-delay: 9s;">🔧</div>
-        
-        <div class="activity-icon fitness-icon" style="left: 30%; animation-delay: 1s;">💪</div>
-        <div class="activity-icon fitness-icon" style="left: 60%; animation-delay: 4s;">🏋️</div>
-        <div class="activity-icon fitness-icon" style="left: 15%; animation-delay: 7s;">🏃</div>
-        <div class="activity-icon fitness-icon" style="left: 85%; animation-delay: 10s;">⚡</div>
-        
-        <div class="activity-icon family-icon" style="left: 50%; animation-delay: 2s;">❤️</div>
-        <div class="activity-icon family-icon" style="left: 25%; animation-delay: 5s;">🏠</div>
-        <div class="activity-icon family-icon" style="left: 75%; animation-delay: 8s;">👨‍👩‍👧‍👦</div>
-        <div class="activity-icon family-icon" style="left: 40%; animation-delay: 11s;">🌟</div>
+    <!-- Minimal Floating Elements -->
+    <div class="floating-elements" aria-hidden="true">
+        <div class="floating-element" style="left: 20%; color: var(--tech-color); animation-delay: 0s;">💻</div>
+        <div class="floating-element" style="left: 60%; color: var(--fitness-color); animation-delay: 7s;">💪</div>
+        <div class="floating-element" style="left: 80%; color: var(--family-color); animation-delay: 14s;">❤️</div>
     </div>
-
-    <!-- Activity Particles -->
-    <div class="activity-particles" aria-hidden="true">
-        <div class="particle tech" style="left: 5%; animation-delay: 0s;"></div>
-        <div class="particle tech" style="left: 15%; animation-delay: 2s;"></div>
-        <div class="particle tech" style="left: 25%; animation-delay: 4s;"></div>
-        <div class="particle tech" style="left: 35%; animation-delay: 6s;"></div>
-        <div class="particle fitness" style="left: 45%; animation-delay: 1s;"></div>
-        <div class="particle fitness" style="left: 55%; animation-delay: 3s;"></div>
-        <div class="particle fitness" style="left: 65%; animation-delay: 5s;"></div>
-        <div class="particle fitness" style="left: 75%; animation-delay: 7s;"></div>
-        <div class="particle family" style="left: 85%; animation-delay: 1.5s;"></div>
-        <div class="particle family" style="left: 95%; animation-delay: 3.5s;"></div>
-        <div class="particle family" style="left: 10%; animation-delay: 5.5s;"></div>
-        <div class="particle family" style="left: 20%; animation-delay: 7.5s;"></div>
-    </div>
-
-    <!-- Mouse Cursor Glow -->
-    <div class="cursor-glow" aria-hidden="true"></div>
     
     <main id="main-content" class="hero" role="main" aria-labelledby="page-title">
         <div class="container">
@@ -571,8 +263,7 @@
                         <a href="activities-list.html" 
                            class="cta-button" 
                            aria-label="Explore my favorite activities"
-                           role="button"
-                           tabindex="0">
+                           role="button">
                             Explore My Activities →
                         </a>
                     </div>
@@ -582,71 +273,26 @@
     </main>
 
     <script>
-        // Mouse follower effect
+        // Minimal JavaScript for better performance
         document.addEventListener('DOMContentLoaded', function() {
-            const cursorGlow = document.querySelector('.cursor-glow');
-            let mouseX = 0, mouseY = 0;
-            let glowX = 0, glowY = 0;
-
-            document.addEventListener('mousemove', function(e) {
-                mouseX = e.clientX;
-                mouseY = e.clientY;
-                cursorGlow.style.opacity = '0.6';
-            });
-
-            document.addEventListener('mouseleave', function() {
-                cursorGlow.style.opacity = '0';
-            });
-
-            function animateGlow() {
-                glowX += (mouseX - glowX) * 0.1;
-                glowY += (mouseY - glowY) * 0.1;
-                
-                cursorGlow.style.left = glowX - 10 + 'px';
-                cursorGlow.style.top = glowY - 10 + 'px';
-                
-                requestAnimationFrame(animateGlow);
+            // Only add essential interactions
+            const ctaButton = document.querySelector('.cta-button');
+            
+            if (ctaButton) {
+                ctaButton.addEventListener('click', function(e) {
+                    // Simple click feedback
+                    this.style.transform = 'scale(0.98)';
+                    setTimeout(() => {
+                        this.style.transform = '';
+                    }, 150);
+                });
             }
-            animateGlow();
 
-            // Parallax effect for hero section
-            window.addEventListener('scroll', function() {
-                const scrolled = window.pageYOffset;
-                const parallax = document.querySelector('.hero::before');
-                if (parallax) {
-                    const speed = scrolled * 0.5;
-                    parallax.style.transform = `translateY(${speed}px)`;
-                }
-            });
-
-            // Add random animation delays to particles for more natural movement
-            const particles = document.querySelectorAll('.particle');
-            particles.forEach((particle, index) => {
-                const randomDelay = Math.random() * 10;
-                particle.style.animationDelay = randomDelay + 's';
-                
-                const randomDuration = 15 + Math.random() * 10;
-                particle.style.animationDuration = randomDuration + 's';
-            });
-
-            // Add random positions and delays to floating icons
-            const icons = document.querySelectorAll('.activity-icon');
-            icons.forEach((icon, index) => {
-                const randomLeft = Math.random() * 90;
-                icon.style.left = randomLeft + '%';
-                
-                const randomDelay = Math.random() * 15;
-                icon.style.animationDelay = randomDelay + 's';
-                
-                const randomDuration = 12 + Math.random() * 8;
-                icon.style.animationDuration = randomDuration + 's';
-            });
+            // Simple performance check
+            if (navigator.hardwareConcurrency && navigator.hardwareConcurrency < 4) {
+                document.body.classList.add('low-performance');
+            }
         });
-
-        // Performance optimization: Reduce animations on low-end devices
-        if (navigator.hardwareConcurrency && navigator.hardwareConcurrency < 4) {
-            document.documentElement.style.setProperty('--animation-scale', '0.5');
-        }
     </script>
 </body>
 </html> 
