@@ -24,6 +24,7 @@
             line-height: 1.6;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
+            transform: translateZ(0);
         }
 
         .container {
@@ -35,14 +36,14 @@
         .header {
             text-align: center;
             margin-bottom: 60px;
-            animation: slideInDown 0.8s ease-out;
-            will-change: transform, opacity;
+            animation: slideInDown 0.6s ease-out;
+            transform: translateZ(0);
         }
 
         @keyframes slideInDown {
             from {
                 opacity: 0;
-                transform: translate3d(0, -50px, 0);
+                transform: translate3d(0, -30px, 0);
             }
             to {
                 opacity: 1;
@@ -73,41 +74,40 @@
         .activities-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
-            gap: 50px;
+            gap: 40px;
             margin-bottom: 60px;
         }
 
         .activity-card {
-            background: rgba(255, 255, 255, 0.06);
-            backdrop-filter: blur(12px);
-            border-radius: 25px;
-            padding: 45px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.04);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
             position: relative;
             overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.12);
-            animation: fadeInUp 0.6s ease-out;
-            contain: layout style paint;
-            will-change: transform, box-shadow;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            animation: fadeInUp 0.4s ease-out;
+            transform: translateZ(0);
+            will-change: transform;
         }
 
         .activity-card:nth-child(1) {
-            animation-delay: 0.1s;
+            animation-delay: 0.05s;
         }
 
         .activity-card:nth-child(2) {
-            animation-delay: 0.2s;
+            animation-delay: 0.1s;
         }
 
         .activity-card:nth-child(3) {
-            animation-delay: 0.3s;
+            animation-delay: 0.15s;
         }
 
         @keyframes fadeInUp {
             from {
                 opacity: 0;
-                transform: translate3d(0, 50px, 0);
+                transform: translate3d(0, 30px, 0);
             }
             to {
                 opacity: 1;
@@ -124,8 +124,8 @@
             height: 3px;
             background: linear-gradient(90deg, #667eea, #764ba2, #f093fb);
             transform: scaleX(0);
-            transition: transform 0.3s ease;
-            will-change: transform;
+            transition: transform 0.2s ease;
+            transform-origin: left;
         }
 
         .activity-card:hover::before {
@@ -133,26 +133,16 @@
         }
 
         .activity-card:hover {
-            transform: translate3d(0, -8px, 0);
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
+            transform: translate3d(0, -6px, 0);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
         }
 
         .activity-icon {
-            font-size: 4rem;
-            margin-bottom: 25px;
+            font-size: 3.5rem;
+            margin-bottom: 20px;
             display: block;
             text-align: center;
-            animation: pulse 3s infinite;
-            will-change: transform;
-        }
-
-        @keyframes pulse {
-            0%, 100% {
-                transform: scale(1);
-            }
-            50% {
-                transform: scale(1.05);
-            }
+            transform: translateZ(0);
         }
 
         .activity-title {
@@ -162,7 +152,7 @@
             margin-bottom: 20px;
             text-decoration: none;
             display: block;
-            transition: color 0.3s ease;
+            transition: color 0.2s ease;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
         }
 
@@ -184,16 +174,16 @@
             color: #ffffff;
             padding: 14px 35px;
             text-decoration: none;
-            border-radius: 30px;
+            border-radius: 25px;
             font-weight: 700;
             font-size: 1.1rem;
-            transition: all 0.3s ease;
-            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+            transition: all 0.2s ease;
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
             position: relative;
             overflow: hidden;
             border: 2px solid rgba(255, 255, 255, 0.1);
             text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
-            will-change: transform, box-shadow;
+            transform: translateZ(0);
         }
 
         .read-more::before {
@@ -203,8 +193,8 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: left 0.4s ease;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+            transition: left 0.3s ease;
         }
 
         .read-more:hover::before {
@@ -212,14 +202,14 @@
         }
 
         .read-more:hover {
-            transform: translate3d(0, -3px, 0);
-            box-shadow: 0 12px 30px rgba(102, 126, 234, 0.6);
+            transform: translate3d(0, -2px, 0);
+            box-shadow: 0 12px 25px rgba(102, 126, 234, 0.5);
             background: linear-gradient(45deg, #7c8df8, #8e5cc6);
         }
 
         .tech-card {
-            background: linear-gradient(135deg, rgba(102, 126, 234, 0.12) 0%, rgba(118, 75, 162, 0.12) 100%);
-            border: 1px solid rgba(102, 126, 234, 0.25);
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.08) 0%, rgba(118, 75, 162, 0.08) 100%);
+            border: 1px solid rgba(102, 126, 234, 0.2);
         }
 
         .tech-card .activity-title {
@@ -231,8 +221,8 @@
         }
 
         .fitness-card {
-            background: linear-gradient(135deg, rgba(78, 205, 196, 0.12) 0%, rgba(68, 160, 141, 0.12) 100%);
-            border: 1px solid rgba(78, 205, 196, 0.25);
+            background: linear-gradient(135deg, rgba(78, 205, 196, 0.08) 0%, rgba(68, 160, 141, 0.08) 100%);
+            border: 1px solid rgba(78, 205, 196, 0.2);
         }
 
         .fitness-card .activity-title {
@@ -244,8 +234,8 @@
         }
 
         .family-card {
-            background: linear-gradient(135deg, rgba(255, 107, 107, 0.12) 0%, rgba(238, 90, 82, 0.12) 100%);
-            border: 1px solid rgba(255, 107, 107, 0.25);
+            background: linear-gradient(135deg, rgba(255, 107, 107, 0.08) 0%, rgba(238, 90, 82, 0.08) 100%);
+            border: 1px solid rgba(255, 107, 107, 0.2);
         }
 
         .family-card .activity-title {
@@ -254,19 +244,6 @@
 
         .family-card .activity-summary {
             color: #ffe0e0;
-        }
-
-        .colored-card .read-more {
-            background: linear-gradient(45deg, #667eea, #764ba2);
-            color: #ffffff;
-            border: 2px solid rgba(255, 255, 255, 0.15);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
-        }
-
-        .colored-card .read-more:hover {
-            background: linear-gradient(45deg, #7c8df8, #8e5cc6);
-            border-color: rgba(255, 255, 255, 0.3);
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
         }
 
         .nav-section {
@@ -280,24 +257,23 @@
             color: #ffffff;
             padding: 18px 40px;
             text-decoration: none;
-            border-radius: 30px;
+            border-radius: 25px;
             font-weight: 700;
             font-size: 1.2rem;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(12px);
-            border: 2px solid rgba(255, 255, 255, 0.12);
-            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+            transition: all 0.2s ease;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
             text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
-            will-change: transform, box-shadow;
+            transform: translateZ(0);
         }
 
         .nav-link:hover {
             background: linear-gradient(45deg, #7c8df8, #8e5cc6);
             transform: translate3d(0, -3px, 0);
-            box-shadow: 0 15px 35px rgba(102, 126, 234, 0.6);
+            box-shadow: 0 15px 30px rgba(102, 126, 234, 0.5);
         }
 
-        .background-decoration {
+        .simple-bg {
             position: fixed;
             top: 0;
             left: 0;
@@ -305,52 +281,44 @@
             height: 100%;
             pointer-events: none;
             z-index: -1;
-            contain: layout style paint;
+            opacity: 0.3;
         }
 
-        .bg-circle {
+        .bg-dot {
             position: absolute;
+            width: 2px;
+            height: 2px;
+            background: #ffffff;
             border-radius: 50%;
-            background: rgba(102, 126, 234, 0.04);
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            animation: floatBackground 40s infinite linear;
-            will-change: transform;
+            animation: simpleTwinkle 4s infinite;
+            transform: translateZ(0);
         }
 
-        .bg-circle:nth-child(1) {
-            width: 200px;
-            height: 200px;
-            top: 10%;
-            left: 80%;
+        .bg-dot:nth-child(1) {
+            top: 15%;
+            left: 20%;
             animation-delay: 0s;
-            background: rgba(102, 126, 234, 0.06);
         }
 
-        .bg-circle:nth-child(2) {
-            width: 150px;
-            height: 150px;
+        .bg-dot:nth-child(2) {
             top: 70%;
-            left: 5%;
-            animation-delay: 15s;
-            background: rgba(118, 75, 162, 0.06);
+            right: 25%;
+            animation-delay: 2s;
         }
 
-        @keyframes floatBackground {
-            0% {
-                transform: translate3d(0, 0, 0) rotate(0deg);
+        @keyframes simpleTwinkle {
+            0%, 100% {
+                opacity: 0.3;
             }
             50% {
-                transform: translate3d(0, -60px, 0) rotate(180deg);
-            }
-            100% {
-                transform: translate3d(0, 0, 0) rotate(360deg);
+                opacity: 0.8;
             }
         }
 
         @media (max-width: 768px) {
             .activities-grid {
                 grid-template-columns: 1fr;
-                gap: 30px;
+                gap: 25px;
             }
             
             .header h1 {
@@ -358,8 +326,7 @@
             }
             
             .activity-card {
-                padding: 35px;
-                backdrop-filter: blur(8px);
+                padding: 30px;
             }
             
             .activity-title {
@@ -371,8 +338,8 @@
                 font-size: 1.1rem;
             }
 
-            .bg-circle {
-                opacity: 0.5;
+            .activity-icon {
+                font-size: 3rem;
             }
         }
 
@@ -387,12 +354,24 @@
                 scroll-behavior: auto;
             }
         }
+
+        /* Performance optimization for older devices */
+        @media (max-resolution: 150dpi) {
+            .activity-card {
+                background: rgba(255, 255, 255, 0.06);
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            }
+            
+            .bg-dot {
+                display: none;
+            }
+        }
     </style>
 </head>
 <body>
-    <div class="background-decoration">
-        <div class="bg-circle"></div>
-        <div class="bg-circle"></div>
+    <div class="simple-bg">
+        <div class="bg-dot"></div>
+        <div class="bg-dot"></div>
     </div>
 
     <div class="container">
@@ -408,7 +387,7 @@
                 <p class="activity-summary">
                     Continuously expanding my knowledge in programming, AI, and cutting-edge technologies that shape our digital world.
                 </p>
-                <a href="activities/learning-tech.html" class="read-more colored-card">Read More →</a>
+                <a href="activities/learning-tech.html" class="read-more">Read More →</a>
             </div>
             
             <div class="activity-card fitness-card">
@@ -417,7 +396,7 @@
                 <p class="activity-summary">
                     Staying fit and strong through dedicated calisthenics training and armwrestling practice every week.
                 </p>
-                <a href="activities/workout.html" class="read-more colored-card">Read More →</a>
+                <a href="activities/workout.html" class="read-more">Read More →</a>
             </div>
             
             <div class="activity-card family-card">
@@ -426,7 +405,7 @@
                 <p class="activity-summary">
                     Creating meaningful memories through coffee shop visits, movie nights, and memorable vacations with loved ones.
                 </p>
-                <a href="activities/family-time.html" class="read-more colored-card">Read More →</a>
+                <a href="activities/family-time.html" class="read-more">Read More →</a>
             </div>
         </div>
         
