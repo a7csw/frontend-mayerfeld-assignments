@@ -11,10 +11,6 @@
             box-sizing: border-box;
         }
 
-        html {
-            /* Removed smooth scrolling to prevent lag during hover+scroll */
-        }
-
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: #0f0f23;
@@ -22,15 +18,79 @@
             color: #fff;
             line-height: 1.6;
             -webkit-font-smoothing: antialiased;
-            /* Add scroll optimization */
+            /* Optimized for smooth scrolling */
             -webkit-overflow-scrolling: touch;
             scroll-behavior: auto;
+            overflow-x: hidden;
+        }
+
+        /* Animated constellation background */
+        .constellation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.4;
+        }
+
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: #fff;
+            border-radius: 50%;
+            animation: twinkle 3s infinite ease-in-out;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+
+        /* Scroll-triggered animations */
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
+                        transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .fade-in-up.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .slide-in-left {
+            opacity: 0;
+            transform: translateX(-100px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .slide-in-left.animate {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .slide-in-right {
+            opacity: 0;
+            transform: translateX(100px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .slide-in-right.animate {
+            opacity: 1;
+            transform: translateX(0);
         }
 
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 40px 20px;
+            position: relative;
+            z-index: 2;
         }
 
         .header {
@@ -44,6 +104,17 @@
             color: #ffffff;
             margin-bottom: 1rem;
             text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
+            background: linear-gradient(45deg, #667eea, #764ba2, #f093fb, #667eea);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientShift 4s ease-in-out infinite;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
         }
 
         .header p {
@@ -67,13 +138,30 @@
             position: relative;
             border: 1px solid rgba(255, 255, 255, 0.1);
             cursor: pointer;
-            /* Optimize hover performance */
-            will-change: transform;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            will-change: transform, box-shadow;
+        }
+
+        .activity-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.6s ease;
         }
 
         .activity-card:hover {
-            /* Use transform instead of changing box-shadow for better performance */
-            transform: translateY(-3px) scale(1.01);
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .activity-card:hover::before {
+            transform: translateX(100%);
         }
 
         .activity-icon {
@@ -81,6 +169,13 @@
             margin-bottom: 20px;
             display: block;
             text-align: center;
+            animation: bounce 2s infinite ease-in-out;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
         }
 
         .activity-title {
@@ -90,11 +185,11 @@
             margin-bottom: 15px;
             text-decoration: none;
             display: block;
+            transition: color 0.3s ease;
         }
 
         .activity-title:hover {
-            /* Simplified hover effect */
-            opacity: 0.8;
+            color: #c4d3ff;
         }
 
         .activity-summary {
@@ -115,23 +210,55 @@
             font-size: 1rem;
             box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            /* Optimize hover performance */
-            will-change: transform, opacity;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            will-change: transform, box-shadow;
+        }
+
+        .read-more::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s ease;
         }
 
         .read-more:hover {
-            /* Use transform instead of changing background gradients for better performance */
-            transform: translateY(-1px) scale(1.05);
-            opacity: 0.9;
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.5);
         }
 
+        .read-more:hover::before {
+            left: 100%;
+        }
+
+        /* Themed card styles with enhanced animations */
         .tech-card {
             background: rgba(102, 126, 234, 0.1);
             border: 1px solid rgba(102, 126, 234, 0.2);
         }
 
-        .tech-card .activity-title {
-            color: #c4d3ff;
+        .tech-card .activity-title { color: #c4d3ff; }
+
+        .tech-card::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(102, 126, 234, 0.1) 0%, transparent 70%);
+            animation: techPulse 4s infinite ease-in-out;
+            pointer-events: none;
+        }
+
+        @keyframes techPulse {
+            0%, 100% { transform: scale(0.8) rotate(0deg); opacity: 0; }
+            50% { transform: scale(1.2) rotate(180deg); opacity: 0.3; }
         }
 
         .fitness-card {
@@ -139,8 +266,23 @@
             border: 1px solid rgba(78, 205, 196, 0.2);
         }
 
-        .fitness-card .activity-title {
-            color: #c2f4ef;
+        .fitness-card .activity-title { color: #c2f4ef; }
+
+        .fitness-card::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(78, 205, 196, 0.1) 0%, transparent 70%);
+            animation: fitnessPulse 3s infinite ease-in-out;
+            pointer-events: none;
+        }
+
+        @keyframes fitnessPulse {
+            0%, 100% { transform: scale(0.8); opacity: 0; }
+            50% { transform: scale(1.1); opacity: 0.4; }
         }
 
         .family-card {
@@ -148,8 +290,23 @@
             border: 1px solid rgba(255, 107, 107, 0.2);
         }
 
-        .family-card .activity-title {
-            color: #ffcccc;
+        .family-card .activity-title { color: #ffcccc; }
+
+        .family-card::after {
+            content: '';
+            position: absolute;
+            bottom: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 107, 107, 0.1) 0%, transparent 70%);
+            animation: familyPulse 5s infinite ease-in-out;
+            pointer-events: none;
+        }
+
+        @keyframes familyPulse {
+            0%, 100% { transform: scale(0.9) rotate(0deg); opacity: 0; }
+            50% { transform: scale(1.3) rotate(-180deg); opacity: 0.2; }
         }
 
         .nav-section {
@@ -168,16 +325,33 @@
             font-size: 1.1rem;
             border: 1px solid rgba(255, 255, 255, 0.1);
             box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
-            /* Optimize hover performance */
-            will-change: transform, opacity;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            will-change: transform, box-shadow;
+        }
+
+        .nav-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s ease;
         }
 
         .nav-link:hover {
-            /* Use transform instead of changing background gradients for better performance */
-            transform: translateY(-2px) scale(1.02);
-            opacity: 0.9;
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.5);
         }
 
+        .nav-link:hover::before {
+            left: 100%;
+        }
+
+        /* Responsive design */
         @media (max-width: 768px) {
             .activities-grid {
                 grid-template-columns: 1fr;
@@ -200,29 +374,42 @@
                 padding: 12px 25px;
                 font-size: 1rem;
             }
+
+            .star {
+                display: none;
+            }
         }
 
+        /* Reduced motion accessibility */
         @media (prefers-reduced-motion: reduce) {
             * {
-                transition: none !important;
-                animation: none !important;
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
             }
             
-            html {
-                scroll-behavior: auto;
+            .star,
+            .activity-icon,
+            .tech-card::after,
+            .fitness-card::after,
+            .family-card::after {
+                animation: none;
             }
         }
     </style>
 </head>
 <body>
+    <!-- Animated constellation background -->
+    <div class="constellation" id="constellation"></div>
+    
     <div class="container">
-        <div class="header">
+        <div class="header fade-in-up">
             <h1>My Three Favorite Activities</h1>
             <p>Click on any activity to learn more about it!</p>
         </div>
         
         <div class="activities-grid">
-            <div class="activity-card tech-card">
+            <div class="activity-card tech-card slide-in-left">
                 <div class="activity-icon">🚀</div>
                 <a href="activities/learning-tech.html" class="activity-title">Learning & Exploring New Technologies</a>
                 <p class="activity-summary">
@@ -231,7 +418,7 @@
                 <a href="activities/learning-tech.html" class="read-more">Read More →</a>
             </div>
             
-            <div class="activity-card fitness-card">
+            <div class="activity-card fitness-card fade-in-up">
                 <div class="activity-icon">💪</div>
                 <a href="activities/workout.html" class="activity-title">Weekly Workout & Calisthenics Training</a>
                 <p class="activity-summary">
@@ -240,7 +427,7 @@
                 <a href="activities/workout.html" class="read-more">Read More →</a>
             </div>
             
-            <div class="activity-card family-card">
+            <div class="activity-card family-card slide-in-right">
                 <div class="activity-icon">❤️</div>
                 <a href="activities/family-time.html" class="activity-title">Quality Time with Family & Friends</a>
                 <p class="activity-summary">
@@ -250,9 +437,123 @@
             </div>
         </div>
         
-        <div class="nav-section">
+        <div class="nav-section fade-in-up">
             <a href="index.html" class="nav-link">← Back to Home</a>
         </div>
     </div>
+
+    <script>
+        // Create constellation background
+        function createConstellation() {
+            const container = document.getElementById('constellation');
+            const starCount = window.innerWidth < 768 ? 30 : 50;
+            
+            for (let i = 0; i < starCount; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                
+                // Random positioning and animation
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.animationDelay = Math.random() * 3 + 's';
+                star.style.animationDuration = (2 + Math.random() * 2) + 's';
+                
+                container.appendChild(star);
+            }
+        }
+
+        // Intersection Observer for scroll-triggered animations
+        function initScrollAnimations() {
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate');
+                    }
+                });
+            }, observerOptions);
+
+            // Observe all animation elements
+            document.querySelectorAll('.fade-in-up, .slide-in-left, .slide-in-right').forEach(el => {
+                observer.observe(el);
+            });
+        }
+
+        // Enhanced card hover effects
+        function initCardEffects() {
+            const cards = document.querySelectorAll('.activity-card');
+            
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    // Slight delay before hover animation
+                    setTimeout(() => {
+                        this.style.transform = 'translateY(-10px) scale(1.02)';
+                    }, 50);
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0) scale(1)';
+                });
+            });
+        }
+
+        // Icon animation control
+        function initIconAnimations() {
+            const icons = document.querySelectorAll('.activity-icon');
+            
+            icons.forEach(icon => {
+                icon.addEventListener('mouseenter', function() {
+                    this.style.animationPlayState = 'paused';
+                    this.style.transform = 'translateY(-5px) scale(1.1)';
+                });
+                
+                icon.addEventListener('mouseleave', function() {
+                    this.style.animationPlayState = 'running';
+                    this.style.transform = 'translateY(0) scale(1)';
+                });
+            });
+        }
+
+        // Performance monitoring
+        function optimizePerformance() {
+            // Reduce animations on slower devices
+            const isLowPerformance = navigator.hardwareConcurrency <= 2;
+            
+            if (isLowPerformance) {
+                document.querySelectorAll('.tech-card::after, .fitness-card::after, .family-card::after').forEach(el => {
+                    el.style.animation = 'none';
+                });
+            }
+        }
+
+        // Initialize all animations and effects
+        document.addEventListener('DOMContentLoaded', () => {
+            createConstellation();
+            initScrollAnimations();
+            initCardEffects();
+            initIconAnimations();
+            optimizePerformance();
+            
+            // Trigger initial animations with staggered delays
+            setTimeout(() => {
+                document.querySelectorAll('.fade-in-up, .slide-in-left, .slide-in-right').forEach((el, index) => {
+                    setTimeout(() => {
+                        el.classList.add('animate');
+                    }, index * 150);
+                });
+            }, 200);
+        });
+
+        // Cleanup on resize for performance
+        window.addEventListener('resize', () => {
+            const container = document.getElementById('constellation');
+            container.innerHTML = '';
+            createConstellation();
+        });
+    </script>
 </body>
 </html> 
