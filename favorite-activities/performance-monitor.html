@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Performance Monitor - Abdulrahman's Website</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #0f0f23;
+            color: #ffffff;
+            line-height: 1.6;
+            padding: 20px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+        }
+
+        .header h1 {
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        .metrics-grid {
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-flex-wrap: wrap;
+            -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 40px;
+            -webkit-box-pack: center;
+            -webkit-justify-content: center;
+            -ms-flex-pack: center;
+            justify-content: center;
+        }
+
+        .metric-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 20px;
+            -webkit-flex: 1 1 300px;
+            -ms-flex: 1 1 300px;
+            flex: 1 1 300px;
+            max-width: 350px;
+        }
+
+        .metric-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        .metric-value {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .metric-unit {
+            font-size: 0.9rem;
+            color: #b8c5ff;
+        }
+
+        .status-good { color: #4ecdc4; }
+        .status-warning { color: #ffd93d; }
+        .status-poor { color: #ff6b6b; }
+
+        .controls {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 0 10px;
+            font-size: 1rem;
+            -webkit-transition: background 0.3s ease;
+            -moz-transition: background 0.3s ease;
+            -o-transition: background 0.3s ease;
+            transition: background 0.3s ease;
+        }
+
+        .btn:hover {
+            background: #5a6fd8;
+        }
+
+        .btn:focus {
+            outline: 2px solid #ffffff;
+            outline-offset: 2px;
+        }
+
+        .log-container {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            padding: 20px;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .log-entry {
+            margin-bottom: 10px;
+            padding: 10px;
+            border-radius: 5px;
+            font-family: 'Courier New', Consolas, monospace;
+            font-size: 0.9rem;
+        }
+
+        .log-info { background: rgba(102, 126, 234, 0.2); }
+        .log-warning { background: rgba(255, 217, 61, 0.2); }
+        .log-error { background: rgba(255, 107, 107, 0.2); }
+
+        .timestamp {
+            color: #b8c5ff;
+            font-size: 0.8rem;
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .metrics-grid {
+                -webkit-flex-direction: column;
+                -ms-flex-direction: column;
+                flex-direction: column;
+            }
+            
+            .metric-card {
+                max-width: none;
+            }
+            
+            .btn {
+                display: block;
+                margin: 5px auto;
+                width: 200px;
+            }
+            
+            .controls {
+                text-align: center;
+            }
+        }
+
+        /* Reduced motion */
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                -webkit-animation-duration: 0.01ms !important;
+                -moz-animation-duration: 0.01ms !important;
+                animation-duration: 0.01ms !important;
+                -webkit-animation-iteration-count: 1 !important;
+                -moz-animation-iteration-count: 1 !important;
+                animation-iteration-count: 1 !important;
+                -webkit-transition-duration: 0.01ms !important;
+                -moz-transition-duration: 0.01ms !important;
+                -o-transition-duration: 0.01ms !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🚀 Performance Monitor</h1>
+            <p>Real-time performance metrics for Abdulrahman's website</p>
+        </div>
+
+        <div class="controls">
+            <button class="btn" onclick="startMonitoring()">Start Monitoring</button>
+            <button class="btn" onclick="stopMonitoring()">Stop Monitoring</button>
+            <button class="btn" onclick="clearLog()">Clear Log</button>
+            <button class="btn" onclick="exportData()">Export Data</button>
+        </div>
+
+        <div class="metrics-grid">
+            <div class="metric-card">
+                <div class="metric-title">FPS (Frames Per Second)</div>
+                <div class="metric-value" id="fps">--</div>
+                <div class="metric-unit">frames/sec</div>
+            </div>
+
+            <div class="metric-card">
+                <div class="metric-title">Page Load Time</div>
+                <div class="metric-value" id="loadTime">--</div>
+                <div class="metric-unit">milliseconds</div>
+            </div>
+
+            <div class="metric-card">
+                <div class="metric-title">Memory Usage</div>
+                <div class="metric-value" id="memoryUsage">--</div>
+                <div class="metric-unit">MB</div>
+            </div>
+
+            <div class="metric-card">
+                <div class="metric-title">DOM Elements</div>
+                <div class="metric-value" id="domElements">--</div>
+                <div class="metric-unit">elements</div>
+            </div>
+
+            <div class="metric-card">
+                <div class="metric-title">Network Requests</div>
+                <div class="metric-value" id="networkRequests">--</div>
+                <div class="metric-unit">requests</div>
+            </div>
+
+            <div class="metric-card">
+                <div class="metric-title">Performance Score</div>
+                <div class="metric-value" id="performanceScore">--</div>
+                <div class="metric-unit">/100</div>
+            </div>
+        </div>
+
+        <div class="log-container">
+            <h3>Performance Log</h3>
+            <div id="logEntries"></div>
+        </div>
+    </div>
+
+    <script>
+        let monitoring = false;
+        let frameCount = 0;
+        let lastTime = performance.now();
+        let startTime = performance.now();
+        let performanceData = [];
+
+        // Performance monitoring functions
+        function updateFPS() {
+            if (!monitoring) return;
+            
+            frameCount++;
+            const currentTime = performance.now();
+            
+            if (currentTime - lastTime >= 1000) {
+                const fps = Math.round((frameCount * 1000) / (currentTime - lastTime));
+                document.getElementById('fps').textContent = fps;
+                document.getElementById('fps').className = 'metric-value ' + getFPSStatus(fps);
+                
+                logEntry('FPS: ' + fps, fps < 30 ? 'warning' : 'info');
+                
+                frameCount = 0;
+                lastTime = currentTime;
+            }
+            
+            requestAnimationFrame(updateFPS);
+        }
+
+        function getFPSStatus(fps) {
+            if (fps >= 50) return 'status-good';
+            if (fps >= 30) return 'status-warning';
+            return 'status-poor';
+        }
+
+        function updateLoadTime() {
+            const loadTime = performance.now() - startTime;
+            document.getElementById('loadTime').textContent = Math.round(loadTime);
+            logEntry('Page loaded in ' + Math.round(loadTime) + 'ms', 'info');
+        }
+
+        function updateMemoryUsage() {
+            if (performance.memory) {
+                const memoryMB = Math.round(performance.memory.usedJSHeapSize / 1024 / 1024);
+                document.getElementById('memoryUsage').textContent = memoryMB;
+                document.getElementById('memoryUsage').className = 'metric-value ' + getMemoryStatus(memoryMB);
+            }
+        }
+
+        function getMemoryStatus(memoryMB) {
+            if (memoryMB < 50) return 'status-good';
+            if (memoryMB < 100) return 'status-warning';
+            return 'status-poor';
+        }
+
+        function updateDOMElements() {
+            const elementCount = document.getElementsByTagName('*').length;
+            document.getElementById('domElements').textContent = elementCount;
+        }
+
+        function updateNetworkRequests() {
+            if (performance.getEntriesByType) {
+                const requests = performance.getEntriesByType('resource').length;
+                document.getElementById('networkRequests').textContent = requests;
+            }
+        }
+
+        function calculatePerformanceScore() {
+            let score = 100;
+            
+            // FPS penalty
+            const fps = parseInt(document.getElementById('fps').textContent) || 60;
+            if (fps < 30) score -= 30;
+            else if (fps < 50) score -= 15;
+            
+            // Load time penalty
+            const loadTime = parseInt(document.getElementById('loadTime').textContent) || 0;
+            if (loadTime > 3000) score -= 20;
+            else if (loadTime > 1000) score -= 10;
+            
+            // Memory penalty
+            const memory = parseInt(document.getElementById('memoryUsage').textContent) || 0;
+            if (memory > 100) score -= 20;
+            else if (memory > 50) score -= 10;
+            
+            // DOM elements penalty
+            const elements = parseInt(document.getElementById('domElements').textContent) || 0;
+            if (elements > 1000) score -= 15;
+            else if (elements > 500) score -= 5;
+            
+            score = Math.max(0, score);
+            document.getElementById('performanceScore').textContent = score;
+            document.getElementById('performanceScore').className = 'metric-value ' + getScoreStatus(score);
+        }
+
+        function getScoreStatus(score) {
+            if (score >= 80) return 'status-good';
+            if (score >= 60) return 'status-warning';
+            return 'status-poor';
+        }
+
+        function logEntry(message, type) {
+            type = type || 'info';
+            const timestamp = new Date().toLocaleTimeString();
+            const logDiv = document.createElement('div');
+            logDiv.className = 'log-entry log-' + type;
+            logDiv.innerHTML = '<span class="timestamp">[' + timestamp + ']</span> ' + message;
+            
+            const logContainer = document.getElementById('logEntries');
+            logContainer.appendChild(logDiv);
+            logContainer.scrollTop = logContainer.scrollHeight;
+            
+            // Store data for export
+            performanceData.push({
+                timestamp: new Date().toISOString(),
+                message: message,
+                type: type
+            });
+        }
+
+        function startMonitoring() {
+            monitoring = true;
+            startTime = performance.now();
+            logEntry('Performance monitoring started', 'info');
+            
+            // Initial updates
+            updateLoadTime();
+            updateMemoryUsage();
+            updateDOMElements();
+            updateNetworkRequests();
+            
+            // Start FPS monitoring
+            requestAnimationFrame(updateFPS);
+            
+            // Periodic updates
+            setInterval(function() {
+                if (monitoring) {
+                    updateMemoryUsage();
+                    updateDOMElements();
+                    updateNetworkRequests();
+                    calculatePerformanceScore();
+                }
+            }, 2000);
+        }
+
+        function stopMonitoring() {
+            monitoring = false;
+            logEntry('Performance monitoring stopped', 'info');
+        }
+
+        function clearLog() {
+            document.getElementById('logEntries').innerHTML = '';
+            performanceData = [];
+        }
+
+        function exportData() {
+            const dataStr = JSON.stringify(performanceData, null, 2);
+            const dataBlob = new Blob([dataStr], {type: 'application/json'});
+            const url = URL.createObjectURL(dataBlob);
+            
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = 'performance-data-' + new Date().toISOString().slice(0, 19) + '.json';
+            link.click();
+            
+            URL.revokeObjectURL(url);
+            logEntry('Performance data exported', 'info');
+        }
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            logEntry('Performance monitor loaded', 'info');
+            updateDOMElements();
+        });
+
+        // Monitor for performance issues
+        window.addEventListener('error', function(e) {
+            logEntry('JavaScript error: ' + e.message, 'error');
+        });
+
+        window.addEventListener('unhandledrejection', function(e) {
+            logEntry('Unhandled promise rejection: ' + e.reason, 'error');
+        });
+    </script>
+</body>
+</html> 

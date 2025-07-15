@@ -5,16 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Favorite Activities - List</title>
     <style>
-        :root {
-            --star-count: 50;
-            --animation-duration: 0.8s;
-            --animation-speed: 0.6s;
-            --blur-amount: 0px;
-        }
-
         * {
             margin: 0;
             padding: 0;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
             box-sizing: border-box;
         }
 
@@ -25,95 +20,14 @@
             color: #fff;
             line-height: 1.6;
             -webkit-font-smoothing: antialiased;
-            /* Optimized for smooth scrolling */
-            -webkit-overflow-scrolling: touch;
-            scroll-behavior: auto;
+            -moz-osx-font-smoothing: grayscale;
             overflow-x: hidden;
-            /* Performance optimizations */
-            transform: translateZ(0);
-            backface-visibility: hidden;
-            perspective: 1000px;
-        }
-
-        /* Animated constellation background with performance optimization */
-        .constellation {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 0;
-            opacity: 0.4;
-            will-change: transform;
-        }
-
-        .star {
-            position: absolute;
-            width: 2px;
-            height: 2px;
-            background: #fff;
-            border-radius: 50%;
-            animation: twinkle 3s infinite ease-in-out;
-            will-change: transform, opacity;
-            transform: translateZ(0);
-        }
-
-        @keyframes twinkle {
-            0%, 100% { 
-                opacity: 0.3; 
-                transform: scale(1) translateZ(0); 
-            }
-            50% { 
-                opacity: 1; 
-                transform: scale(1.2) translateZ(0); 
-            }
-        }
-
-        /* Scroll-triggered animations with optimized timing */
-        .fade-in-up {
-            opacity: 0;
-            transform: translateY(50px) translateZ(0);
-            transition: opacity var(--animation-duration) cubic-bezier(0.25, 0.46, 0.45, 0.94), 
-                        transform var(--animation-duration) cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            will-change: transform, opacity;
-        }
-
-        .fade-in-up.animate {
-            opacity: 1;
-            transform: translateY(0) translateZ(0);
-        }
-
-        .slide-in-left {
-            opacity: 0;
-            transform: translateX(-100px) translateZ(0);
-            transition: opacity var(--animation-speed) ease-out, transform var(--animation-speed) ease-out;
-            will-change: transform, opacity;
-        }
-
-        .slide-in-left.animate {
-            opacity: 1;
-            transform: translateX(0) translateZ(0);
-        }
-
-        .slide-in-right {
-            opacity: 0;
-            transform: translateX(100px) translateZ(0);
-            transition: opacity var(--animation-speed) ease-out, transform var(--animation-speed) ease-out;
-            will-change: transform, opacity;
-        }
-
-        .slide-in-right.animate {
-            opacity: 1;
-            transform: translateX(0) translateZ(0);
         }
 
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 40px 20px;
-            position: relative;
-            z-index: 2;
         }
 
         .header {
@@ -122,72 +36,72 @@
         }
 
         .header h1 {
-            font-size: 3.5rem;
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
             font-weight: 800;
             color: #ffffff;
             margin-bottom: 1rem;
-            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
-            background: linear-gradient(45deg, #667eea, #764ba2, #f093fb, #667eea);
-            background-size: 300% 300%;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            background: -webkit-linear-gradient(45deg, #667eea, #764ba2);
+            background: -moz-linear-gradient(45deg, #667eea, #764ba2);
+            background: -o-linear-gradient(45deg, #667eea, #764ba2);
             -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            -moz-background-clip: text;
             background-clip: text;
-            animation: gradientShift 4s ease-in-out infinite;
-            will-change: background-position;
-        }
-
-        @keyframes gradientShift {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
+            -webkit-text-fill-color: transparent;
+            -moz-text-fill-color: transparent;
+            text-fill-color: transparent;
         }
 
         .header p {
-            font-size: 1.4rem;
+            font-size: clamp(1.1rem, 2vw, 1.4rem);
             color: #b8c5ff;
             margin-bottom: 2rem;
         }
 
         .activities-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-flex-wrap: wrap;
+            -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
             gap: 30px;
             margin-bottom: 60px;
+            -webkit-box-pack: center;
+            -webkit-justify-content: center;
+            -ms-flex-pack: center;
+            justify-content: center;
         }
 
         .activity-card {
             background: rgba(255, 255, 255, 0.05);
             border-radius: 15px;
             padding: 35px;
+            -webkit-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            -moz-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-            position: relative;
             border: 1px solid rgba(255, 255, 255, 0.1);
             cursor: pointer;
-            overflow: hidden;
-            transition: all var(--animation-speed) cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            will-change: transform, box-shadow;
-            transform: translateZ(0);
-        }
-
-        .activity-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-            transform: translateX(-100%) translateZ(0);
-            transition: transform var(--animation-speed) ease;
-            will-change: transform;
+            -webkit-flex: 1 1 350px;
+            -ms-flex: 1 1 350px;
+            flex: 1 1 350px;
+            max-width: 400px;
+            -webkit-transition: all 0.3s ease;
+            -moz-transition: all 0.3s ease;
+            -o-transition: all 0.3s ease;
+            transition: all 0.3s ease;
         }
 
         .activity-card:hover {
-            transform: translateY(-10px) scale(1.02) translateZ(0);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-        }
-
-        .activity-card:hover::before {
-            transform: translateX(100%) translateZ(0);
+            -webkit-transform: translateY(-5px);
+            -moz-transform: translateY(-5px);
+            -ms-transform: translateY(-5px);
+            -o-transform: translateY(-5px);
+            transform: translateY(-5px);
+            -webkit-box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            -moz-box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
         }
 
         .activity-icon {
@@ -195,21 +109,6 @@
             margin-bottom: 20px;
             display: block;
             text-align: center;
-            animation: bounce 2s infinite ease-in-out;
-            will-change: transform;
-            transform: translateZ(0);
-        }
-
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% { 
-                transform: translateY(0) translateZ(0); 
-            }
-            40% { 
-                transform: translateY(-10px) translateZ(0); 
-            }
-            60% { 
-                transform: translateY(-5px) translateZ(0); 
-            }
         }
 
         .activity-title {
@@ -219,7 +118,10 @@
             margin-bottom: 15px;
             text-decoration: none;
             display: block;
-            transition: color var(--animation-speed) ease;
+            -webkit-transition: color 0.3s ease;
+            -moz-transition: color 0.3s ease;
+            -o-transition: color 0.3s ease;
+            transition: color 0.3s ease;
         }
 
         .activity-title:hover {
@@ -236,74 +138,43 @@
         .read-more {
             display: inline-block;
             background: linear-gradient(45deg, #667eea, #764ba2);
+            background: -webkit-linear-gradient(45deg, #667eea, #764ba2);
+            background: -moz-linear-gradient(45deg, #667eea, #764ba2);
+            background: -o-linear-gradient(45deg, #667eea, #764ba2);
             color: #ffffff;
             padding: 12px 30px;
             text-decoration: none;
             border-radius: 20px;
             font-weight: 700;
             font-size: 1rem;
+            -webkit-box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+            -moz-box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
             box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            position: relative;
-            overflow: hidden;
-            transition: all var(--animation-speed) ease;
-            will-change: transform, box-shadow;
-            transform: translateZ(0);
-        }
-
-        .read-more::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-            transition: left 0.5s ease;
-            will-change: transform;
+            -webkit-transition: all 0.3s ease;
+            -moz-transition: all 0.3s ease;
+            -o-transition: all 0.3s ease;
+            transition: all 0.3s ease;
         }
 
         .read-more:hover {
-            transform: translateY(-3px) scale(1.05) translateZ(0);
+            -webkit-transform: translateY(-2px);
+            -moz-transform: translateY(-2px);
+            -ms-transform: translateY(-2px);
+            -o-transform: translateY(-2px);
+            transform: translateY(-2px);
+            -webkit-box-shadow: 0 8px 20px rgba(102, 126, 234, 0.5);
+            -moz-box-shadow: 0 8px 20px rgba(102, 126, 234, 0.5);
             box-shadow: 0 8px 20px rgba(102, 126, 234, 0.5);
         }
 
-        .read-more:hover::before {
-            left: 100%;
-        }
-
-        /* Themed card styles with enhanced animations */
+        /* Themed card styles */
         .tech-card {
             background: rgba(102, 126, 234, 0.1);
             border: 1px solid rgba(102, 126, 234, 0.2);
         }
 
         .tech-card .activity-title { color: #c4d3ff; }
-
-        .tech-card::after {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(102, 126, 234, 0.1) 0%, transparent 70%);
-            animation: techPulse 4s infinite ease-in-out;
-            pointer-events: none;
-            will-change: transform, opacity;
-            transform: translateZ(0);
-        }
-
-        @keyframes techPulse {
-            0%, 100% { 
-                transform: scale(0.8) rotate(0deg) translateZ(0); 
-                opacity: 0; 
-            }
-            50% { 
-                transform: scale(1.2) rotate(180deg) translateZ(0); 
-                opacity: 0.3; 
-            }
-        }
 
         .fitness-card {
             background: rgba(78, 205, 196, 0.1);
@@ -312,62 +183,12 @@
 
         .fitness-card .activity-title { color: #c2f4ef; }
 
-        .fitness-card::after {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(78, 205, 196, 0.1) 0%, transparent 70%);
-            animation: fitnessPulse 3s infinite ease-in-out;
-            pointer-events: none;
-            will-change: transform, opacity;
-            transform: translateZ(0);
-        }
-
-        @keyframes fitnessPulse {
-            0%, 100% { 
-                transform: scale(0.8) translateZ(0); 
-                opacity: 0; 
-            }
-            50% { 
-                transform: scale(1.1) translateZ(0); 
-                opacity: 0.4; 
-            }
-        }
-
         .family-card {
             background: rgba(255, 107, 107, 0.1);
             border: 1px solid rgba(255, 107, 107, 0.2);
         }
 
         .family-card .activity-title { color: #ffcccc; }
-
-        .family-card::after {
-            content: '';
-            position: absolute;
-            bottom: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255, 107, 107, 0.1) 0%, transparent 70%);
-            animation: familyPulse 5s infinite ease-in-out;
-            pointer-events: none;
-            will-change: transform, opacity;
-            transform: translateZ(0);
-        }
-
-        @keyframes familyPulse {
-            0%, 100% { 
-                transform: scale(0.9) rotate(0deg) translateZ(0); 
-                opacity: 0; 
-            }
-            50% { 
-                transform: scale(1.3) rotate(-180deg) translateZ(0); 
-                opacity: 0.2; 
-            }
-        }
 
         .nav-section {
             text-align: center;
@@ -377,6 +198,9 @@
         .nav-link {
             display: inline-block;
             background: linear-gradient(45deg, #667eea, #764ba2);
+            background: -webkit-linear-gradient(45deg, #667eea, #764ba2);
+            background: -moz-linear-gradient(45deg, #667eea, #764ba2);
+            background: -o-linear-gradient(45deg, #667eea, #764ba2);
             color: #ffffff;
             padding: 15px 35px;
             text-decoration: none;
@@ -384,54 +208,38 @@
             font-weight: 700;
             font-size: 1.1rem;
             border: 1px solid rgba(255, 255, 255, 0.1);
+            -webkit-box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+            -moz-box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
             box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
-            position: relative;
-            overflow: hidden;
-            transition: all var(--animation-speed) ease;
-            will-change: transform, box-shadow;
-            transform: translateZ(0);
-        }
-
-        .nav-link::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: left 0.5s ease;
-            will-change: transform;
+            -webkit-transition: all 0.3s ease;
+            -moz-transition: all 0.3s ease;
+            -o-transition: all 0.3s ease;
+            transition: all 0.3s ease;
         }
 
         .nav-link:hover {
-            transform: translateY(-3px) scale(1.05) translateZ(0);
-            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.5);
-        }
-
-        .nav-link:hover::before {
-            left: 100%;
+            -webkit-transform: translateY(-2px);
+            -moz-transform: translateY(-2px);
+            -ms-transform: translateY(-2px);
+            -o-transform: translateY(-2px);
+            transform: translateY(-2px);
+            -webkit-box-shadow: 0 8px 20px rgba(102, 126, 234, 0.5);
+            -moz-box-shadow: 0 8px 20px rgba(102, 126, 234, 0.5);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.5);
         }
 
         /* Responsive design */
         @media (max-width: 768px) {
-            :root {
-                --star-count: 15;
-                --animation-duration: 0.5s;
-                --animation-speed: 0.4s;
-            }
-
             .activities-grid {
-                grid-template-columns: 1fr;
+                -webkit-flex-direction: column;
+                -ms-flex-direction: column;
+                flex-direction: column;
                 gap: 20px;
-            }
-            
-            .header h1 {
-                font-size: 2.5rem;
             }
             
             .activity-card {
                 padding: 25px;
+                max-width: none;
             }
             
             .activity-title {
@@ -442,48 +250,36 @@
                 padding: 12px 25px;
                 font-size: 1rem;
             }
-
-            .star {
-                display: none;
-            }
         }
 
-        /* Reduced motion accessibility */
+        /* Reduced motion */
         @media (prefers-reduced-motion: reduce) {
-            :root {
-                --animation-duration: 0.01ms;
-                --animation-speed: 0.01ms;
-            }
-
-            * {
+            *,
+            *::before,
+            *::after {
+                -webkit-animation-duration: 0.01ms !important;
+                -moz-animation-duration: 0.01ms !important;
                 animation-duration: 0.01ms !important;
+                -webkit-animation-iteration-count: 1 !important;
+                -moz-animation-iteration-count: 1 !important;
                 animation-iteration-count: 1 !important;
+                -webkit-transition-duration: 0.01ms !important;
+                -moz-transition-duration: 0.01ms !important;
+                -o-transition-duration: 0.01ms !important;
                 transition-duration: 0.01ms !important;
-            }
-            
-            .star,
-            .activity-icon,
-            .tech-card::after,
-            .fitness-card::after,
-            .family-card::after {
-                animation: none;
-                transform: none;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Animated constellation background -->
-    <div class="constellation" id="constellation"></div>
-    
     <div class="container">
-        <div class="header fade-in-up">
+        <div class="header">
             <h1>My Three Favorite Activities</h1>
             <p>Click on any activity to learn more about it!</p>
         </div>
         
         <div class="activities-grid">
-            <div class="activity-card tech-card slide-in-left">
+            <div class="activity-card tech-card">
                 <div class="activity-icon">🚀</div>
                 <a href="activities/learning-tech.html" class="activity-title">Learning & Exploring New Technologies</a>
                 <p class="activity-summary">
@@ -492,7 +288,7 @@
                 <a href="activities/learning-tech.html" class="read-more">Read More →</a>
             </div>
             
-            <div class="activity-card fitness-card fade-in-up">
+            <div class="activity-card fitness-card">
                 <div class="activity-icon">💪</div>
                 <a href="activities/workout.html" class="activity-title">Weekly Workout & Calisthenics Training</a>
                 <p class="activity-summary">
@@ -501,7 +297,7 @@
                 <a href="activities/workout.html" class="read-more">Read More →</a>
             </div>
             
-            <div class="activity-card family-card slide-in-right">
+            <div class="activity-card family-card">
                 <div class="activity-icon">❤️</div>
                 <a href="activities/family-time.html" class="activity-title">Quality Time with Family & Friends</a>
                 <p class="activity-summary">
@@ -511,362 +307,9 @@
             </div>
         </div>
         
-        <div class="nav-section fade-in-up">
+        <div class="nav-section">
             <a href="index.html" class="nav-link">← Back to Home</a>
         </div>
     </div>
-
-    <script>
-        // Advanced Performance Monitoring & Debugging System
-        class PerformanceController {
-            constructor() {
-                this.fps = 0;
-                this.frameCount = 0;
-                this.lastTime = performance.now();
-                this.isLowPerformance = false;
-                this.animationLevel = this.detectAnimationLevel();
-                this.init();
-            }
-
-            detectAnimationLevel() {
-                const hardwareConcurrency = navigator.hardwareConcurrency || 2;
-                const memory = navigator.deviceMemory || 4;
-                const connection = navigator.connection?.effectiveType || '4g';
-                
-                if (hardwareConcurrency <= 2 || memory <= 2 || connection === 'slow-2g' || connection === '2g') {
-                    return 'low';
-                } else if (hardwareConcurrency <= 4 || memory <= 4) {
-                    return 'medium';
-                }
-                return 'high';
-            }
-
-            init() {
-                this.monitorFPS();
-                this.optimizeBasedOnPerformance();
-                this.addPerformanceDisplay();
-            }
-
-            monitorFPS() {
-                const measureFPS = (currentTime) => {
-                    this.frameCount++;
-                    if (currentTime - this.lastTime >= 1000) {
-                        this.fps = Math.round((this.frameCount * 1000) / (currentTime - this.lastTime));
-                        this.frameCount = 0;
-                        this.lastTime = currentTime;
-                        
-                        // Auto-adjust performance
-                        if (this.fps < 30 && !this.isLowPerformance) {
-                            this.isLowPerformance = true;
-                            this.enableLowPerformanceMode();
-                        }
-                        
-                        this.updatePerformanceDisplay();
-                    }
-                    requestAnimationFrame(measureFPS);
-                };
-                requestAnimationFrame(measureFPS);
-            }
-
-            enableLowPerformanceMode() {
-                console.log('🔧 Enabling low performance mode for smoother experience');
-                
-                // Reduce star count
-                const stars = document.querySelectorAll('.star');
-                stars.forEach((star, index) => {
-                    if (index % 3 === 0) star.remove();
-                });
-
-                // Disable heavy card animations
-                document.querySelectorAll('.tech-card::after, .fitness-card::after, .family-card::after').forEach(el => {
-                    el.style.animation = 'none';
-                });
-
-                // Reduce animation durations
-                document.documentElement.style.setProperty('--animation-speed', '0.3s');
-            }
-
-            optimizeBasedOnPerformance() {
-                const root = document.documentElement;
-                
-                switch(this.animationLevel) {
-                    case 'low':
-                        root.style.setProperty('--star-count', '15');
-                        root.style.setProperty('--animation-duration', '0.3s');
-                        root.style.setProperty('--animation-speed', '0.2s');
-                        break;
-                    case 'medium':
-                        root.style.setProperty('--star-count', '30');
-                        root.style.setProperty('--animation-duration', '0.5s');
-                        root.style.setProperty('--animation-speed', '0.4s');
-                        break;
-                    case 'high':
-                        root.style.setProperty('--star-count', '50');
-                        root.style.setProperty('--animation-duration', '0.8s');
-                        root.style.setProperty('--animation-speed', '0.6s');
-                        break;
-                }
-            }
-
-            addPerformanceDisplay() {
-                if (window.location.search.includes('debug=true')) {
-                    const display = document.createElement('div');
-                    display.id = 'performance-display';
-                    display.style.cssText = `
-                        position: fixed;
-                        top: 10px;
-                        right: 10px;
-                        background: rgba(0,0,0,0.8);
-                        color: white;
-                        padding: 10px;
-                        border-radius: 5px;
-                        font-family: monospace;
-                        font-size: 12px;
-                        z-index: 10000;
-                    `;
-                    document.body.appendChild(display);
-                }
-            }
-
-            updatePerformanceDisplay() {
-                const display = document.getElementById('performance-display');
-                if (display) {
-                    const color = this.fps >= 50 ? '#00ff00' : this.fps >= 30 ? '#ffff00' : '#ff0000';
-                    display.innerHTML = `
-                        <div style="color: ${color}">FPS: ${this.fps}</div>
-                        <div>Mode: ${this.animationLevel}</div>
-                        <div>Performance: ${this.isLowPerformance ? 'Low' : 'Normal'}</div>
-                    `;
-                }
-            }
-        }
-
-        // Optimized Constellation System
-        class OptimizedConstellationSystem {
-            constructor() {
-                this.stars = [];
-                this.container = document.getElementById('constellation');
-                this.maxStars = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--star-count')) || 30;
-                this.isAnimating = true;
-                
-                this.init();
-            }
-
-            init() {
-                this.createStars();
-                
-                // Pause animations when tab is not visible
-                document.addEventListener('visibilitychange', () => {
-                    this.isAnimating = !document.hidden;
-                    
-                    if (this.isAnimating) {
-                        this.stars.forEach(star => {
-                            star.element.style.animationPlayState = 'running';
-                        });
-                    } else {
-                        this.stars.forEach(star => {
-                            star.element.style.animationPlayState = 'paused';
-                        });
-                    }
-                });
-            }
-
-            createStars() {
-                for (let i = 0; i < this.maxStars; i++) {
-                    const star = this.createStar();
-                    this.stars.push(star);
-                    this.container.appendChild(star.element);
-                }
-            }
-
-            createStar() {
-                const element = document.createElement('div');
-                element.className = 'star';
-                
-                // Random positioning and animation
-                element.style.left = Math.random() * 100 + '%';
-                element.style.top = Math.random() * 100 + '%';
-                element.style.animationDelay = Math.random() * 3 + 's';
-                element.style.animationDuration = (2 + Math.random() * 2) + 's';
-                
-                return { element };
-            }
-        }
-
-        // Enhanced Intersection Observer
-        function initOptimizedScrollAnimations() {
-            const observerOptions = {
-                threshold: [0, 0.1, 0.5, 1],
-                rootMargin: '0px 0px -30px 0px'
-            };
-
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        // Stagger animations for smoother experience
-                        const allElements = Array.from(document.querySelectorAll('.fade-in-up, .slide-in-left, .slide-in-right'));
-                        const delay = allElements.indexOf(entry.target) * 100;
-                        
-                        setTimeout(() => {
-                            entry.target.classList.add('animate');
-                        }, delay);
-                        
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, observerOptions);
-
-            document.querySelectorAll('.fade-in-up, .slide-in-left, .slide-in-right').forEach(el => {
-                observer.observe(el);
-            });
-        }
-
-        // Enhanced Card Effects with Performance
-        function initOptimizedCardEffects() {
-            const cards = document.querySelectorAll('.activity-card');
-            
-            cards.forEach((card, index) => {
-                let isHovering = false;
-                
-                card.addEventListener('mouseenter', function() {
-                    if (isHovering) return;
-                    isHovering = true;
-                    
-                    // Use will-change for optimization
-                    this.style.willChange = 'transform, box-shadow';
-                    
-                    // Slight delay before hover animation for smoothness
-                    setTimeout(() => {
-                        this.style.transform = 'translateY(-10px) scale(1.02) translateZ(0)';
-                    }, index * 20);
-                });
-                
-                card.addEventListener('mouseleave', function() {
-                    isHovering = false;
-                    
-                    // Remove will-change after animation
-                    setTimeout(() => {
-                        this.style.willChange = 'auto';
-                    }, 300);
-                    
-                    this.style.transform = 'translateY(0) scale(1) translateZ(0)';
-                });
-            });
-        }
-
-        // Optimized Icon Animations
-        function initOptimizedIconAnimations() {
-            const icons = document.querySelectorAll('.activity-icon');
-            
-            icons.forEach(icon => {
-                let isInteracting = false;
-                
-                icon.addEventListener('mouseenter', function() {
-                    if (isInteracting) return;
-                    isInteracting = true;
-                    
-                    this.style.animationPlayState = 'paused';
-                    this.style.transform = 'translateY(-5px) scale(1.1) translateZ(0)';
-                    this.style.transition = 'transform 0.3s ease';
-                });
-                
-                icon.addEventListener('mouseleave', function() {
-                    isInteracting = false;
-                    
-                    this.style.animationPlayState = 'running';
-                    this.style.transform = 'translateY(0) scale(1) translateZ(0)';
-                    
-                    // Remove inline transform after animation resumes
-                    setTimeout(() => {
-                        this.style.transform = '';
-                        this.style.transition = '';
-                    }, 300);
-                });
-            });
-        }
-
-        // Performance monitoring for card pulse effects
-        function optimizeCardPulseEffects() {
-            const isLowPerformance = navigator.hardwareConcurrency <= 2;
-            
-            if (isLowPerformance) {
-                console.log('🔧 Disabling card pulse effects for better performance');
-                const style = document.createElement('style');
-                style.textContent = `
-                    .tech-card::after,
-                    .fitness-card::after,
-                    .family-card::after {
-                        animation: none !important;
-                        display: none;
-                    }
-                `;
-                document.head.appendChild(style);
-            }
-        }
-
-        // Throttle utility function
-        function throttle(func, limit) {
-            let inThrottle;
-            return function() {
-                const args = arguments;
-                const context = this;
-                if (!inThrottle) {
-                    func.apply(context, args);
-                    inThrottle = true;
-                    setTimeout(() => inThrottle = false, limit);
-                }
-            }
-        }
-
-        // Master Initialization with Performance Monitoring
-        document.addEventListener('DOMContentLoaded', () => {
-            console.log('🚀 Initializing Optimized Activities List System');
-            
-            // Initialize performance controller
-            const perfController = new PerformanceController();
-            
-            // Initialize optimized systems
-            const constellationSystem = new OptimizedConstellationSystem();
-            
-            // Initialize all animation systems
-            initOptimizedScrollAnimations();
-            initOptimizedCardEffects();
-            initOptimizedIconAnimations();
-            optimizeCardPulseEffects();
-            
-            console.log('✅ All systems initialized with performance optimization');
-            
-            // Global cleanup on page unload
-            window.addEventListener('beforeunload', () => {
-                document.querySelectorAll('.star, .activity-card, .activity-icon').forEach(el => {
-                    el.style.animation = 'none';
-                    el.style.transform = 'none';
-                });
-            });
-        });
-
-        // Emergency performance reset (Shift + Escape)
-        window.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && e.shiftKey) {
-                console.log('🔧 Emergency performance reset activated');
-                document.querySelectorAll('.star, .activity-card, .activity-icon').forEach(el => {
-                    el.style.animation = 'none';
-                    el.style.transform = 'none';
-                });
-                
-                // Remove all pulse effects
-                document.querySelectorAll('.tech-card::after, .fitness-card::after, .family-card::after').forEach(el => {
-                    el.style.display = 'none';
-                });
-            }
-        });
-
-        // Cleanup on resize for performance
-        window.addEventListener('resize', throttle(() => {
-            const container = document.getElementById('constellation');
-            container.innerHTML = '';
-            new OptimizedConstellationSystem();
-        }, 1000));
-    </script>
 </body>
 </html> 

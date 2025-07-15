@@ -3,382 +3,345 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Favorite Activities</title>
+    <meta name="description" content="Abdulrahman's favorite activities - Technology, Fitness, and Family Time">
+    <meta name="author" content="Abdulrahman">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>My Favorite Activities - Welcome</title>
     <style>
-        :root {
-            --particle-count: 25;
-            --animation-duration: 0.8s;
-            --blur-amount: 10px;
-            --animation-speed: 0.8s;
-        }
-
+        /* Ultra-lightweight CSS - No animations, maximum performance */
         * {
             margin: 0;
             padding: 0;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
             box-sizing: border-box;
+        }
+
+        :root {
+            --primary-bg: #0f0f23;
+            --secondary-bg: rgba(255, 255, 255, 0.05);
+            --primary-text: #ffffff;
+            --secondary-text: #b8c5ff;
+            --accent-text: #e8eeff;
+            --gradient-primary: linear-gradient(45deg, #667eea, #764ba2);
+            --border-color: rgba(255, 255, 255, 0.1);
+            --shadow-light: rgba(0, 0, 0, 0.3);
+            --focus-color: #667eea;
+            --focus-outline: 3px solid var(--focus-color);
+        }
+
+        /* Fallback for older browsers */
+        html {
+            scroll-behavior: smooth;
+            -webkit-text-size-adjust: 100%;
+            -ms-text-size-adjust: 100%;
         }
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #0f0f23;
+            background: var(--primary-bg);
+            background: #0f0f23; /* Fallback */
+            color: var(--primary-text);
+            color: #ffffff; /* Fallback */
+            line-height: 1.6;
             min-height: 100vh;
-            color: #fff;
             overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
-            /* Optimized for smooth scrolling */
-            -webkit-overflow-scrolling: touch;
-            scroll-behavior: auto;
-            /* Performance optimizations */
-            transform: translateZ(0);
-            backface-visibility: hidden;
-            perspective: 1000px;
+            -moz-osx-font-smoothing: grayscale;
+            text-rendering: optimizeLegibility;
         }
 
-        /* Animated background particles with performance optimization */
-        .particles-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 0;
-            opacity: 0.6;
-            will-change: transform;
-        }
-
-        .particle {
+        /* Skip to main content link */
+        .skip-link {
             position: absolute;
-            width: 4px;
-            height: 4px;
-            background: radial-gradient(circle, #667eea, transparent);
-            border-radius: 50%;
-            animation: float 6s infinite ease-in-out;
-            will-change: transform, opacity;
-            transform: translateZ(0);
+            top: -40px;
+            left: 6px;
+            background: var(--focus-color);
+            background: #667eea; /* Fallback */
+            color: white;
+            padding: 8px;
+            text-decoration: none;
+            border-radius: 4px;
+            z-index: 1000;
+            -webkit-transition: top 0.3s;
+            -moz-transition: top 0.3s;
+            -o-transition: top 0.3s;
+            transition: top 0.3s;
         }
 
-        @keyframes float {
-            0%, 100% {
-                transform: translate3d(0px, 0px, 0) scale(1);
-                opacity: 0.3;
-            }
-            25% {
-                transform: translate3d(10px, -20px, 0) scale(1.1);
-                opacity: 0.8;
-            }
-            75% {
-                transform: translate3d(-10px, -10px, 0) scale(0.9);
-                opacity: 0.6;
-            }
-        }
-
-        /* Scroll-triggered animations with optimized timing */
-        .fade-in-up {
-            opacity: 0;
-            transform: translateY(50px);
-            transition: opacity var(--animation-duration) cubic-bezier(0.25, 0.46, 0.45, 0.94), 
-                        transform var(--animation-duration) cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            will-change: transform, opacity;
-        }
-
-        .fade-in-up.animate {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .scale-in {
-            opacity: 0;
-            transform: scale(0.8) translateZ(0);
-            transition: opacity var(--animation-speed) ease-out, transform var(--animation-speed) ease-out;
-            will-change: transform, opacity;
-        }
-
-        .scale-in.animate {
-            opacity: 1;
-            transform: scale(1) translateZ(0);
+        .skip-link:focus {
+            top: 6px;
         }
 
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
-            position: relative;
-            z-index: 2;
         }
 
         .hero {
             min-height: 100vh;
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: -ms-flexbox;
             display: flex;
+            -webkit-box-align: center;
+            -webkit-align-items: center;
+            -ms-flex-align: center;
             align-items: center;
+            -webkit-box-pack: center;
+            -webkit-justify-content: center;
+            -ms-flex-pack: center;
             justify-content: center;
             text-align: center;
-            position: relative;
         }
 
         .hero-content {
-            position: relative;
-            z-index: 2;
+            width: 100%;
         }
 
         .hero h1 {
-            font-size: 4.5rem;
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
             font-weight: 800;
-            color: #ffffff;
             margin-bottom: 1rem;
-            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
-            letter-spacing: 2px;
-            background: linear-gradient(45deg, #667eea, #764ba2, #f093fb, #667eea);
-            background-size: 300% 300%;
+            background: var(--gradient-primary);
+            background: linear-gradient(45deg, #667eea, #764ba2); /* Fallback */
+            background: -webkit-linear-gradient(45deg, #667eea, #764ba2); /* Webkit */
+            background: -moz-linear-gradient(45deg, #667eea, #764ba2); /* Firefox */
+            background: -o-linear-gradient(45deg, #667eea, #764ba2); /* Opera */
             -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            -moz-background-clip: text;
             background-clip: text;
-            animation: gradientShift 4s ease-in-out infinite;
-            will-change: background-position;
-        }
-
-        @keyframes gradientShift {
-            0%, 100% {
-                background-position: 0% 50%;
-            }
-            50% {
-                background-position: 100% 50%;
-            }
+            -webkit-text-fill-color: transparent;
+            -moz-text-fill-color: transparent;
+            text-fill-color: transparent;
+            letter-spacing: 2px;
         }
 
         .hero h2 {
-            font-size: 2.2rem;
+            font-size: clamp(1.5rem, 3vw, 2.2rem);
             font-weight: 400;
-            color: #b8c5ff;
-            margin-bottom: 2rem;
-            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
-        }
-
-        /* Floating geometric shapes with optimized animations */
-        .floating-shapes {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 1;
-        }
-
-        .shape {
-            position: absolute;
-            opacity: 0.1;
-            animation: floatShapes 12s infinite ease-in-out;
-            will-change: transform;
-            transform: translateZ(0);
-        }
-
-        .shape:nth-child(1) {
-            top: 20%;
-            left: 10%;
-            width: 100px;
-            height: 100px;
-            background: linear-gradient(45deg, #667eea, #764ba2);
-            border-radius: 20px;
-            animation-delay: 0s;
-        }
-
-        .shape:nth-child(2) {
-            top: 60%;
-            right: 15%;
-            width: 80px;
-            height: 80px;
-            background: linear-gradient(45deg, #f093fb, #f5576c);
-            border-radius: 50%;
-            animation-delay: -2s;
-        }
-
-        .shape:nth-child(3) {
-            bottom: 20%;
-            left: 20%;
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(45deg, #4facfe, #00f2fe);
-            transform: rotate(45deg) translateZ(0);
-            animation-delay: -4s;
-        }
-
-        @keyframes floatShapes {
-            0%, 100% {
-                transform: translate3d(0px, 0px, 0) rotate(0deg);
-            }
-            33% {
-                transform: translate3d(0px, -30px, 0) rotate(120deg);
-            }
-            66% {
-                transform: translate3d(0px, -15px, 0) rotate(240deg);
-            }
+            color: var(--secondary-text);
+            color: #b8c5ff; /* Fallback */
+            margin-bottom: 3rem;
         }
 
         .intro-section {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: var(--secondary-bg);
+            background: rgba(255, 255, 255, 0.05); /* Fallback */
+            border: 1px solid var(--border-color);
+            border: 1px solid rgba(255, 255, 255, 0.1); /* Fallback */
             padding: 3rem;
             border-radius: 15px;
-            margin: 2rem 0;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-            backdrop-filter: blur(var(--blur-amount));
-            position: relative;
-            overflow: hidden;
-            will-change: transform;
-        }
-
-        .intro-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-            animation: shimmer 3s infinite;
-            will-change: transform;
-        }
-
-        @keyframes shimmer {
-            0% {
-                transform: translateX(0);
-            }
-            100% {
-                transform: translateX(200%);
-            }
+            margin: 3rem 0;
+            -webkit-box-shadow: 0 10px 20px var(--shadow-light);
+            -moz-box-shadow: 0 10px 20px var(--shadow-light);
+            box-shadow: 0 10px 20px var(--shadow-light);
+            -webkit-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3); /* Fallback */
+            -moz-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3); /* Fallback */
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3); /* Fallback */
         }
 
         .intro-section p {
-            font-size: 1.3rem;
+            font-size: clamp(1rem, 2vw, 1.3rem);
             line-height: 1.8;
             margin-bottom: 1.5rem;
-            color: #e8eeff;
+            color: var(--accent-text);
+            color: #e8eeff; /* Fallback */
         }
 
         .intro-section p:first-of-type {
-            font-size: 1.4rem;
+            font-size: calc(clamp(1rem, 2vw, 1.3rem) + 0.1rem);
             font-weight: 600;
-            color: #ffffff;
+            color: var(--primary-text);
+            color: #ffffff; /* Fallback */
         }
 
         .cta-container {
-            margin-top: 2.5rem;
+            margin-top: 3rem;
         }
 
         .cta-button {
             display: inline-block;
-            background: linear-gradient(45deg, #667eea, #764ba2);
-            color: #ffffff;
+            background: var(--gradient-primary);
+            background: linear-gradient(45deg, #667eea, #764ba2); /* Fallback */
+            background: -webkit-linear-gradient(45deg, #667eea, #764ba2); /* Webkit */
+            background: -moz-linear-gradient(45deg, #667eea, #764ba2); /* Firefox */
+            background: -o-linear-gradient(45deg, #667eea, #764ba2); /* Opera */
+            color: var(--primary-text);
+            color: #ffffff; /* Fallback */
             padding: 18px 40px;
             text-decoration: none;
             border-radius: 30px;
             font-weight: 700;
             font-size: 1.2rem;
+            -webkit-box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+            -moz-box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
             box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
-            border: 2px solid rgba(255, 255, 255, 0.1);
-            position: relative;
-            overflow: hidden;
-            transition: all var(--animation-speed) cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            will-change: transform, box-shadow;
-            transform: translateZ(0);
-        }
-
-        .cta-button::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: left 0.5s ease;
-            will-change: transform;
+            border: 2px solid var(--border-color);
+            border: 2px solid rgba(255, 255, 255, 0.1); /* Fallback */
+            -webkit-transition: all 0.3s ease;
+            -moz-transition: all 0.3s ease;
+            -o-transition: all 0.3s ease;
+            transition: all 0.3s ease;
+            cursor: pointer;
         }
 
         .cta-button:hover {
-            transform: translateY(-5px) scale(1.05) translateZ(0);
-            box-shadow: 0 15px 30px rgba(102, 126, 234, 0.6);
+            -webkit-transform: translateY(-3px);
+            -moz-transform: translateY(-3px);
+            -ms-transform: translateY(-3px);
+            -o-transform: translateY(-3px);
+            transform: translateY(-3px);
+            -webkit-box-shadow: 0 12px 25px rgba(102, 126, 234, 0.6);
+            -moz-box-shadow: 0 12px 25px rgba(102, 126, 234, 0.6);
+            box-shadow: 0 12px 25px rgba(102, 126, 234, 0.6);
         }
 
-        .cta-button:hover::before {
-            left: 100%;
+        .cta-button:focus {
+            outline: var(--focus-outline);
+            outline: 3px solid #667eea; /* Fallback */
+            outline-offset: 2px;
+            -webkit-transform: translateY(-3px);
+            -moz-transform: translateY(-3px);
+            -ms-transform: translateY(-3px);
+            -o-transform: translateY(-3px);
+            transform: translateY(-3px);
         }
 
-        /* Responsive design */
-        @media (max-width: 768px) {
+        /* High contrast mode */
+        @media (prefers-contrast: high) {
             :root {
-                --particle-count: 8;
-                --animation-duration: 0.5s;
-                --blur-amount: 5px;
-            }
-
-            .hero h1 {
-                font-size: 3rem;
+                --primary-text: #ffffff;
+                --secondary-text: #ffffff;
+                --accent-text: #ffffff;
+                --border-color: rgba(255, 255, 255, 0.5);
+                --focus-color: #ffff00;
             }
             
-            .hero h2 {
-                font-size: 1.8rem;
+            .cta-button {
+                border: 3px solid #ffffff;
+            }
+        }
+
+        /* Reduced motion */
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                -webkit-animation-duration: 0.01ms !important;
+                -moz-animation-duration: 0.01ms !important;
+                animation-duration: 0.01ms !important;
+                -webkit-animation-iteration-count: 1 !important;
+                -moz-animation-iteration-count: 1 !important;
+                animation-iteration-count: 1 !important;
+                -webkit-transition-duration: 0.01ms !important;
+                -moz-transition-duration: 0.01ms !important;
+                -o-transition-duration: 0.01ms !important;
+                transition-duration: 0.01ms !important;
+            }
+            
+            .cta-button:hover {
+                -webkit-transform: none;
+                -moz-transform: none;
+                -ms-transform: none;
+                -o-transform: none;
+                transform: none;
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 15px;
             }
             
             .intro-section {
                 padding: 2rem;
-                margin: 1rem 0;
+                margin: 2rem 0;
             }
             
-            .intro-section p {
-                font-size: 1.1rem;
-            }
-
             .cta-button {
                 padding: 16px 35px;
                 font-size: 1.1rem;
+                width: 100%;
+                max-width: 300px;
             }
+        }
 
-            .shape {
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero h2 {
+                font-size: 1.5rem;
+            }
+            
+            .intro-section {
+                padding: 1.5rem;
+            }
+        }
+
+        /* Print styles */
+        @media print {
+            body {
+                background: white !important;
+                color: black !important;
+            }
+            
+            .cta-button {
+                background: #333333 !important;
+                color: white !important;
+                border: 1px solid #333333 !important;
+            }
+            
+            .skip-link {
                 display: none;
             }
         }
 
-        /* Reduced motion accessibility */
-        @media (prefers-reduced-motion: reduce) {
-            :root {
-                --animation-duration: 0.01ms;
-                --animation-speed: 0.01ms;
+        /* IE11 and older browser support */
+        @supports not (display: grid) {
+            .container {
+                width: 100%;
+                max-width: 1200px;
             }
+        }
 
-            * {
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.01ms !important;
-            }
-            
-            .particle,
-            .shape {
-                animation: none;
-                transform: none;
-            }
+        /* Focus visible for keyboard navigation */
+        .cta-button:focus-visible {
+            outline: var(--focus-outline);
+            outline: 3px solid #667eea; /* Fallback */
+            outline-offset: 2px;
+        }
+
+        /* Screen reader only text */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
         }
     </style>
 </head>
 <body>
-    <!-- Animated background particles -->
-    <div class="particles-container" id="particles"></div>
+    <!-- Skip to main content link for screen readers -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
     
-    <div class="hero">
+    <main id="main-content" class="hero" role="main" aria-labelledby="page-title">
         <div class="container">
-            <!-- Floating geometric shapes -->
-            <div class="floating-shapes">
-                <div class="shape"></div>
-                <div class="shape"></div>
-                <div class="shape"></div>
-            </div>
-            
             <div class="hero-content">
-                <h1 class="fade-in-up">Welcome to My World</h1>
-                <h2 class="fade-in-up" style="animation-delay: 0.2s;">Discover My Favorite Activities</h2>
+                <h1 id="page-title">Welcome to My World</h1>
+                <h2>Discover My Favorite Activities</h2>
                 
-                <div class="intro-section scale-in">
+                <section class="intro-section" aria-labelledby="intro-title">
+                    <h2 id="intro-title" class="sr-only">Introduction</h2>
                     <p>Hello! I'm Abdulrahman, a third-year Software Engineering student passionate about technology, fitness, and meaningful connections. This website showcases the three activities that bring me the most joy and fulfillment in life.</p>
                     
                     <p>Each activity represents a different aspect of my personality and interests - from my love for continuous learning and technology exploration, to my dedication to physical fitness and strength training, to my deep appreciation for quality time with the people I care about most.</p>
@@ -386,384 +349,17 @@
                     <p>Take a journey through my favorite activities and discover what makes me tick!</p>
                     
                     <div class="cta-container">
-                        <a href="activities-list.html" class="cta-button">Explore My Activities →</a>
+                        <a href="activities-list.html" 
+                           class="cta-button" 
+                           aria-label="Explore my favorite activities"
+                           role="button"
+                           tabindex="0">
+                            Explore My Activities →
+                        </a>
                     </div>
-                </div>
+                </section>
             </div>
         </div>
-    </div>
-
-    <script>
-        // Advanced Performance Monitoring & Debugging System
-        class PerformanceController {
-            constructor() {
-                this.fps = 0;
-                this.frameCount = 0;
-                this.lastTime = performance.now();
-                this.isLowPerformance = false;
-                this.animationLevel = this.detectAnimationLevel();
-                this.init();
-            }
-
-            detectAnimationLevel() {
-                const hardwareConcurrency = navigator.hardwareConcurrency || 2;
-                const memory = navigator.deviceMemory || 4;
-                const connection = navigator.connection?.effectiveType || '4g';
-                
-                if (hardwareConcurrency <= 2 || memory <= 2 || connection === 'slow-2g' || connection === '2g') {
-                    return 'low';
-                } else if (hardwareConcurrency <= 4 || memory <= 4) {
-                    return 'medium';
-                }
-                return 'high';
-            }
-
-            init() {
-                this.monitorFPS();
-                this.optimizeBasedOnPerformance();
-                this.addPerformanceDisplay();
-            }
-
-            monitorFPS() {
-                const measureFPS = (currentTime) => {
-                    this.frameCount++;
-                    if (currentTime - this.lastTime >= 1000) {
-                        this.fps = Math.round((this.frameCount * 1000) / (currentTime - this.lastTime));
-                        this.frameCount = 0;
-                        this.lastTime = currentTime;
-                        
-                        // Auto-adjust performance
-                        if (this.fps < 30 && !this.isLowPerformance) {
-                            this.isLowPerformance = true;
-                            this.enableLowPerformanceMode();
-                        }
-                        
-                        this.updatePerformanceDisplay();
-                    }
-                    requestAnimationFrame(measureFPS);
-                };
-                requestAnimationFrame(measureFPS);
-            }
-
-            enableLowPerformanceMode() {
-                console.log('🔧 Enabling low performance mode for smoother experience');
-                
-                // Reduce particle count
-                const particles = document.querySelectorAll('.particle');
-                particles.forEach((particle, index) => {
-                    if (index % 2 === 0) particle.remove();
-                });
-
-                // Disable heavy animations
-                document.querySelectorAll('.shape').forEach(shape => {
-                    shape.style.animation = 'none';
-                });
-
-                // Reduce animation durations
-                document.documentElement.style.setProperty('--animation-speed', '0.3s');
-            }
-
-            optimizeBasedOnPerformance() {
-                const root = document.documentElement;
-                
-                switch(this.animationLevel) {
-                    case 'low':
-                        root.style.setProperty('--particle-count', '8');
-                        root.style.setProperty('--animation-duration', '0.3s');
-                        root.style.setProperty('--blur-amount', '5px');
-                        break;
-                    case 'medium':
-                        root.style.setProperty('--particle-count', '15');
-                        root.style.setProperty('--animation-duration', '0.5s');
-                        root.style.setProperty('--blur-amount', '8px');
-                        break;
-                    case 'high':
-                        root.style.setProperty('--particle-count', '25');
-                        root.style.setProperty('--animation-duration', '0.8s');
-                        root.style.setProperty('--blur-amount', '10px');
-                        break;
-                }
-            }
-
-            addPerformanceDisplay() {
-                if (window.location.search.includes('debug=true')) {
-                    const display = document.createElement('div');
-                    display.id = 'performance-display';
-                    display.style.cssText = `
-                        position: fixed;
-                        top: 10px;
-                        right: 10px;
-                        background: rgba(0,0,0,0.8);
-                        color: white;
-                        padding: 10px;
-                        border-radius: 5px;
-                        font-family: monospace;
-                        font-size: 12px;
-                        z-index: 10000;
-                    `;
-                    document.body.appendChild(display);
-                }
-            }
-
-            updatePerformanceDisplay() {
-                const display = document.getElementById('performance-display');
-                if (display) {
-                    const color = this.fps >= 50 ? '#00ff00' : this.fps >= 30 ? '#ffff00' : '#ff0000';
-                    display.innerHTML = `
-                        <div style="color: ${color}">FPS: ${this.fps}</div>
-                        <div>Mode: ${this.animationLevel}</div>
-                        <div>Performance: ${this.isLowPerformance ? 'Low' : 'Normal'}</div>
-                    `;
-                }
-            }
-        }
-
-        // Optimized Particle System with Pooling
-        class OptimizedParticleSystem {
-            constructor() {
-                this.particles = [];
-                this.particlePool = [];
-                this.container = document.getElementById('particles');
-                this.maxParticles = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--particle-count')) || 15;
-                this.isAnimating = true;
-                
-                this.init();
-            }
-
-            init() {
-                this.createParticlePool();
-                this.animate();
-                
-                // Pause animations when tab is not visible
-                document.addEventListener('visibilitychange', () => {
-                    this.isAnimating = !document.hidden;
-                });
-            }
-
-            createParticlePool() {
-                for (let i = 0; i < this.maxParticles; i++) {
-                    const particle = this.createParticle();
-                    this.particles.push(particle);
-                    this.container.appendChild(particle.element);
-                }
-            }
-
-            createParticle() {
-                const element = document.createElement('div');
-                element.className = 'particle';
-                
-                return {
-                    element,
-                    x: Math.random() * window.innerWidth,
-                    y: Math.random() * window.innerHeight,
-                    vx: (Math.random() - 0.5) * 0.5,
-                    vy: (Math.random() - 0.5) * 0.5,
-                    opacity: 0.3 + Math.random() * 0.5,
-                    scale: 0.5 + Math.random() * 0.5
-                };
-            }
-
-            animate() {
-                if (!this.isAnimating) {
-                    requestAnimationFrame(() => this.animate());
-                    return;
-                }
-
-                this.particles.forEach(particle => {
-                    particle.x += particle.vx;
-                    particle.y += particle.vy;
-                    
-                    // Wrap around screen
-                    if (particle.x < 0) particle.x = window.innerWidth;
-                    if (particle.x > window.innerWidth) particle.x = 0;
-                    if (particle.y < 0) particle.y = window.innerHeight;
-                    if (particle.y > window.innerHeight) particle.y = 0;
-                    
-                    // Use transform for GPU acceleration
-                    particle.element.style.transform = `translate3d(${particle.x}px, ${particle.y}px, 0) scale(${particle.scale})`;
-                    particle.element.style.opacity = particle.opacity;
-                });
-
-                requestAnimationFrame(() => this.animate());
-            }
-        }
-
-        // Throttled Scroll Handler
-        class ScrollAnimationController {
-            constructor() {
-                this.isScrolling = false;
-                this.scrollTimeout = null;
-                this.init();
-            }
-
-            init() {
-                let ticking = false;
-                
-                const handleScroll = () => {
-                    if (!ticking) {
-                        requestAnimationFrame(() => {
-                            this.updateScrollAnimations();
-                            ticking = false;
-                        });
-                        ticking = true;
-                    }
-                };
-
-                window.addEventListener('scroll', handleScroll, { passive: true });
-            }
-
-            updateScrollAnimations() {
-                const scrolled = window.pageYOffset;
-                const rate = scrolled * -0.5;
-                
-                // Parallax effect for shapes (GPU accelerated)
-                document.querySelectorAll('.shape').forEach((shape, index) => {
-                    const speed = (index + 1) * 0.1;
-                    shape.style.transform = `translate3d(0, ${rate * speed}px, 0)`;
-                });
-            }
-        }
-
-        // Enhanced Intersection Observer
-        function initOptimizedScrollAnimations() {
-            const observerOptions = {
-                threshold: [0, 0.1, 0.5, 1],
-                rootMargin: '0px 0px -50px 0px'
-            };
-
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        // Stagger animations for smoother experience
-                        const delay = Array.from(document.querySelectorAll('.fade-in-up, .scale-in')).indexOf(entry.target) * 100;
-                        
-                        setTimeout(() => {
-                            entry.target.classList.add('animate');
-                        }, delay);
-                        
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, observerOptions);
-
-            document.querySelectorAll('.fade-in-up, .scale-in').forEach(el => {
-                observer.observe(el);
-            });
-        }
-
-        // Optimized Mouse Parallax with Throttling
-        function initOptimizedParallax() {
-            let mouseX = 0, mouseY = 0;
-            let currentX = 0, currentY = 0;
-            let isMoving = false;
-
-            // Throttle mouse events
-            const throttledMouseMove = throttle((e) => {
-                mouseX = (e.clientX / window.innerWidth - 0.5) * 2;
-                mouseY = (e.clientY / window.innerHeight - 0.5) * 2;
-                isMoving = true;
-            }, 16); // ~60fps
-
-            document.addEventListener('mousemove', throttledMouseMove);
-
-            function animate() {
-                if (isMoving) {
-                    currentX += (mouseX - currentX) * 0.1;
-                    currentY += (mouseY - currentY) * 0.1;
-
-                    document.querySelectorAll('.shape').forEach((shape, index) => {
-                        const multiplier = (index + 1) * 5;
-                        shape.style.transform = `translate3d(${currentX * multiplier}px, ${currentY * multiplier}px, 0)`;
-                    });
-
-                    if (Math.abs(mouseX - currentX) < 0.01 && Math.abs(mouseY - currentY) < 0.01) {
-                        isMoving = false;
-                    }
-                }
-                requestAnimationFrame(animate);
-            }
-            animate();
-        }
-
-        // Utility function for throttling
-        function throttle(func, limit) {
-            let inThrottle;
-            return function() {
-                const args = arguments;
-                const context = this;
-                if (!inThrottle) {
-                    func.apply(context, args);
-                    inThrottle = true;
-                    setTimeout(() => inThrottle = false, limit);
-                }
-            }
-        }
-
-        // Enhanced Button Effects with Performance
-        function initOptimizedButtonEffects() {
-            const buttons = document.querySelectorAll('.cta-button');
-            
-            buttons.forEach(button => {
-                let isHovering = false;
-                
-                button.addEventListener('mouseenter', () => {
-                    if (isHovering) return;
-                    isHovering = true;
-                    
-                    // Use will-change for optimization
-                    button.style.willChange = 'transform, box-shadow';
-                    button.style.background = 'linear-gradient(45deg, #7c8df8, #8e5cc6)';
-                });
-                
-                button.addEventListener('mouseleave', () => {
-                    isHovering = false;
-                    
-                    // Remove will-change after animation
-                    setTimeout(() => {
-                        button.style.willChange = 'auto';
-                    }, 300);
-                    
-                    button.style.background = 'linear-gradient(45deg, #667eea, #764ba2)';
-                });
-            });
-        }
-
-        // Master Initialization with Performance Monitoring
-        document.addEventListener('DOMContentLoaded', () => {
-            console.log('🚀 Initializing Optimized Animation System');
-            
-            // Initialize performance controller
-            const perfController = new PerformanceController();
-            
-            // Initialize optimized systems
-            const particleSystem = new OptimizedParticleSystem();
-            const scrollController = new ScrollAnimationController();
-            
-            // Initialize all animation systems
-            initOptimizedScrollAnimations();
-            initOptimizedParallax();
-            initOptimizedButtonEffects();
-            
-            console.log('✅ All systems initialized with performance optimization');
-            
-            // Global cleanup on page unload
-            window.addEventListener('beforeunload', () => {
-                document.querySelectorAll('.particle, .shape').forEach(el => {
-                    el.style.animation = 'none';
-                });
-            });
-        });
-
-        // Emergency performance reset
-        window.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && e.shiftKey) {
-                console.log('🔧 Emergency performance reset activated');
-                document.querySelectorAll('.particle, .shape').forEach(el => {
-                    el.style.animation = 'none';
-                    el.style.transform = 'none';
-                });
-            }
-        });
-    </script>
+    </main>
 </body>
 </html> 
