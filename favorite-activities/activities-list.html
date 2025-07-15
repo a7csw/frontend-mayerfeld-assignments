@@ -12,7 +12,7 @@
         }
 
         html {
-            scroll-behavior: smooth;
+            /* Removed smooth scrolling to prevent lag during hover+scroll */
         }
 
         body {
@@ -22,6 +22,9 @@
             color: #fff;
             line-height: 1.6;
             -webkit-font-smoothing: antialiased;
+            /* Add scroll optimization */
+            -webkit-overflow-scrolling: touch;
+            scroll-behavior: auto;
         }
 
         .container {
@@ -64,10 +67,13 @@
             position: relative;
             border: 1px solid rgba(255, 255, 255, 0.1);
             cursor: pointer;
+            /* Optimize hover performance */
+            will-change: transform;
         }
 
         .activity-card:hover {
-            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.3);
+            /* Use transform instead of changing box-shadow for better performance */
+            transform: translateY(-3px) scale(1.01);
         }
 
         .activity-icon {
@@ -87,7 +93,8 @@
         }
 
         .activity-title:hover {
-            color: #c4d3ff;
+            /* Simplified hover effect */
+            opacity: 0.8;
         }
 
         .activity-summary {
@@ -108,10 +115,14 @@
             font-size: 1rem;
             box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
             border: 1px solid rgba(255, 255, 255, 0.1);
+            /* Optimize hover performance */
+            will-change: transform, opacity;
         }
 
         .read-more:hover {
-            background: linear-gradient(45deg, #7c8df8, #8e5cc6);
+            /* Use transform instead of changing background gradients for better performance */
+            transform: translateY(-1px) scale(1.05);
+            opacity: 0.9;
         }
 
         .tech-card {
@@ -157,11 +168,14 @@
             font-size: 1.1rem;
             border: 1px solid rgba(255, 255, 255, 0.1);
             box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+            /* Optimize hover performance */
+            will-change: transform, opacity;
         }
 
         .nav-link:hover {
-            background: linear-gradient(45deg, #7c8df8, #8e5cc6);
-            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.5);
+            /* Use transform instead of changing background gradients for better performance */
+            transform: translateY(-2px) scale(1.02);
+            opacity: 0.9;
         }
 
         @media (max-width: 768px) {
