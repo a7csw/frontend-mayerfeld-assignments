@@ -13,18 +13,15 @@
 
         html {
             scroll-behavior: smooth;
-            scroll-padding-top: 2rem;
         }
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
+            background: #0f0f23;
             min-height: 100vh;
             color: #fff;
             line-height: 1.6;
             -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-            transform: translateZ(0);
         }
 
         .container {
@@ -36,124 +33,58 @@
         .header {
             text-align: center;
             margin-bottom: 60px;
-            animation: slideInDown 0.6s ease-out;
-            transform: translateZ(0);
-        }
-
-        @keyframes slideInDown {
-            from {
-                opacity: 0;
-                transform: translate3d(0, -30px, 0);
-            }
-            to {
-                opacity: 1;
-                transform: translate3d(0, 0, 0);
-            }
         }
 
         .header h1 {
-            font-size: 3.8rem;
+            font-size: 3.5rem;
             font-weight: 800;
             color: #ffffff;
             margin-bottom: 1rem;
             text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
-            letter-spacing: 1px;
-            background: linear-gradient(45deg, #ffffff, #e0e6ff, #d4dbff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
         }
 
         .header p {
             font-size: 1.4rem;
             color: #b8c5ff;
-            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
             margin-bottom: 2rem;
         }
 
         .activities-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
-            gap: 40px;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
             margin-bottom: 60px;
         }
 
         .activity-card {
-            background: rgba(255, 255, 255, 0.04);
-            border-radius: 20px;
-            padding: 40px;
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 35px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            transition: transform 0.1s ease;
             position: relative;
-            overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            animation: fadeInUp 0.4s ease-out;
-            transform: translateZ(0);
-            will-change: transform;
-        }
-
-        .activity-card:nth-child(1) {
-            animation-delay: 0.05s;
-        }
-
-        .activity-card:nth-child(2) {
-            animation-delay: 0.1s;
-        }
-
-        .activity-card:nth-child(3) {
-            animation-delay: 0.15s;
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translate3d(0, 30px, 0);
-            }
-            to {
-                opacity: 1;
-                transform: translate3d(0, 0, 0);
-            }
-        }
-
-        .activity-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, #667eea, #764ba2, #f093fb);
-            transform: scaleX(0);
-            transition: transform 0.2s ease;
-            transform-origin: left;
-        }
-
-        .activity-card:hover::before {
-            transform: scaleX(1);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .activity-card:hover {
-            transform: translate3d(0, -6px, 0);
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
+            transform: translateY(-3px);
         }
 
         .activity-icon {
-            font-size: 3.5rem;
+            font-size: 3rem;
             margin-bottom: 20px;
             display: block;
             text-align: center;
-            transform: translateZ(0);
         }
 
         .activity-title {
-            font-size: 2rem;
+            font-size: 1.8rem;
             font-weight: 700;
             color: #ffffff;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             text-decoration: none;
             display: block;
-            transition: color 0.2s ease;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+            transition: color 0.1s ease;
         }
 
         .activity-title:hover {
@@ -161,54 +92,32 @@
         }
 
         .activity-summary {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             color: #d0deff;
-            margin-bottom: 30px;
-            line-height: 1.8;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+            margin-bottom: 25px;
+            line-height: 1.7;
         }
 
         .read-more {
             display: inline-block;
             background: linear-gradient(45deg, #667eea, #764ba2);
             color: #ffffff;
-            padding: 14px 35px;
+            padding: 12px 30px;
             text-decoration: none;
-            border-radius: 25px;
+            border-radius: 20px;
             font-weight: 700;
-            font-size: 1.1rem;
-            transition: all 0.2s ease;
-            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
-            position: relative;
-            overflow: hidden;
-            border: 2px solid rgba(255, 255, 255, 0.1);
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
-            transform: translateZ(0);
-        }
-
-        .read-more::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
-            transition: left 0.3s ease;
-        }
-
-        .read-more:hover::before {
-            left: 100%;
+            font-size: 1rem;
+            transition: transform 0.1s ease;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .read-more:hover {
-            transform: translate3d(0, -2px, 0);
-            box-shadow: 0 12px 25px rgba(102, 126, 234, 0.5);
-            background: linear-gradient(45deg, #7c8df8, #8e5cc6);
+            transform: translateY(-2px);
         }
 
         .tech-card {
-            background: linear-gradient(135deg, rgba(102, 126, 234, 0.08) 0%, rgba(118, 75, 162, 0.08) 100%);
+            background: rgba(102, 126, 234, 0.1);
             border: 1px solid rgba(102, 126, 234, 0.2);
         }
 
@@ -216,12 +125,8 @@
             color: #c4d3ff;
         }
 
-        .tech-card .activity-summary {
-            color: #dde4ff;
-        }
-
         .fitness-card {
-            background: linear-gradient(135deg, rgba(78, 205, 196, 0.08) 0%, rgba(68, 160, 141, 0.08) 100%);
+            background: rgba(78, 205, 196, 0.1);
             border: 1px solid rgba(78, 205, 196, 0.2);
         }
 
@@ -229,21 +134,13 @@
             color: #c2f4ef;
         }
 
-        .fitness-card .activity-summary {
-            color: #ddf7f4;
-        }
-
         .family-card {
-            background: linear-gradient(135deg, rgba(255, 107, 107, 0.08) 0%, rgba(238, 90, 82, 0.08) 100%);
+            background: rgba(255, 107, 107, 0.1);
             border: 1px solid rgba(255, 107, 107, 0.2);
         }
 
         .family-card .activity-title {
             color: #ffcccc;
-        }
-
-        .family-card .activity-summary {
-            color: #ffe0e0;
         }
 
         .nav-section {
@@ -255,125 +152,57 @@
             display: inline-block;
             background: linear-gradient(45deg, #667eea, #764ba2);
             color: #ffffff;
-            padding: 18px 40px;
+            padding: 15px 35px;
             text-decoration: none;
-            border-radius: 25px;
+            border-radius: 20px;
             font-weight: 700;
-            font-size: 1.2rem;
-            transition: all 0.2s ease;
-            border: 2px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
-            transform: translateZ(0);
+            font-size: 1.1rem;
+            transition: transform 0.1s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
         }
 
         .nav-link:hover {
-            background: linear-gradient(45deg, #7c8df8, #8e5cc6);
-            transform: translate3d(0, -3px, 0);
-            box-shadow: 0 15px 30px rgba(102, 126, 234, 0.5);
-        }
-
-        .simple-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: -1;
-            opacity: 0.3;
-        }
-
-        .bg-dot {
-            position: absolute;
-            width: 2px;
-            height: 2px;
-            background: #ffffff;
-            border-radius: 50%;
-            animation: simpleTwinkle 4s infinite;
-            transform: translateZ(0);
-        }
-
-        .bg-dot:nth-child(1) {
-            top: 15%;
-            left: 20%;
-            animation-delay: 0s;
-        }
-
-        .bg-dot:nth-child(2) {
-            top: 70%;
-            right: 25%;
-            animation-delay: 2s;
-        }
-
-        @keyframes simpleTwinkle {
-            0%, 100% {
-                opacity: 0.3;
-            }
-            50% {
-                opacity: 0.8;
-            }
+            transform: translateY(-2px);
         }
 
         @media (max-width: 768px) {
             .activities-grid {
                 grid-template-columns: 1fr;
-                gap: 25px;
+                gap: 20px;
             }
             
             .header h1 {
-                font-size: 2.8rem;
+                font-size: 2.5rem;
             }
             
             .activity-card {
-                padding: 30px;
+                padding: 25px;
             }
             
             .activity-title {
-                font-size: 1.7rem;
+                font-size: 1.5rem;
             }
 
             .nav-link {
-                padding: 16px 35px;
-                font-size: 1.1rem;
-            }
-
-            .activity-icon {
-                font-size: 3rem;
+                padding: 12px 25px;
+                font-size: 1rem;
             }
         }
 
         @media (prefers-reduced-motion: reduce) {
             * {
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.01ms !important;
+                transition: none !important;
+                animation: none !important;
             }
             
             html {
                 scroll-behavior: auto;
             }
         }
-
-        /* Performance optimization for older devices */
-        @media (max-resolution: 150dpi) {
-            .activity-card {
-                background: rgba(255, 255, 255, 0.06);
-                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-            }
-            
-            .bg-dot {
-                display: none;
-            }
-        }
     </style>
 </head>
 <body>
-    <div class="simple-bg">
-        <div class="bg-dot"></div>
-        <div class="bg-dot"></div>
-    </div>
-
     <div class="container">
         <div class="header">
             <h1>My Three Favorite Activities</h1>

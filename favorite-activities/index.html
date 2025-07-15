@@ -13,18 +13,15 @@
 
         html {
             scroll-behavior: smooth;
-            scroll-padding-top: 2rem;
         }
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
+            background: #0f0f23;
             min-height: 100vh;
             color: #fff;
             overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-            transform: translateZ(0);
         }
 
         .container {
@@ -42,34 +39,9 @@
             position: relative;
         }
 
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: radial-gradient(circle at 30% 20%, rgba(120, 119, 198, 0.15) 0%, transparent 50%),
-                        radial-gradient(circle at 80% 80%, rgba(255, 119, 198, 0.15) 0%, transparent 50%);
-            z-index: 1;
-        }
-
         .hero-content {
             position: relative;
             z-index: 2;
-            animation: fadeInUp 0.8s ease-out;
-            transform: translateZ(0);
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translate3d(0, 30px, 0);
-            }
-            to {
-                opacity: 1;
-                transform: translate3d(0, 0, 0);
-            }
         }
 
         .hero h1 {
@@ -79,34 +51,6 @@
             margin-bottom: 1rem;
             text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
             letter-spacing: 2px;
-            background: linear-gradient(45deg, #ffffff, #e0e6ff, #d4dbff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            position: relative;
-        }
-
-        .hero h1::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 200px;
-            height: 3px;
-            background: linear-gradient(90deg, transparent, #667eea, #764ba2, #667eea, transparent);
-            animation: underlineGlow 3s ease-in-out infinite;
-        }
-
-        @keyframes underlineGlow {
-            0%, 100% {
-                opacity: 0.5;
-                transform: translateX(-50%) scaleX(0.8);
-            }
-            50% {
-                opacity: 1;
-                transform: translateX(-50%) scaleX(1.2);
-            }
         }
 
         .hero h2 {
@@ -115,182 +59,50 @@
             color: #b8c5ff;
             margin-bottom: 2rem;
             text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
-            letter-spacing: 1px;
         }
 
         .intro-section {
-            background: rgba(255, 255, 255, 0.04);
-            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             padding: 3rem;
-            border-radius: 20px;
+            border-radius: 15px;
             margin: 2rem 0;
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
-            position: relative;
-            overflow: hidden;
-            transform: translateZ(0);
-        }
-
-        .intro-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, #667eea, #764ba2, #f093fb);
-            animation: shimmer 4s infinite;
-        }
-
-        @keyframes shimmer {
-            0% {
-                background-position: -200px 0;
-            }
-            100% {
-                background-position: 200px 0;
-            }
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
         }
 
         .intro-section p {
             font-size: 1.3rem;
-            line-height: 1.9;
-            margin-bottom: 1.8rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
             color: #e8eeff;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
         }
 
         .intro-section p:first-of-type {
             font-size: 1.4rem;
             font-weight: 600;
             color: #ffffff;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
         }
 
         .cta-container {
-            margin-top: 3rem;
+            margin-top: 2.5rem;
         }
 
         .cta-button {
             display: inline-block;
             background: linear-gradient(45deg, #667eea, #764ba2);
             color: #ffffff;
-            padding: 20px 50px;
+            padding: 18px 40px;
             text-decoration: none;
-            border-radius: 40px;
+            border-radius: 30px;
             font-weight: 700;
             font-size: 1.2rem;
-            transition: all 0.2s ease;
-            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
-            position: relative;
-            overflow: hidden;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+            transition: transform 0.1s ease;
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
             border: 2px solid rgba(255, 255, 255, 0.1);
-            transform: translateZ(0);
-        }
-
-        .cta-button::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: left 0.4s ease;
-        }
-
-        .cta-button:hover::before {
-            left: 100%;
         }
 
         .cta-button:hover {
-            transform: translate3d(0, -3px, 0);
-            box-shadow: 0 15px 35px rgba(102, 126, 234, 0.6);
-            background: linear-gradient(45deg, #7c8df8, #8e5cc6);
-        }
-
-        .floating-elements {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 1;
-        }
-
-        .floating-circle {
-            position: absolute;
-            border-radius: 50%;
-            background: rgba(102, 126, 234, 0.06);
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            animation: float 15s ease-in-out infinite;
-            transform: translateZ(0);
-        }
-
-        .floating-circle:nth-child(1) {
-            width: 100px;
-            height: 100px;
-            top: 15%;
-            left: 8%;
-            animation-delay: 0s;
-        }
-
-        .floating-circle:nth-child(2) {
-            width: 120px;
-            height: 120px;
-            top: 60%;
-            right: 10%;
-            animation-delay: 5s;
-        }
-
-        @keyframes float {
-            0%, 100% {
-                transform: translate3d(0, 0, 0);
-            }
-            50% {
-                transform: translate3d(10px, -20px, 0);
-            }
-        }
-
-        .constellation {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        .star {
-            position: absolute;
-            width: 2px;
-            height: 2px;
-            background: #ffffff;
-            border-radius: 50%;
-            animation: twinkle 6s infinite;
-            transform: translateZ(0);
-        }
-
-        .star:nth-child(1) {
-            top: 10%;
-            left: 20%;
-            animation-delay: 0s;
-        }
-
-        .star:nth-child(2) {
-            top: 70%;
-            left: 40%;
-            animation-delay: 3s;
-        }
-
-        @keyframes twinkle {
-            0%, 100% {
-                opacity: 0.3;
-            }
-            50% {
-                opacity: 0.8;
-            }
+            transform: translateY(-2px);
         }
 
         @media (max-width: 768px) {
@@ -315,50 +127,22 @@
                 padding: 16px 35px;
                 font-size: 1.1rem;
             }
-
-            .floating-circle {
-                opacity: 0.3;
-            }
         }
 
         @media (prefers-reduced-motion: reduce) {
             * {
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.01ms !important;
+                transition: none !important;
+                animation: none !important;
             }
             
             html {
                 scroll-behavior: auto;
             }
         }
-
-        /* Performance optimization for older devices */
-        @media (max-resolution: 150dpi) {
-            .floating-circle,
-            .star {
-                display: none;
-            }
-            
-            .intro-section {
-                background: rgba(255, 255, 255, 0.06);
-                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
-            }
-        }
     </style>
 </head>
 <body>
-    <div class="constellation">
-        <div class="star"></div>
-        <div class="star"></div>
-    </div>
-
     <div class="hero">
-        <div class="floating-elements">
-            <div class="floating-circle"></div>
-            <div class="floating-circle"></div>
-        </div>
-        
         <div class="container">
             <div class="hero-content">
                 <h1>Welcome to My World</h1>
