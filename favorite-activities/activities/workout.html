@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weekly Workout & Calisthenics Training</title>
     <style>
-        /* Premium Fitness-Themed Animations */
+        /* Clean Fitness-Themed Design */
         * {
             margin: 0;
             padding: 0;
@@ -13,31 +13,26 @@
         }
 
         :root {
-            --energy-orange: #ff6b35;
-            --power-red: #ff1744;
-            --strength-yellow: #ffc107;
-            --fitness-green: #4caf50;
-            --dark-bg: #0f1419;
-            --fire-orange: #ff5722;
-            --electric-blue: #03a9f4;
-            --muscle-pink: #e91e63;
-            --sweat-cyan: #00bcd4;
-            --glow-energy: 0 0 30px var(--energy-orange);
-            --glow-power: 0 0 30px var(--power-red);
-            --glow-strength: 0 0 30px var(--strength-yellow);
+            --fitness-primary: #ff6b6b;
+            --fitness-secondary: #ffa726;
+            --dark-bg: #0f0f23;
+            --card-bg: rgba(255, 255, 255, 0.05);
+            --border-color: rgba(255, 107, 107, 0.2);
+            --text-primary: #ffffff;
+            --text-secondary: #b8c5ff;
+            --subtle-glow: 0 0 20px rgba(255, 107, 107, 0.2);
         }
 
         body {
-            font-family: 'Segoe UI', 'Roboto', 'Arial Black', sans-serif;
+            font-family: 'Segoe UI', system-ui, sans-serif;
             background: var(--dark-bg);
             min-height: 100vh;
-            color: #fff;
+            color: var(--text-primary);
             line-height: 1.6;
             overflow-x: hidden;
-            position: relative;
         }
 
-        /* Dynamic Energy Background */
+        /* Subtle Fitness Background */
         body::before {
             content: '';
             position: fixed;
@@ -45,28 +40,12 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: radial-gradient(ellipse at center, 
-                rgba(255, 107, 53, 0.1) 0%, 
-                rgba(255, 23, 68, 0.05) 30%,
-                rgba(255, 193, 7, 0.08) 60%,
-                transparent 100%);
-            animation: energyPulse 6s ease-in-out infinite alternate;
-            z-index: 0;
+            background: radial-gradient(ellipse at center, rgba(255, 107, 107, 0.03) 0%, transparent 70%);
+            z-index: -1;
         }
 
-        @keyframes energyPulse {
-            0% {
-                transform: scale(1);
-                opacity: 0.3;
-            }
-            100% {
-                transform: scale(1.2);
-                opacity: 0.6;
-            }
-        }
-
-        /* Energy Wave System */
-        .energy-waves {
+        /* Minimal Fitness Elements */
+        .fitness-elements {
             position: fixed;
             top: 0;
             left: 0;
@@ -77,172 +56,25 @@
             overflow: hidden;
         }
 
-        .energy-wave {
+        .fitness-element {
             position: absolute;
-            width: 200px;
-            height: 200px;
-            border: 3px solid var(--energy-orange);
-            border-radius: 50%;
-            opacity: 0;
-            animation: waveExpand 4s ease-out infinite;
+            font-size: 18px;
+            opacity: 0.2;
+            color: var(--fitness-primary);
+            animation: gentleFitnessFloat 30s ease-in-out infinite;
         }
 
-        .energy-wave:nth-child(2) {
-            border-color: var(--power-red);
-            animation-delay: 1s;
-        }
-
-        .energy-wave:nth-child(3) {
-            border-color: var(--strength-yellow);
-            animation-delay: 2s;
-        }
-
-        @keyframes waveExpand {
-            0% {
-                transform: scale(0);
-                opacity: 1;
-            }
-            100% {
-                transform: scale(4);
-                opacity: 0;
-            }
-        }
-
-        /* Floating Fitness Icons */
-        .floating-fitness-icons {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 2;
-        }
-
-        .fitness-icon {
-            position: absolute;
-            font-size: 24px;
-            animation: fitnessFloat 12s ease-in-out infinite;
-            text-shadow: 0 0 15px currentColor;
-        }
-
-        .fitness-icon.energy {
-            color: var(--energy-orange);
-        }
-
-        .fitness-icon.power {
-            color: var(--power-red);
-        }
-
-        .fitness-icon.strength {
-            color: var(--strength-yellow);
-        }
-
-        @keyframes fitnessFloat {
+        @keyframes gentleFitnessFloat {
             0%, 100% {
-                transform: translateY(100vh) rotate(0deg) scale(1);
+                transform: translateY(100vh) translateX(0px);
                 opacity: 0;
             }
-            10% {
-                opacity: 0.8;
+            10%, 90% {
+                opacity: 0.2;
             }
             50% {
-                transform: translateY(20vh) rotate(180deg) scale(1.2);
-                opacity: 1;
-            }
-            90% {
-                opacity: 0.8;
-            }
-        }
-
-        /* Power Particles */
-        .power-particles {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 3;
-        }
-
-        .power-particle {
-            position: absolute;
-            width: 6px;
-            height: 6px;
-            border-radius: 50%;
-            animation: powerFloat 15s linear infinite;
-        }
-
-        .power-particle.fire {
-            background: var(--fire-orange);
-            box-shadow: var(--glow-energy);
-        }
-
-        .power-particle.electric {
-            background: var(--electric-blue);
-            box-shadow: 0 0 20px var(--electric-blue);
-        }
-
-        .power-particle.strength {
-            background: var(--strength-yellow);
-            box-shadow: var(--glow-strength);
-        }
-
-        @keyframes powerFloat {
-            0% {
-                transform: translateY(100vh) translateX(0px) scale(0);
-                opacity: 0;
-            }
-            5% {
-                opacity: 1;
-                transform: scale(1);
-            }
-            95% {
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(-10vh) translateX(150px) scale(0);
-                opacity: 0;
-            }
-        }
-
-        /* Sweat Drops Animation */
-        .sweat-drops {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 4;
-        }
-
-        .sweat-drop {
-            position: absolute;
-            width: 8px;
-            height: 12px;
-            background: var(--sweat-cyan);
-            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
-            animation: sweatFall 8s linear infinite;
-            box-shadow: 0 0 10px var(--sweat-cyan);
-            opacity: 0.6;
-        }
-
-        @keyframes sweatFall {
-            0% {
-                transform: translateY(-10vh);
-                opacity: 0;
-            }
-            10% {
-                opacity: 0.8;
-            }
-            90% {
-                opacity: 0.8;
-            }
-            100% {
-                transform: translateY(110vh);
-                opacity: 0;
+                transform: translateY(-20vh) translateX(50px);
+                opacity: 0.3;
             }
         }
 
@@ -251,856 +83,313 @@
             margin: 0 auto;
             padding: 40px 20px;
             position: relative;
-            z-index: 10;
+            z-index: 100;
         }
 
         .header {
             text-align: center;
             margin-bottom: 60px;
-            animation: headerReveal 2s ease-out forwards;
-            opacity: 0;
-            transform: translateY(50px);
-        }
-
-        @keyframes headerReveal {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            animation: fadeInDown 1s ease-out forwards;
         }
 
         .header h1 {
             font-size: clamp(2.5rem, 5vw, 3.8rem);
             font-weight: 800;
             margin-bottom: 1rem;
-            background: linear-gradient(45deg, var(--energy-orange), var(--power-red), var(--strength-yellow));
-            background-size: 300% 300%;
+            background: linear-gradient(45deg, var(--fitness-primary), var(--fitness-secondary));
+            background-size: 200% 200%;
             -webkit-background-clip: text;
             background-clip: text;
             -webkit-text-fill-color: transparent;
-            letter-spacing: 1px;
-            animation: fitnessGradientShift 3s ease-in-out infinite, strengthGlow 2s ease-in-out infinite alternate;
-            position: relative;
+            animation: fadeInDown 1s ease-out forwards, subtleGradient 8s ease-in-out infinite;
         }
 
-        @keyframes fitnessGradientShift {
+        @keyframes subtleGradient {
             0%, 100% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
         }
 
-        @keyframes strengthGlow {
-            0% {
-                filter: drop-shadow(0 0 15px var(--energy-orange));
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
             }
-            100% {
-                filter: drop-shadow(0 0 25px var(--power-red));
-            }
-        }
-
-        /* Heartbeat Effect */
-        .heartbeat-text {
-            animation: heartbeat 1.5s ease-in-out infinite;
-        }
-
-        @keyframes heartbeat {
-            0%, 50%, 100% {
-                transform: scale(1);
-            }
-            25% {
-                transform: scale(1.05);
+            to {
+                opacity: 1;
+                transform: translateY(0);
             }
         }
 
         .header p {
             font-size: clamp(1.1rem, 2vw, 1.4rem);
-            color: #b8ffcc;
-            margin-bottom: 2rem;
-            animation: subtitleFade 2.5s ease-out 0.5s forwards;
+            color: var(--text-secondary);
+            animation: fadeInDown 1.2s ease-out 0.2s forwards;
+            opacity: 0;
+        }
+
+        .content-section {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 30px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            animation: fadeInUp 1s ease-out forwards;
             opacity: 0;
             transform: translateY(30px);
         }
 
-        @keyframes subtitleFade {
+        .content-section:nth-child(2) { animation-delay: 0.3s; }
+        .content-section:nth-child(3) { animation-delay: 0.6s; }
+        .content-section:nth-child(4) { animation-delay: 0.9s; }
+
+        @keyframes fadeInUp {
             to {
                 opacity: 1;
                 transform: translateY(0);
             }
-        }
-
-        .content-section {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(20px);
-            border-radius: 25px;
-            padding: 50px;
-            margin-bottom: 40px;
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3),
-                        inset 0 1px 0 rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 107, 53, 0.3);
-            position: relative;
-            overflow: hidden;
-            animation: sectionReveal 2s ease-out 1s forwards;
-            opacity: 0;
-            transform: translateY(50px) scale(0.95);
-        }
-
-        @keyframes sectionReveal {
-            to {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
-        }
-
-        /* Energy Stream Effect */
-        .content-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, 
-                transparent, 
-                rgba(255, 107, 53, 0.2), 
-                rgba(255, 23, 68, 0.2),
-                transparent);
-            animation: energyStream 5s ease-in-out infinite;
-        }
-
-        @keyframes energyStream {
-            0% { left: -100%; }
-            50% { left: 100%; }
-            100% { left: 100%; }
         }
 
         .content-section:hover {
-            transform: translateY(-8px) scale(1.02);
-            border-color: rgba(255, 107, 53, 0.6);
-            box-shadow: 0 30px 60px rgba(255, 107, 53, 0.3),
-                        inset 0 1px 0 rgba(255, 255, 255, 0.2);
-            transition: all 0.4s ease;
+            transform: translateY(-5px);
+            border-color: rgba(255, 107, 107, 0.4);
+            box-shadow: var(--subtle-glow);
         }
 
         .content-section h2 {
-            font-size: clamp(2rem, 4vw, 2.8rem);
-            color: #ffffff;
-            margin-bottom: 30px;
-            position: relative;
-            padding-left: 60px;
-            animation: titlePulse 3s ease-in-out infinite alternate;
-        }
-
-        @keyframes titlePulse {
-            0% {
-                text-shadow: 0 0 15px var(--energy-orange);
-            }
-            100% {
-                text-shadow: 0 0 25px var(--power-red), 0 0 35px var(--strength-yellow);
-            }
+            font-size: clamp(2rem, 4vw, 2.5rem);
+            color: var(--text-primary);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
         }
 
         .content-section h2::before {
-            content: '🔥';
-            position: absolute;
-            left: 0;
-            font-size: 2.2rem;
-            animation: firePulse 2s ease-in-out infinite;
-        }
-
-        @keyframes firePulse {
-            0%, 100% {
-                transform: scale(1) rotate(-5deg);
-                filter: drop-shadow(0 0 10px var(--fire-orange));
-            }
-            50% {
-                transform: scale(1.3) rotate(5deg);
-                filter: drop-shadow(0 0 20px var(--power-red));
-            }
+            content: '💪';
+            font-size: 2rem;
         }
 
         .content-section p {
-            font-size: clamp(1rem, 2vw, 1.3rem);
-            color: #d0fff0;
-            margin-bottom: 25px;
+            font-size: clamp(1rem, 2vw, 1.2rem);
+            color: var(--text-secondary);
+            margin-bottom: 20px;
             line-height: 1.8;
-            animation: textReveal 2.5s ease-out 1.5s forwards;
-            opacity: 0;
-            transform: translateX(-20px);
-        }
-
-        @keyframes textReveal {
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        .workout-schedule {
-            background: rgba(255, 107, 53, 0.15);
-            backdrop-filter: blur(15px);
-            color: #ffffff;
-            padding: 45px;
-            border-radius: 20px;
-            margin: 30px 0;
-            box-shadow: 0 20px 40px rgba(255, 107, 53, 0.4),
-                        inset 0 1px 0 rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 107, 53, 0.4);
-            position: relative;
-            overflow: hidden;
-            animation: scheduleReveal 2s ease-out 2s forwards;
-            opacity: 0;
-            transform: translateY(40px);
-        }
-
-        @keyframes scheduleReveal {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Muscle Ripple Effect */
-        .workout-schedule::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            background: radial-gradient(circle, rgba(255, 107, 53, 0.3) 0%, transparent 70%);
-            animation: muscleRipple 8s ease-out infinite;
-            transform: translate(-50%, -50%);
-        }
-
-        @keyframes muscleRipple {
-            0% {
-                width: 0;
-                height: 0;
-                opacity: 1;
-            }
-            100% {
-                width: 800px;
-                height: 800px;
-                opacity: 0;
-            }
-        }
-
-        .workout-schedule h3 {
-            font-size: clamp(1.8rem, 3vw, 2.3rem);
-            margin-bottom: 35px;
-            text-align: center;
-            color: #ffffff;
-            text-shadow: 0 0 20px var(--energy-orange);
-            animation: scheduleGlow 4s ease-in-out infinite alternate;
-        }
-
-        @keyframes scheduleGlow {
-            0% {
-                text-shadow: 0 0 20px var(--energy-orange);
-            }
-            100% {
-                text-shadow: 0 0 30px var(--power-red), 0 0 40px var(--strength-yellow);
-            }
         }
 
         .schedule-grid {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 25px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
             margin: 30px 0;
-            justify-content: center;
         }
 
         .schedule-item {
-            background: rgba(255, 255, 255, 0.08);
+            background: var(--card-bg);
             backdrop-filter: blur(10px);
             border-radius: 15px;
             padding: 25px;
             text-align: center;
-            border: 1px solid rgba(255, 107, 53, 0.3);
-            flex: 1 1 280px;
-            max-width: 320px;
-            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            position: relative;
-            overflow: hidden;
-            animation: scheduleItemReveal 2.5s ease-out forwards;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+            animation: fadeInUp 1.2s ease-out forwards;
             opacity: 0;
-            transform: translateY(30px) scale(0.9);
+            transform: translateY(20px);
         }
 
-        .schedule-item:nth-child(1) { animation-delay: 2.2s; }
-        .schedule-item:nth-child(2) { animation-delay: 2.4s; }
-        .schedule-item:nth-child(3) { animation-delay: 2.6s; }
-        .schedule-item:nth-child(4) { animation-delay: 2.8s; }
-
-        @keyframes scheduleItemReveal {
-            to {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
-        }
-
-        /* Power Line Effect */
-        .schedule-item::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 3px;
-            background: linear-gradient(90deg, transparent, var(--energy-orange), var(--power-red), transparent);
-            animation: powerLine 4s ease-in-out infinite;
-        }
-
-        @keyframes powerLine {
-            0% { left: -100%; }
-            50% { left: 100%; }
-            100% { left: 100%; }
-        }
+        .schedule-item:nth-child(1) { animation-delay: 1s; }
+        .schedule-item:nth-child(2) { animation-delay: 1.2s; }
+        .schedule-item:nth-child(3) { animation-delay: 1.4s; }
+        .schedule-item:nth-child(4) { animation-delay: 1.6s; }
 
         .schedule-item:hover {
-            transform: translateY(-10px) scale(1.05);
-            border-color: rgba(255, 107, 53, 0.7);
-            box-shadow: 0 25px 50px rgba(255, 107, 53, 0.5),
-                        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            transform: translateY(-8px) scale(1.02);
+            border-color: rgba(255, 107, 107, 0.5);
+            box-shadow: var(--subtle-glow);
         }
 
-        .schedule-item:hover::before {
-            animation-duration: 1.5s;
-        }
-
-        .schedule-item h4 {
+        .schedule-item h3 {
             font-size: 1.5rem;
-            color: #c2f4ef;
+            color: var(--fitness-primary);
             margin-bottom: 15px;
-            animation: itemTitleGlow 3s ease-in-out infinite alternate;
-        }
-
-        @keyframes itemTitleGlow {
-            0% {
-                text-shadow: 0 0 10px var(--energy-orange);
-            }
-            100% {
-                text-shadow: 0 0 20px var(--power-red);
-            }
         }
 
         .schedule-item p {
-            color: #b8ffcc;
+            color: var(--text-secondary);
             font-size: 1rem;
         }
 
-        .day-icon {
+        .workout-icon {
             font-size: 3rem;
             margin-bottom: 15px;
             display: block;
-            animation: iconBounce 2s ease-in-out infinite;
+            transition: transform 0.3s ease;
         }
 
-        @keyframes iconBounce {
-            0%, 20%, 50%, 80%, 100% {
-                transform: translateY(0) scale(1);
-            }
-            40% {
-                transform: translateY(-10px) scale(1.1);
-            }
-            60% {
-                transform: translateY(-5px) scale(1.05);
-            }
+        .schedule-item:hover .workout-icon {
+            transform: scale(1.1);
         }
 
-        .benefits-grid {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            margin: 30px 0;
-            justify-content: center;
-        }
-
-        .benefit-item {
-            background: rgba(255, 255, 255, 0.04);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
+        .goals-list {
+            background: rgba(255, 107, 107, 0.08);
+            border-radius: 15px;
             padding: 30px;
-            text-align: center;
-            border: 1px solid rgba(255, 107, 53, 0.3);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
-            flex: 1 1 250px;
-            max-width: 300px;
-            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            position: relative;
-            overflow: hidden;
-            animation: benefitReveal 2.5s ease-out forwards;
-            opacity: 0;
-            transform: translateY(30px) scale(0.9);
+            margin: 25px 0;
         }
 
-        .benefit-item:nth-child(1) { animation-delay: 3s; }
-        .benefit-item:nth-child(2) { animation-delay: 3.2s; }
-        .benefit-item:nth-child(3) { animation-delay: 3.4s; }
-        .benefit-item:nth-child(4) { animation-delay: 3.6s; }
-
-        @keyframes benefitReveal {
-            to {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
+        .goals-list h3 {
+            color: var(--fitness-primary);
+            margin-bottom: 20px;
+            font-size: 1.8rem;
         }
 
-        .benefit-item:hover {
-            transform: translateY(-10px) scale(1.05);
-            border-color: rgba(255, 107, 53, 0.7);
-            box-shadow: 0 25px 50px rgba(255, 107, 53, 0.4),
-                        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+        .goals-list ul {
+            list-style: none;
+            padding: 0;
         }
 
-        .benefit-item h4 {
-            font-size: 1.4rem;
-            color: #c2f4ef;
-            margin-bottom: 15px;
-            animation: benefitTitleGlow 3s ease-in-out infinite alternate;
+        .goals-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255, 107, 107, 0.1);
+            color: var(--text-secondary);
         }
 
-        @keyframes benefitTitleGlow {
-            0% {
-                text-shadow: 0 0 10px var(--strength-yellow);
-            }
-            100% {
-                text-shadow: 0 0 20px var(--energy-orange);
-            }
-        }
-
-        .benefit-item p {
-            color: #b8ffcc;
-            font-size: 1rem;
-        }
-
-        .benefit-icon {
-            font-size: 2.5rem;
-            margin-bottom: 15px;
-            display: block;
-            animation: benefitIconPulse 3s ease-in-out infinite;
-        }
-
-        @keyframes benefitIconPulse {
-            0%, 100% {
-                transform: scale(1) rotate(0deg);
-                filter: drop-shadow(0 0 10px var(--energy-orange));
-            }
-            50% {
-                transform: scale(1.2) rotate(5deg);
-                filter: drop-shadow(0 0 20px var(--power-red));
-            }
+        .goals-list li::before {
+            content: '🎯 ';
+            margin-right: 10px;
         }
 
         .nav-section {
             text-align: center;
             margin-top: 60px;
-            animation: navReveal 2s ease-out 4s forwards;
+            animation: fadeInUp 1.5s ease-out 1.8s forwards;
             opacity: 0;
-            transform: translateY(30px);
-        }
-
-        @keyframes navReveal {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
         }
 
         .nav-button {
             display: inline-block;
-            background: linear-gradient(45deg, var(--energy-orange), var(--power-red));
-            background-size: 200% 200%;
-            color: #ffffff;
+            background: linear-gradient(45deg, var(--fitness-primary), var(--fitness-secondary));
+            color: #000000;
             padding: 15px 35px;
             text-decoration: none;
             border-radius: 30px;
             font-weight: 700;
             font-size: 1.1rem;
-            border: 2px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 10px 25px rgba(255, 107, 53, 0.4);
             margin: 0 10px;
-            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            position: relative;
-            overflow: hidden;
-            animation: buttonEnergyGlow 3s ease-in-out infinite alternate;
-        }
-
-        @keyframes buttonEnergyGlow {
-            0% {
-                box-shadow: 0 10px 25px rgba(255, 107, 53, 0.4);
-            }
-            100% {
-                box-shadow: 0 15px 35px rgba(255, 23, 68, 0.6), 
-                           0 0 20px rgba(255, 107, 53, 0.5);
-            }
-        }
-
-        .nav-button::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-            transition: left 0.6s ease;
-        }
-
-        .nav-button:hover::before {
-            left: 100%;
+            transition: all 0.3s ease;
+            box-shadow: var(--subtle-glow);
         }
 
         .nav-button:hover {
-            transform: translateY(-5px) scale(1.05);
-            background-position: 100% 50%;
-            box-shadow: 0 20px 40px rgba(255, 107, 53, 0.7),
-                        0 0 30px rgba(255, 23, 68, 0.5);
-        }
-
-        .nav-button:focus {
-            outline: 3px solid var(--energy-orange);
-            outline-offset: 3px;
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 15px 30px rgba(255, 107, 107, 0.4);
         }
 
         /* Responsive design */
         @media (max-width: 768px) {
-            .content-section { padding: 30px; }
-            .workout-schedule { padding: 30px; }
-            .schedule-grid { flex-direction: column; }
-            .schedule-item { max-width: none; }
-            .benefits-grid { flex-direction: column; }
-            .benefit-item { max-width: none; }
-            .nav-button { display: block; margin: 10px auto; max-width: 250px; }
-            .fitness-icon { font-size: 20px; }
+            .container { padding: 20px 15px; }
+            .content-section { padding: 25px; }
+            .schedule-grid { grid-template-columns: 1fr; }
+            .nav-button { padding: 12px 25px; font-size: 1rem; margin: 5px; }
         }
 
-        @media (max-width: 480px) {
-            .content-section { padding: 20px; }
-            .workout-schedule { padding: 20px; }
-            .schedule-item { padding: 20px; }
-            .benefit-item { padding: 25px; }
-        }
-
-        /* Reduced motion */
+        /* Reduced motion support */
         @media (prefers-reduced-motion: reduce) {
-            *,
-            *::before,
-            *::after {
+            *, *::before, *::after {
                 animation-duration: 0.01ms !important;
                 animation-iteration-count: 1 !important;
                 transition-duration: 0.01ms !important;
             }
         }
-
-        /* High contrast mode */
-        @media (prefers-contrast: high) {
-            :root {
-                --energy-orange: #ff8a00;
-                --power-red: #ff0000;
-                --strength-yellow: #ffff00;
-            }
-        }
     </style>
 </head>
 <body>
-    <!-- Energy Waves -->
-    <div class="energy-waves" aria-hidden="true">
-        <div class="energy-wave"></div>
-        <div class="energy-wave"></div>
-        <div class="energy-wave"></div>
+    <!-- Minimal Fitness Elements -->
+    <div class="fitness-elements" aria-hidden="true">
+        <div class="fitness-element" style="left: 15%; animation-delay: 0s;">💪</div>
+        <div class="fitness-element" style="left: 55%; animation-delay: 10s;">🏋️</div>
+        <div class="fitness-element" style="left: 85%; animation-delay: 20s;">🔥</div>
     </div>
-
-    <!-- Floating Fitness Icons -->
-    <div class="floating-fitness-icons" aria-hidden="true"></div>
-
-    <!-- Power Particles -->
-    <div class="power-particles" aria-hidden="true"></div>
-
-    <!-- Sweat Drops -->
-    <div class="sweat-drops" aria-hidden="true"></div>
 
     <div class="container">
         <div class="header">
-            <h1 class="heartbeat-text">Weekly Workout & Calisthenics Training</h1>
-            <p>My dedication to physical fitness and strength training</p>
+            <h1>Weekly Workout & Calisthenics Training</h1>
+            <p>Staying fit and strong through dedicated training and armwrestling practice</p>
         </div>
-        
-        <section class="content-section">
-            <h2>My Fitness Journey</h2>
-            <p>Physical fitness has always been an important part of my life. I believe that a strong body supports a strong mind, and my weekly workout routine reflects this philosophy.</p>
-            
-            <p>I focus on calisthenics training, which uses bodyweight exercises to build strength, flexibility, and endurance. This approach has helped me develop functional strength that translates to real-world activities.</p>
-            
-            <p>In addition to calisthenics, I also practice armwrestling, which has taught me about leverage, technique, and mental toughness.</p>
-        </section>
 
-        <section class="workout-schedule">
-            <h3>Weekly Training Schedule</h3>
+        <div class="content-section">
+            <h2>My Fitness Philosophy</h2>
+            <p>Physical fitness is not just about building muscle or looking good – it's about building discipline, mental strength, and maintaining a healthy lifestyle. Through consistent training, I've learned that the body achieves what the mind believes.</p>
+            <p>My focus is on functional strength through calisthenics, which uses bodyweight exercises to build real-world applicable strength and mobility.</p>
+        </div>
+
+        <div class="content-section">
+            <h2>Weekly Training Schedule</h2>
             <div class="schedule-grid">
                 <div class="schedule-item">
-                    <div class="day-icon">💪</div>
-                    <h4>Monday - Upper Body</h4>
-                    <p>Push-ups, pull-ups, dips, and shoulder exercises focusing on chest, back, and arms.</p>
+                    <div class="workout-icon">🏃</div>
+                    <h3>Monday & Thursday</h3>
+                    <p>Upper body calisthenics: Pull-ups, push-ups, dips, and armwrestling practice sessions.</p>
                 </div>
                 
                 <div class="schedule-item">
-                    <div class="day-icon">🦵</div>
-                    <h4>Wednesday - Lower Body</h4>
-                    <p>Squats, lunges, calf raises, and core exercises for leg strength and stability.</p>
+                    <div class="workout-icon">🦵</div>
+                    <h3>Tuesday & Friday</h3>
+                    <p>Lower body and core: Squats, lunges, planks, and leg raises for full-body stability.</p>
                 </div>
                 
                 <div class="schedule-item">
-                    <div class="day-icon">🤝</div>
-                    <h4>Friday - Armwrestling</h4>
-                    <p>Technique practice, grip training, and competitive matches with training partners.</p>
+                    <div class="workout-icon">🤸</div>
+                    <h3>Wednesday</h3>
+                    <p>Flexibility and mobility work: Stretching routines and yoga poses for injury prevention.</p>
                 </div>
                 
                 <div class="schedule-item">
-                    <div class="day-icon">🧘</div>
-                    <h4>Sunday - Recovery</h4>
-                    <p>Light stretching, mobility work, and active recovery to prepare for the week ahead.</p>
+                    <div class="workout-icon">💪</div>
+                    <h3>Weekend</h3>
+                    <p>Armwrestling tournaments and practice matches with friends and local communities.</p>
                 </div>
             </div>
-        </section>
+        </div>
 
-        <section class="content-section">
-            <h2>Benefits of My Training</h2>
-            <div class="benefits-grid">
-                <div class="benefit-item">
-                    <div class="benefit-icon">💪</div>
-                    <h4>Functional Strength</h4>
-                    <p>Building real-world strength that helps with daily activities and sports performance.</p>
-                </div>
-                
-                <div class="benefit-item">
-                    <div class="benefit-icon">🧠</div>
-                    <h4>Mental Discipline</h4>
-                    <p>Developing focus, perseverance, and mental toughness through consistent training.</p>
-                </div>
-                
-                <div class="benefit-item">
-                    <div class="benefit-icon">⚡</div>
-                    <h4>Energy & Vitality</h4>
-                    <p>Increased energy levels and overall vitality that supports my academic and personal life.</p>
-                </div>
-                
-                <div class="benefit-item">
-                    <div class="benefit-icon">🎯</div>
-                    <h4>Goal Achievement</h4>
-                    <p>Setting and achieving fitness goals builds confidence and transferable life skills.</p>
-                </div>
+        <div class="content-section">
+            <h2>Fitness Goals & Achievements</h2>
+            <div class="goals-list">
+                <h3>Current Goals</h3>
+                <ul>
+                    <li>Master the muscle-up progression (currently working on explosive pull-ups)</li>
+                    <li>Improve armwrestling technique and compete in local tournaments</li>
+                    <li>Achieve a 2-minute plank hold (current best: 1 minute 45 seconds)</li>
+                    <li>Complete 50 consecutive push-ups without rest</li>
+                    <li>Develop better flexibility and mobility through daily stretching</li>
+                </ul>
             </div>
-        </section>
-        
+            <p>The journey of fitness has taught me patience, consistency, and the importance of progressive overload. Every workout is an opportunity to become stronger both physically and mentally.</p>
+        </div>
+
         <div class="nav-section">
             <a href="../activities-list.html" class="nav-button">← Back to Activities</a>
-            <a href="family-time.html" class="nav-button">Next: Family Time →</a>
+            <a href="../index.html" class="nav-button">← Home</a>
         </div>
     </div>
 
     <script>
+        // Minimal, performance-focused JavaScript
         document.addEventListener('DOMContentLoaded', function() {
-            // Create Floating Fitness Icons
-            function createFloatingFitnessIcons() {
-                const iconContainer = document.querySelector('.floating-fitness-icons');
-                const fitnessIcons = ['💪', '🏋️', '🔥', '⚡', '🥇', '🎯', '💊', '🦾', '🏃', '⭐'];
-                const colors = ['energy', 'power', 'strength'];
-                
-                for (let i = 0; i < 15; i++) {
-                    const icon = document.createElement('div');
-                    icon.className = `fitness-icon ${colors[i % 3]}`;
-                    icon.textContent = fitnessIcons[Math.floor(Math.random() * fitnessIcons.length)];
-                    icon.style.left = Math.random() * 100 + '%';
-                    icon.style.animationDelay = Math.random() * 12 + 's';
-                    icon.style.animationDuration = (10 + Math.random() * 5) + 's';
-                    
-                    iconContainer.appendChild(icon);
-                }
-            }
-
-            // Create Power Particles
-            function createPowerParticles() {
-                const particleContainer = document.querySelector('.power-particles');
-                
-                for (let i = 0; i < 25; i++) {
-                    const particle = document.createElement('div');
-                    particle.className = 'power-particle';
-                    
-                    if (i % 3 === 0) particle.classList.add('fire');
-                    else if (i % 3 === 1) particle.classList.add('electric');
-                    else particle.classList.add('strength');
-                    
-                    particle.style.left = Math.random() * 100 + '%';
-                    particle.style.animationDelay = Math.random() * 15 + 's';
-                    
-                    particleContainer.appendChild(particle);
-                }
-            }
-
-            // Create Sweat Drops
-            function createSweatDrops() {
-                const sweatContainer = document.querySelector('.sweat-drops');
-                
-                for (let i = 0; i < 12; i++) {
-                    const drop = document.createElement('div');
-                    drop.className = 'sweat-drop';
-                    drop.style.left = Math.random() * 100 + '%';
-                    drop.style.animationDelay = Math.random() * 8 + 's';
-                    drop.style.animationDuration = (6 + Math.random() * 4) + 's';
-                    
-                    sweatContainer.appendChild(drop);
-                }
-            }
-
-            // Create Energy Waves
-            function createEnergyWaves() {
-                const waveContainer = document.querySelector('.energy-waves');
-                
-                setInterval(() => {
-                    const wave = document.createElement('div');
-                    wave.className = 'energy-wave';
-                    wave.style.left = Math.random() * 100 + '%';
-                    wave.style.top = Math.random() * 100 + '%';
-                    
-                    waveContainer.appendChild(wave);
-                    
-                    // Remove wave after animation
-                    setTimeout(() => {
-                        if (wave.parentNode) {
-                            wave.parentNode.removeChild(wave);
-                        }
-                    }, 4000);
-                }, 2000);
-            }
-
-            // Power Meter Effect
-            function addPowerMeterEffect() {
-                const scheduleItems = document.querySelectorAll('.schedule-item');
-                
-                scheduleItems.forEach((item, index) => {
-                    item.addEventListener('mouseenter', function() {
-                        this.style.background = 'rgba(255, 107, 53, 0.2)';
-                        this.style.borderColor = 'rgba(255, 107, 53, 0.8)';
-                        this.style.transform = 'translateY(-10px) scale(1.05) rotateY(5deg)';
-                    });
-                    
-                    item.addEventListener('mouseleave', function() {
-                        this.style.background = 'rgba(255, 255, 255, 0.08)';
-                        this.style.borderColor = 'rgba(255, 107, 53, 0.3)';
-                        this.style.transform = 'translateY(0) scale(1) rotateY(0deg)';
-                    });
-                });
-            }
-
-            // Strength Indicator Effect
-            function addStrengthIndicators() {
-                const benefitItems = document.querySelectorAll('.benefit-item');
-                
-                benefitItems.forEach((item, index) => {
-                    item.addEventListener('mouseenter', function() {
-                        const icon = this.querySelector('.benefit-icon');
-                        icon.style.transform = 'scale(1.5) rotateZ(360deg)';
-                        icon.style.transition = 'transform 0.6s ease';
-                        
-                        this.style.background = 'rgba(255, 193, 7, 0.1)';
-                        this.style.borderColor = 'rgba(255, 193, 7, 0.6)';
-                    });
-                    
-                    item.addEventListener('mouseleave', function() {
-                        const icon = this.querySelector('.benefit-icon');
-                        icon.style.transform = 'scale(1) rotateZ(0deg)';
-                        
-                        this.style.background = 'rgba(255, 255, 255, 0.04)';
-                        this.style.borderColor = 'rgba(255, 107, 53, 0.3)';
-                    });
-                });
-            }
-
-            // Workout Intensity Effect
-            function addWorkoutIntensityEffect() {
-                const header = document.querySelector('.header h1');
-                let intensityLevel = 1;
-                
-                setInterval(() => {
-                    intensityLevel = intensityLevel === 1 ? 1.1 : 1;
-                    header.style.transform = `scale(${intensityLevel})`;
-                    header.style.transition = 'transform 0.3s ease';
-                }, 1500);
-            }
-
-            // Fire Trail Effect
-            function addFireTrailEffect() {
-                const container = document.querySelector('.container');
-                
-                container.addEventListener('mousemove', function(e) {
-                    const trail = document.createElement('div');
-                    trail.style.position = 'absolute';
-                    trail.style.left = e.clientX + 'px';
-                    trail.style.top = e.clientY + 'px';
-                    trail.style.width = '8px';
-                    trail.style.height = '8px';
-                    trail.style.background = 'var(--fire-orange)';
-                    trail.style.borderRadius = '50%';
-                    trail.style.pointerEvents = 'none';
-                    trail.style.zIndex = '5';
-                    trail.style.boxShadow = '0 0 10px var(--fire-orange)';
-                    trail.style.animation = 'trailFade 1s ease-out forwards';
-                    
-                    document.body.appendChild(trail);
-                    
-                    setTimeout(() => {
-                        if (trail.parentNode) {
-                            trail.parentNode.removeChild(trail);
-                        }
-                    }, 1000);
-                });
-                
-                // Add CSS for trail fade animation
-                const style = document.createElement('style');
-                style.textContent = `
-                    @keyframes trailFade {
-                        0% {
-                            opacity: 1;
-                            transform: scale(1);
-                        }
-                        100% {
-                            opacity: 0;
-                            transform: scale(0);
-                        }
-                    }
-                `;
-                document.head.appendChild(style);
-            }
-
-            // Initialize all effects
-            createFloatingFitnessIcons();
-            createPowerParticles();
-            createSweatDrops();
-            createEnergyWaves();
-            addPowerMeterEffect();
-            addStrengthIndicators();
-            addWorkoutIntensityEffect();
-            addFireTrailEffect();
-
-            // Performance optimization
+            // Simple performance check
             if (navigator.hardwareConcurrency && navigator.hardwareConcurrency < 4) {
-                // Reduce particle count on low-end devices
-                document.querySelectorAll('.power-particle, .fitness-icon, .sweat-drop').forEach((el, index) => {
-                    if (index % 2 === 0) el.remove();
-                });
+                document.body.classList.add('low-performance');
             }
 
-            // Parallax scrolling for fitness elements
-            window.addEventListener('scroll', function() {
-                const scrolled = window.pageYOffset;
-                const parallaxElements = document.querySelectorAll('.power-particles, .floating-fitness-icons');
-                
-                parallaxElements.forEach(element => {
-                    const speed = scrolled * 0.3;
-                    element.style.transform = `translateY(${speed}px)`;
+            // Ensure content is visible
+            setTimeout(() => {
+                document.querySelectorAll('.content-section, .schedule-item').forEach(element => {
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
                 });
-            });
+            }, 100);
         });
     </script>
 </body>

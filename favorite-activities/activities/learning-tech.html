@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Learning & Exploring New Technologies</title>
     <style>
-        /* Premium Tech-Themed Animations */
+        /* Clean Tech-Themed Design */
         * {
             margin: 0;
             padding: 0;
@@ -13,31 +13,39 @@
         }
 
         :root {
-            --primary-tech: #00ff41;
-            --secondary-tech: #0084ff;
-            --accent-tech: #ff0066;
-            --dark-bg: #0a0a0f;
-            --matrix-green: #00ff41;
-            --cyber-blue: #00d4ff;
-            --neon-purple: #bf00ff;
-            --terminal-green: #00cc44;
-            --glow-tech: 0 0 20px var(--primary-tech);
-            --glow-cyber: 0 0 20px var(--cyber-blue);
-            --glow-neon: 0 0 20px var(--neon-purple);
+            --tech-primary: #64ffda;
+            --tech-secondary: #4fc3f7;
+            --dark-bg: #0f0f23;
+            --card-bg: rgba(255, 255, 255, 0.05);
+            --border-color: rgba(100, 255, 218, 0.2);
+            --text-primary: #ffffff;
+            --text-secondary: #b8c5ff;
+            --subtle-glow: 0 0 20px rgba(100, 255, 218, 0.2);
         }
 
         body {
-            font-family: 'Segoe UI', 'Roboto Mono', monospace;
+            font-family: 'Segoe UI', system-ui, sans-serif;
             background: var(--dark-bg);
             min-height: 100vh;
-            color: #fff;
+            color: var(--text-primary);
             line-height: 1.6;
             overflow-x: hidden;
-            position: relative;
         }
 
-        /* Matrix Code Rain Background */
-        .matrix-rain {
+        /* Subtle Tech Background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(ellipse at center, rgba(100, 255, 218, 0.03) 0%, transparent 70%);
+            z-index: -1;
+        }
+
+        /* Minimal Tech Elements */
+        .tech-elements {
             position: fixed;
             top: 0;
             left: 0;
@@ -48,196 +56,25 @@
             overflow: hidden;
         }
 
-        .matrix-column {
+        .tech-element {
             position: absolute;
-            top: -100%;
-            font-family: 'Courier New', monospace;
-            font-size: 14px;
-            color: var(--matrix-green);
-            animation: matrixFall 8s linear infinite;
-            text-shadow: var(--glow-tech);
-            opacity: 0.7;
+            font-size: 18px;
+            opacity: 0.2;
+            color: var(--tech-primary);
+            animation: gentleTechFloat 25s ease-in-out infinite;
         }
 
-        @keyframes matrixFall {
-            0% {
-                transform: translateY(-100vh);
-                opacity: 0;
-            }
-            10% {
-                opacity: 1;
-            }
-            90% {
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(100vh);
-                opacity: 0;
-            }
-        }
-
-        /* Binary Rain Effect */
-        .binary-rain {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 2;
-            overflow: hidden;
-        }
-
-        .binary-digit {
-            position: absolute;
-            font-family: 'Courier New', monospace;
-            font-size: 12px;
-            color: var(--cyber-blue);
-            animation: binaryFall 10s linear infinite;
-            text-shadow: var(--glow-cyber);
-            opacity: 0.4;
-        }
-
-        @keyframes binaryFall {
-            0% {
-                transform: translateY(-10vh);
-                opacity: 0;
-            }
-            10% {
-                opacity: 0.6;
-            }
-            90% {
-                opacity: 0.6;
-            }
-            100% {
-                transform: translateY(110vh);
-                opacity: 0;
-            }
-        }
-
-        /* Circuit Board Background */
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: 
-                radial-gradient(circle at 20% 20%, rgba(0, 255, 65, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 80%, rgba(0, 212, 255, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 40% 60%, rgba(191, 0, 255, 0.1) 0%, transparent 50%);
-            background-size: 100% 100%, 100% 100%, 100% 100%;
-            animation: circuitPulse 15s ease-in-out infinite;
-            z-index: 0;
-        }
-
-        @keyframes circuitPulse {
+        @keyframes gentleTechFloat {
             0%, 100% {
+                transform: translateY(100vh) translateX(0px);
+                opacity: 0;
+            }
+            10%, 90% {
+                opacity: 0.2;
+            }
+            50% {
+                transform: translateY(-20vh) translateX(40px);
                 opacity: 0.3;
-                transform: scale(1);
-            }
-            50% {
-                opacity: 0.6;
-                transform: scale(1.05);
-            }
-        }
-
-        /* Tech Particle System */
-        .tech-particles {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 3;
-        }
-
-        .tech-particle {
-            position: absolute;
-            width: 3px;
-            height: 3px;
-            background: var(--primary-tech);
-            border-radius: 50%;
-            animation: techParticleFloat 20s linear infinite;
-            box-shadow: var(--glow-tech);
-        }
-
-        .tech-particle.blue {
-            background: var(--cyber-blue);
-            box-shadow: var(--glow-cyber);
-            animation-duration: 25s;
-        }
-
-        .tech-particle.purple {
-            background: var(--neon-purple);
-            box-shadow: var(--glow-neon);
-            animation-duration: 30s;
-        }
-
-        @keyframes techParticleFloat {
-            0% {
-                transform: translateY(100vh) translateX(0px) scale(0);
-                opacity: 0;
-            }
-            10% {
-                opacity: 1;
-                transform: scale(1);
-            }
-            90% {
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(-10vh) translateX(100px) scale(0);
-                opacity: 0;
-            }
-        }
-
-        /* Floating Tech Icons */
-        .floating-tech-icons {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 4;
-        }
-
-        .tech-icon {
-            position: absolute;
-            font-size: 20px;
-            animation: techIconFloat 15s ease-in-out infinite;
-            text-shadow: 0 0 15px currentColor;
-        }
-
-        .tech-icon.green {
-            color: var(--matrix-green);
-        }
-
-        .tech-icon.blue {
-            color: var(--cyber-blue);
-        }
-
-        .tech-icon.purple {
-            color: var(--neon-purple);
-        }
-
-        @keyframes techIconFloat {
-            0%, 100% {
-                transform: translateY(100vh) rotate(0deg);
-                opacity: 0;
-            }
-            10% {
-                opacity: 0.8;
-            }
-            50% {
-                transform: translateY(50vh) rotate(180deg);
-                opacity: 1;
-            }
-            90% {
-                opacity: 0.8;
             }
         }
 
@@ -246,722 +83,279 @@
             margin: 0 auto;
             padding: 40px 20px;
             position: relative;
-            z-index: 10;
+            z-index: 100;
         }
 
         .header {
             text-align: center;
             margin-bottom: 60px;
-            animation: headerReveal 2s ease-out forwards;
-            opacity: 0;
-            transform: translateY(50px);
-        }
-
-        @keyframes headerReveal {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            animation: fadeInDown 1s ease-out forwards;
         }
 
         .header h1 {
             font-size: clamp(2.5rem, 5vw, 3.8rem);
             font-weight: 800;
             margin-bottom: 1rem;
-            background: linear-gradient(45deg, var(--matrix-green), var(--cyber-blue), var(--neon-purple));
-            background-size: 300% 300%;
+            background: linear-gradient(45deg, var(--tech-primary), var(--tech-secondary));
+            background-size: 200% 200%;
             -webkit-background-clip: text;
             background-clip: text;
             -webkit-text-fill-color: transparent;
-            letter-spacing: 1px;
-            animation: techGradientShift 4s ease-in-out infinite, codeGlow 2s ease-in-out infinite alternate;
-            position: relative;
+            animation: fadeInDown 1s ease-out forwards, subtleGradient 8s ease-in-out infinite;
         }
 
-        @keyframes techGradientShift {
+        @keyframes subtleGradient {
             0%, 100% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
         }
 
-        @keyframes codeGlow {
-            0% {
-                filter: drop-shadow(0 0 10px var(--matrix-green));
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
             }
-            100% {
-                filter: drop-shadow(0 0 20px var(--cyber-blue));
+            to {
+                opacity: 1;
+                transform: translateY(0);
             }
-        }
-
-        /* Terminal Typing Effect */
-        .terminal-text {
-            position: relative;
-            overflow: hidden;
-        }
-
-        .terminal-text::after {
-            content: '|';
-            color: var(--matrix-green);
-            animation: terminalBlink 1s infinite;
-            text-shadow: var(--glow-tech);
-        }
-
-        @keyframes terminalBlink {
-            0%, 50% { opacity: 1; }
-            51%, 100% { opacity: 0; }
         }
 
         .header p {
             font-size: clamp(1.1rem, 2vw, 1.4rem);
-            color: #b8c5ff;
-            margin-bottom: 2rem;
-            animation: subtitleFade 2.5s ease-out 0.5s forwards;
+            color: var(--text-secondary);
+            animation: fadeInDown 1.2s ease-out 0.2s forwards;
+            opacity: 0;
+        }
+
+        .content-section {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 30px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            animation: fadeInUp 1s ease-out forwards;
             opacity: 0;
             transform: translateY(30px);
         }
 
-        @keyframes subtitleFade {
+        .content-section:nth-child(2) { animation-delay: 0.3s; }
+        .content-section:nth-child(3) { animation-delay: 0.6s; }
+        .content-section:nth-child(4) { animation-delay: 0.9s; }
+
+        @keyframes fadeInUp {
             to {
                 opacity: 1;
                 transform: translateY(0);
             }
         }
 
-        .content-section {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(20px);
-            border-radius: 25px;
-            padding: 50px;
-            margin-bottom: 40px;
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3),
-                        inset 0 1px 0 rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(0, 255, 65, 0.2);
-            position: relative;
-            overflow: hidden;
-            animation: sectionReveal 2s ease-out 1s forwards;
-            opacity: 0;
-            transform: translateY(50px) scale(0.95);
-        }
-
-        @keyframes sectionReveal {
-            to {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
-        }
-
-        /* Data Stream Effect */
-        .content-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, 
-                transparent, 
-                rgba(0, 255, 65, 0.1), 
-                rgba(0, 212, 255, 0.1),
-                transparent);
-            animation: dataStream 4s ease-in-out infinite;
-        }
-
-        @keyframes dataStream {
-            0% { left: -100%; }
-            50% { left: 100%; }
-            100% { left: 100%; }
-        }
-
         .content-section:hover {
-            transform: translateY(-8px) scale(1.02);
-            border-color: rgba(0, 255, 65, 0.4);
-            box-shadow: 0 30px 60px rgba(0, 255, 65, 0.2),
-                        inset 0 1px 0 rgba(255, 255, 255, 0.2);
-            transition: all 0.4s ease;
+            transform: translateY(-5px);
+            border-color: rgba(100, 255, 218, 0.4);
+            box-shadow: var(--subtle-glow);
         }
 
         .content-section h2 {
-            font-size: clamp(2rem, 4vw, 2.8rem);
-            color: #ffffff;
-            margin-bottom: 30px;
-            position: relative;
-            padding-left: 60px;
-            animation: titleGlow 3s ease-in-out infinite alternate;
-        }
-
-        @keyframes titleGlow {
-            0% {
-                text-shadow: 0 0 10px var(--matrix-green);
-            }
-            100% {
-                text-shadow: 0 0 20px var(--cyber-blue);
-            }
+            font-size: clamp(2rem, 4vw, 2.5rem);
+            color: var(--text-primary);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
         }
 
         .content-section h2::before {
             content: '💻';
-            position: absolute;
-            left: 0;
-            font-size: 2.2rem;
-            animation: iconPulse 2s ease-in-out infinite;
-        }
-
-        @keyframes iconPulse {
-            0%, 100% {
-                transform: scale(1);
-                filter: drop-shadow(0 0 5px var(--matrix-green));
-            }
-            50% {
-                transform: scale(1.2);
-                filter: drop-shadow(0 0 15px var(--cyber-blue));
-            }
+            font-size: 2rem;
         }
 
         .content-section p {
-            font-size: clamp(1rem, 2vw, 1.3rem);
-            color: #d0deff;
-            margin-bottom: 25px;
+            font-size: clamp(1rem, 2vw, 1.2rem);
+            color: var(--text-secondary);
+            margin-bottom: 20px;
             line-height: 1.8;
-            animation: textReveal 2.5s ease-out 1.5s forwards;
-            opacity: 0;
-            transform: translateX(-20px);
-        }
-
-        @keyframes textReveal {
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        .focus-areas {
-            background: rgba(0, 255, 65, 0.1);
-            backdrop-filter: blur(15px);
-            color: #ffffff;
-            padding: 45px;
-            border-radius: 20px;
-            margin: 30px 0;
-            box-shadow: 0 20px 40px rgba(0, 255, 65, 0.3),
-                        inset 0 1px 0 rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(0, 255, 65, 0.3);
-            position: relative;
-            overflow: hidden;
-            animation: focusAreaReveal 2s ease-out 2s forwards;
-            opacity: 0;
-            transform: translateY(40px);
-        }
-
-        @keyframes focusAreaReveal {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Holographic Effect */
-        .focus-areas::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(45deg, 
-                transparent 30%, 
-                rgba(0, 255, 65, 0.1) 50%, 
-                transparent 70%);
-            animation: hologram 6s ease-in-out infinite;
-            pointer-events: none;
-        }
-
-        @keyframes hologram {
-            0%, 100% {
-                transform: translateX(-100%);
-                opacity: 0;
-            }
-            50% {
-                transform: translateX(100%);
-                opacity: 1;
-            }
-        }
-
-        .focus-areas h3 {
-            font-size: clamp(1.8rem, 3vw, 2.3rem);
-            margin-bottom: 35px;
-            text-align: center;
-            color: #ffffff;
-            text-shadow: 0 0 15px var(--matrix-green);
-            animation: h3Glow 4s ease-in-out infinite alternate;
-        }
-
-        @keyframes h3Glow {
-            0% {
-                text-shadow: 0 0 15px var(--matrix-green);
-            }
-            100% {
-                text-shadow: 0 0 25px var(--cyber-blue), 0 0 35px var(--neon-purple);
-            }
         }
 
         .tech-grid {
-            display: flex;
-            flex-wrap: wrap;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 20px;
             margin: 30px 0;
-            justify-content: center;
         }
 
         .tech-item {
-            background: rgba(255, 255, 255, 0.04);
+            background: var(--card-bg);
             backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 35px;
+            border-radius: 15px;
+            padding: 25px;
             text-align: center;
-            border: 1px solid rgba(0, 255, 65, 0.2);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
-            flex: 1 1 250px;
-            max-width: 300px;
-            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            position: relative;
-            overflow: hidden;
-            animation: techItemReveal 2.5s ease-out forwards;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+            animation: fadeInUp 1.2s ease-out forwards;
             opacity: 0;
-            transform: translateY(30px) scale(0.9);
+            transform: translateY(20px);
         }
 
-        .tech-item:nth-child(1) { animation-delay: 2.2s; }
-        .tech-item:nth-child(2) { animation-delay: 2.4s; }
-        .tech-item:nth-child(3) { animation-delay: 2.6s; }
-        .tech-item:nth-child(4) { animation-delay: 2.8s; }
-
-        @keyframes techItemReveal {
-            to {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
-        }
-
-        /* Scan Line Effect */
-        .tech-item::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, var(--matrix-green), transparent);
-            animation: scanLine 3s ease-in-out infinite;
-        }
-
-        @keyframes scanLine {
-            0% { left: -100%; }
-            50% { left: 100%; }
-            100% { left: 100%; }
-        }
+        .tech-item:nth-child(1) { animation-delay: 1s; }
+        .tech-item:nth-child(2) { animation-delay: 1.2s; }
+        .tech-item:nth-child(3) { animation-delay: 1.4s; }
+        .tech-item:nth-child(4) { animation-delay: 1.6s; }
 
         .tech-item:hover {
-            transform: translateY(-10px) scale(1.05);
-            border-color: rgba(0, 255, 65, 0.6);
-            box-shadow: 0 25px 50px rgba(0, 255, 65, 0.4),
-                        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            transform: translateY(-8px) scale(1.02);
+            border-color: rgba(100, 255, 218, 0.5);
+            box-shadow: var(--subtle-glow);
         }
 
-        .tech-item:hover::before {
-            animation-duration: 1s;
-        }
-
-        .tech-item h4 {
+        .tech-item h3 {
             font-size: 1.5rem;
-            color: #c4d3ff;
+            color: var(--tech-primary);
             margin-bottom: 15px;
-            animation: itemTitleGlow 3s ease-in-out infinite alternate;
-        }
-
-        @keyframes itemTitleGlow {
-            0% {
-                text-shadow: 0 0 10px var(--cyber-blue);
-            }
-            100% {
-                text-shadow: 0 0 20px var(--matrix-green);
-            }
         }
 
         .tech-item p {
-            color: #b8c5ff;
+            color: var(--text-secondary);
             font-size: 1rem;
+        }
+
+        .tech-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+
+        .tech-item:hover .tech-icon {
+            transform: scale(1.1);
         }
 
         .nav-section {
             text-align: center;
             margin-top: 60px;
-            animation: navReveal 2s ease-out 3s forwards;
+            animation: fadeInUp 1.5s ease-out 1.8s forwards;
             opacity: 0;
-            transform: translateY(30px);
-        }
-
-        @keyframes navReveal {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
         }
 
         .nav-button {
             display: inline-block;
-            background: linear-gradient(45deg, var(--matrix-green), var(--cyber-blue));
-            background-size: 200% 200%;
+            background: linear-gradient(45deg, var(--tech-primary), var(--tech-secondary));
             color: #000000;
             padding: 15px 35px;
             text-decoration: none;
             border-radius: 30px;
             font-weight: 700;
             font-size: 1.1rem;
-            border: 2px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 10px 25px rgba(0, 255, 65, 0.3);
             margin: 0 10px;
-            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            position: relative;
-            overflow: hidden;
-            animation: buttonGlow 3s ease-in-out infinite alternate;
-        }
-
-        @keyframes buttonGlow {
-            0% {
-                box-shadow: 0 10px 25px rgba(0, 255, 65, 0.3);
-            }
-            100% {
-                box-shadow: 0 15px 35px rgba(0, 212, 255, 0.5), 
-                           0 0 20px rgba(0, 255, 65, 0.4);
-            }
-        }
-
-        .nav-button::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-            transition: left 0.6s ease;
-        }
-
-        .nav-button:hover::before {
-            left: 100%;
+            transition: all 0.3s ease;
+            box-shadow: var(--subtle-glow);
         }
 
         .nav-button:hover {
-            transform: translateY(-5px) scale(1.05);
-            background-position: 100% 50%;
-            box-shadow: 0 20px 40px rgba(0, 255, 65, 0.6),
-                        0 0 30px rgba(0, 212, 255, 0.4);
-        }
-
-        .nav-button:focus {
-            outline: 3px solid var(--matrix-green);
-            outline-offset: 3px;
-        }
-
-        /* CRT Monitor Effect */
-        .crt-effect {
-            position: relative;
-        }
-
-        .crt-effect::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: repeating-linear-gradient(
-                90deg,
-                transparent,
-                transparent 2px,
-                rgba(0, 255, 65, 0.03) 2px,
-                rgba(0, 255, 65, 0.03) 4px
-            );
-            pointer-events: none;
-            animation: crtFlicker 0.15s linear infinite;
-        }
-
-        @keyframes crtFlicker {
-            0% { opacity: 1; }
-            98% { opacity: 1; }
-            99% { opacity: 0.98; }
-            100% { opacity: 1; }
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 15px 30px rgba(100, 255, 218, 0.4);
         }
 
         /* Responsive design */
         @media (max-width: 768px) {
-            .content-section { padding: 30px; }
-            .focus-areas { padding: 30px; }
-            .tech-grid { flex-direction: column; }
-            .tech-item { max-width: none; }
-            .nav-button { display: block; margin: 10px auto; max-width: 250px; }
-            .tech-icon { font-size: 16px; }
-            .matrix-column { font-size: 12px; }
+            .container { padding: 20px 15px; }
+            .content-section { padding: 25px; }
+            .tech-grid { grid-template-columns: 1fr; }
+            .nav-button { padding: 12px 25px; font-size: 1rem; margin: 5px; }
         }
 
-        @media (max-width: 480px) {
-            .content-section { padding: 20px; }
-            .focus-areas { padding: 20px; }
-            .tech-item { padding: 25px; }
-        }
-
-        /* Reduced motion */
+        /* Reduced motion support */
         @media (prefers-reduced-motion: reduce) {
-            *,
-            *::before,
-            *::after {
+            *, *::before, *::after {
                 animation-duration: 0.01ms !important;
                 animation-iteration-count: 1 !important;
                 transition-duration: 0.01ms !important;
             }
         }
-
-        /* High contrast mode */
-        @media (prefers-contrast: high) {
-            :root {
-                --primary-tech: #00ff00;
-                --secondary-tech: #0000ff;
-                --accent-tech: #ff0000;
-            }
-        }
     </style>
 </head>
-<body class="crt-effect">
-    <!-- Matrix Code Rain -->
-    <div class="matrix-rain" aria-hidden="true"></div>
-    
-    <!-- Binary Rain -->
-    <div class="binary-rain" aria-hidden="true"></div>
-    
-    <!-- Tech Particles -->
-    <div class="tech-particles" aria-hidden="true"></div>
-    
-    <!-- Floating Tech Icons -->
-    <div class="floating-tech-icons" aria-hidden="true"></div>
+<body>
+    <!-- Minimal Tech Elements -->
+    <div class="tech-elements" aria-hidden="true">
+        <div class="tech-element" style="left: 10%; animation-delay: 0s;">💻</div>
+        <div class="tech-element" style="left: 50%; animation-delay: 8s;">⚡</div>
+        <div class="tech-element" style="left: 90%; animation-delay: 16s;">🚀</div>
+    </div>
 
     <div class="container">
         <div class="header">
-            <h1 class="terminal-text">Learning & Exploring New Technologies</h1>
-            <p>My passion for continuous learning and technology exploration</p>
+            <h1>Learning & Exploring New Technologies</h1>
+            <p>Continuously expanding my knowledge in programming, AI, and cutting-edge technologies</p>
         </div>
-        
-        <section class="content-section">
-            <h2>My Tech Journey</h2>
-            <p>As a third-year Software Engineering student, I'm constantly fascinated by the rapid evolution of technology. My passion lies in exploring cutting-edge technologies and understanding how they shape our digital world.</p>
-            
-            <p>I believe that in the tech industry, learning never stops. New frameworks, languages, and methodologies emerge constantly, and staying updated is crucial for growth and innovation.</p>
-            
-            <p>My approach to learning involves hands-on experimentation, building real projects, and understanding the underlying principles rather than just memorizing syntax.</p>
-        </section>
 
-        <section class="focus-areas">
-            <h3>Current Focus Areas</h3>
+        <div class="content-section">
+            <h2>My Tech Journey</h2>
+            <p>As a third-year Software Engineering student, I'm passionate about staying at the forefront of technological advancement. I believe that continuous learning is the key to success in the ever-evolving world of technology.</p>
+            <p>Every day brings new opportunities to explore emerging technologies, master new programming languages, and understand the latest trends that are shaping our digital future.</p>
+        </div>
+
+        <div class="content-section">
+            <h2>Current Focus Areas</h2>
             <div class="tech-grid">
                 <div class="tech-item">
-                    <h4>🤖 Artificial Intelligence</h4>
-                    <p>Exploring machine learning algorithms, neural networks, and AI applications in modern software development.</p>
+                    <div class="tech-icon">🤖</div>
+                    <h3>Artificial Intelligence</h3>
+                    <p>Exploring machine learning algorithms, neural networks, and AI applications in real-world solutions.</p>
                 </div>
                 
                 <div class="tech-item">
-                    <h4>🌐 Web Development</h4>
-                    <p>Mastering modern web technologies including React, Node.js, and full-stack development practices.</p>
+                    <div class="tech-icon">🌐</div>
+                    <h3>Web Development</h3>
+                    <p>Mastering modern frameworks like React, Vue, and backend technologies for full-stack development.</p>
                 </div>
                 
                 <div class="tech-item">
-                    <h4>📱 Mobile Development</h4>
-                    <p>Learning cross-platform development with React Native and native iOS/Android development.</p>
+                    <div class="tech-icon">📱</div>
+                    <h3>Mobile Development</h3>
+                    <p>Building cross-platform mobile applications using React Native and native development approaches.</p>
                 </div>
                 
                 <div class="tech-item">
-                    <h4>☁️ Cloud Computing</h4>
-                    <p>Understanding cloud platforms, microservices architecture, and scalable application design.</p>
+                    <div class="tech-icon">☁️</div>
+                    <h3>Cloud Computing</h3>
+                    <p>Learning cloud platforms like AWS, Azure, and Google Cloud for scalable application deployment.</p>
                 </div>
             </div>
-        </section>
+        </div>
 
-        <section class="content-section">
-            <h2>Learning Philosophy</h2>
-            <p>I believe in learning by doing. Rather than just reading documentation or watching tutorials, I prefer to build actual projects that solve real problems.</p>
-            
-            <p>My learning process typically involves:</p>
-            <ul style="margin-left: 20px; margin-top: 15px;">
-                <li style="margin-bottom: 10px;">Researching the technology and understanding its core concepts</li>
-                <li style="margin-bottom: 10px;">Building small proof-of-concept projects</li>
-                <li style="margin-bottom: 10px;">Contributing to open-source projects</li>
-                <li style="margin-bottom: 10px;">Teaching others what I've learned</li>
-            </ul>
-            
-            <p>This approach helps me develop a deep understanding of technologies and their practical applications in real-world scenarios.</p>
-        </section>
-        
+        <div class="content-section">
+            <h2>Learning Approach</h2>
+            <p>I believe in hands-on learning combined with theoretical understanding. My approach includes:</p>
+            <p>• Building real projects to apply new concepts immediately</p>
+            <p>• Following industry best practices and clean code principles</p>
+            <p>• Staying updated with the latest tech news and trends</p>
+            <p>• Contributing to open-source projects when possible</p>
+            <p>• Networking with other developers and tech enthusiasts</p>
+        </div>
+
         <div class="nav-section">
             <a href="../activities-list.html" class="nav-button">← Back to Activities</a>
-            <a href="workout.html" class="nav-button">Next: Workout →</a>
+            <a href="../index.html" class="nav-button">← Home</a>
         </div>
     </div>
 
     <script>
+        // Minimal, performance-focused JavaScript
         document.addEventListener('DOMContentLoaded', function() {
-            // Create Matrix Code Rain
-            function createMatrixRain() {
-                const matrixContainer = document.querySelector('.matrix-rain');
-                const characters = '01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン';
-                
-                for (let i = 0; i < 15; i++) {
-                    const column = document.createElement('div');
-                    column.className = 'matrix-column';
-                    column.style.left = Math.random() * 100 + '%';
-                    column.style.animationDelay = Math.random() * 8 + 's';
-                    column.style.animationDuration = (8 + Math.random() * 4) + 's';
-                    
-                    let text = '';
-                    for (let j = 0; j < 20; j++) {
-                        text += characters.charAt(Math.floor(Math.random() * characters.length)) + '<br>';
-                    }
-                    column.innerHTML = text;
-                    
-                    matrixContainer.appendChild(column);
-                }
-            }
-
-            // Create Binary Rain
-            function createBinaryRain() {
-                const binaryContainer = document.querySelector('.binary-rain');
-                
-                for (let i = 0; i < 25; i++) {
-                    const digit = document.createElement('div');
-                    digit.className = 'binary-digit';
-                    digit.textContent = Math.random() > 0.5 ? '1' : '0';
-                    digit.style.left = Math.random() * 100 + '%';
-                    digit.style.animationDelay = Math.random() * 10 + 's';
-                    digit.style.animationDuration = (10 + Math.random() * 5) + 's';
-                    
-                    binaryContainer.appendChild(digit);
-                }
-            }
-
-            // Create Tech Particles
-            function createTechParticles() {
-                const particleContainer = document.querySelector('.tech-particles');
-                
-                for (let i = 0; i < 20; i++) {
-                    const particle = document.createElement('div');
-                    particle.className = 'tech-particle';
-                    
-                    if (i % 3 === 0) particle.classList.add('blue');
-                    else if (i % 3 === 1) particle.classList.add('purple');
-                    
-                    particle.style.left = Math.random() * 100 + '%';
-                    particle.style.animationDelay = Math.random() * 20 + 's';
-                    
-                    particleContainer.appendChild(particle);
-                }
-            }
-
-            // Create Floating Tech Icons
-            function createFloatingTechIcons() {
-                const iconContainer = document.querySelector('.floating-tech-icons');
-                const techIcons = ['💻', '⚡', '🔧', '🚀', '🤖', '⚙️', '🔬', '📡', '🛠️', '⭐'];
-                const colors = ['green', 'blue', 'purple'];
-                
-                for (let i = 0; i < 12; i++) {
-                    const icon = document.createElement('div');
-                    icon.className = `tech-icon ${colors[i % 3]}`;
-                    icon.textContent = techIcons[Math.floor(Math.random() * techIcons.length)];
-                    icon.style.left = Math.random() * 100 + '%';
-                    icon.style.animationDelay = Math.random() * 15 + 's';
-                    icon.style.animationDuration = (12 + Math.random() * 6) + 's';
-                    
-                    iconContainer.appendChild(icon);
-                }
-            }
-
-            // Terminal Typing Effect
-            function typeWriterEffect() {
-                const terminalElement = document.querySelector('.terminal-text');
-                const text = terminalElement.textContent;
-                terminalElement.textContent = '';
-                
-                let i = 0;
-                function typeChar() {
-                    if (i < text.length) {
-                        terminalElement.textContent += text.charAt(i);
-                        i++;
-                        setTimeout(typeChar, 100);
-                    }
-                }
-                
-                setTimeout(typeChar, 1000);
-            }
-
-            // Interactive Hover Effects for Tech Items
-            function addInteractiveEffects() {
-                const techItems = document.querySelectorAll('.tech-item');
-                
-                techItems.forEach(item => {
-                    item.addEventListener('mouseenter', function() {
-                        this.style.background = 'rgba(0, 255, 65, 0.1)';
-                        this.style.borderColor = 'rgba(0, 255, 65, 0.6)';
-                    });
-                    
-                    item.addEventListener('mouseleave', function() {
-                        this.style.background = 'rgba(255, 255, 255, 0.04)';
-                        this.style.borderColor = 'rgba(0, 255, 65, 0.2)';
-                    });
-                });
-            }
-
-            // Glitch Effect on Hover
-            function addGlitchEffect() {
-                const headers = document.querySelectorAll('h1, h2, h3');
-                
-                headers.forEach(header => {
-                    header.addEventListener('mouseenter', function() {
-                        this.style.animation = 'none';
-                        this.style.textShadow = `
-                            2px 0 #ff0066,
-                            -2px 0 #00ffff,
-                            0 0 20px currentColor
-                        `;
-                    });
-                    
-                    header.addEventListener('mouseleave', function() {
-                        this.style.animation = '';
-                        this.style.textShadow = '';
-                    });
-                });
-            }
-
-            // Initialize all effects
-            createMatrixRain();
-            createBinaryRain();
-            createTechParticles();
-            createFloatingTechIcons();
-            typeWriterEffect();
-            addInteractiveEffects();
-            addGlitchEffect();
-
-            // Performance optimization
+            // Simple performance check
             if (navigator.hardwareConcurrency && navigator.hardwareConcurrency < 4) {
-                // Reduce particle count on low-end devices
-                document.querySelectorAll('.tech-particle, .matrix-column, .binary-digit').forEach((el, index) => {
-                    if (index % 2 === 0) el.remove();
-                });
+                document.body.classList.add('low-performance');
             }
 
-            // Parallax scrolling effect
-            window.addEventListener('scroll', function() {
-                const scrolled = window.pageYOffset;
-                const parallaxElements = document.querySelectorAll('.tech-particles, .matrix-rain');
-                
-                parallaxElements.forEach(element => {
-                    const speed = scrolled * 0.5;
-                    element.style.transform = `translateY(${speed}px)`;
+            // Ensure content is visible
+            setTimeout(() => {
+                document.querySelectorAll('.content-section, .tech-item').forEach(element => {
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
                 });
-            });
+            }, 100);
         });
     </script>
 </body>

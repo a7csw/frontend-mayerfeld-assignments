@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quality Time with Family & Friends</title>
     <style>
-        /* Premium Family-Themed Animations */
+        /* Clean Family-Themed Design */
         * {
             margin: 0;
             padding: 0;
@@ -13,30 +13,26 @@
         }
 
         :root {
-            --love-pink: #ff69b4;
-            --warm-rose: #ff6b6b;
-            --gentle-coral: #ff7675;
-            --family-gold: #f39c12;
-            --cozy-purple: #a29bfe;
-            --soft-yellow: #fdcb6e;
-            --tender-red: #e17055;
-            --dark-bg: #1a0f0f;
-            --glow-love: 0 0 25px var(--love-pink);
-            --glow-warm: 0 0 25px var(--warm-rose);
-            --glow-gold: 0 0 25px var(--family-gold);
+            --family-primary: #ff9ff3;
+            --family-secondary: #f39c12;
+            --dark-bg: #0f0f23;
+            --card-bg: rgba(255, 255, 255, 0.05);
+            --border-color: rgba(255, 159, 243, 0.2);
+            --text-primary: #ffffff;
+            --text-secondary: #b8c5ff;
+            --subtle-glow: 0 0 20px rgba(255, 159, 243, 0.2);
         }
 
         body {
-            font-family: 'Segoe UI', 'Georgia', 'Times New Roman', serif;
+            font-family: 'Segoe UI', system-ui, sans-serif;
             background: var(--dark-bg);
             min-height: 100vh;
-            color: #fff;
+            color: var(--text-primary);
             line-height: 1.6;
             overflow-x: hidden;
-            position: relative;
         }
 
-        /* Cozy Warm Background */
+        /* Subtle Family Background */
         body::before {
             content: '';
             position: fixed;
@@ -44,28 +40,12 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: radial-gradient(ellipse at center, 
-                rgba(255, 105, 180, 0.08) 0%, 
-                rgba(255, 107, 107, 0.06) 30%,
-                rgba(243, 156, 18, 0.04) 60%,
-                transparent 100%);
-            animation: cozyPulse 8s ease-in-out infinite alternate;
-            z-index: 0;
+            background: radial-gradient(ellipse at center, rgba(255, 159, 243, 0.03) 0%, transparent 70%);
+            z-index: -1;
         }
 
-        @keyframes cozyPulse {
-            0% {
-                transform: scale(1);
-                opacity: 0.4;
-            }
-            100% {
-                transform: scale(1.1);
-                opacity: 0.7;
-            }
-        }
-
-        /* Heart Particle System */
-        .heart-particles {
+        /* Minimal Family Elements */
+        .family-elements {
             position: fixed;
             top: 0;
             left: 0;
@@ -76,182 +56,25 @@
             overflow: hidden;
         }
 
-        .heart-particle {
+        .family-element {
             position: absolute;
-            font-size: 16px;
-            color: var(--love-pink);
-            animation: heartFloat 12s ease-in-out infinite;
-            text-shadow: var(--glow-love);
-            opacity: 0.7;
+            font-size: 18px;
+            opacity: 0.2;
+            color: var(--family-primary);
+            animation: gentleFamilyFloat 35s ease-in-out infinite;
         }
 
-        .heart-particle.rose {
-            color: var(--warm-rose);
-            text-shadow: var(--glow-warm);
-        }
-
-        .heart-particle.gold {
-            color: var(--family-gold);
-            text-shadow: var(--glow-gold);
-        }
-
-        @keyframes heartFloat {
+        @keyframes gentleFamilyFloat {
             0%, 100% {
-                transform: translateY(100vh) rotate(0deg) scale(1);
+                transform: translateY(100vh) translateX(0px);
                 opacity: 0;
             }
-            10% {
-                opacity: 0.8;
+            10%, 90% {
+                opacity: 0.2;
             }
             50% {
-                transform: translateY(30vh) rotate(180deg) scale(1.3);
-                opacity: 1;
-            }
-            90% {
-                opacity: 0.8;
-            }
-        }
-
-        /* Memory Sparkles */
-        .memory-sparkles {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 2;
-        }
-
-        .sparkle {
-            position: absolute;
-            width: 4px;
-            height: 4px;
-            background: var(--soft-yellow);
-            border-radius: 50%;
-            animation: sparkleFloat 15s linear infinite;
-            box-shadow: var(--glow-gold);
-        }
-
-        .sparkle.pink {
-            background: var(--love-pink);
-            box-shadow: var(--glow-love);
-        }
-
-        .sparkle.purple {
-            background: var(--cozy-purple);
-            box-shadow: 0 0 20px var(--cozy-purple);
-        }
-
-        @keyframes sparkleFloat {
-            0% {
-                transform: translateY(100vh) translateX(0px) scale(0);
-                opacity: 0;
-            }
-            5% {
-                opacity: 1;
-                transform: scale(1);
-            }
-            50% {
-                transform: translateY(50vh) translateX(100px) scale(1.5);
-                opacity: 1;
-            }
-            95% {
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(-10vh) translateX(200px) scale(0);
-                opacity: 0;
-            }
-        }
-
-        /* Floating Family Icons */
-        .floating-family-icons {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 3;
-        }
-
-        .family-icon {
-            position: absolute;
-            font-size: 22px;
-            animation: familyFloat 14s ease-in-out infinite;
-            text-shadow: 0 0 15px currentColor;
-        }
-
-        .family-icon.love {
-            color: var(--love-pink);
-        }
-
-        .family-icon.warm {
-            color: var(--warm-rose);
-        }
-
-        .family-icon.golden {
-            color: var(--family-gold);
-        }
-
-        @keyframes familyFloat {
-            0%, 100% {
-                transform: translateY(100vh) rotate(0deg) scale(1);
-                opacity: 0;
-            }
-            10% {
-                opacity: 0.9;
-            }
-            50% {
-                transform: translateY(25vh) rotate(360deg) scale(1.2);
-                opacity: 1;
-            }
-            90% {
-                opacity: 0.9;
-            }
-        }
-
-        /* Love Ripples */
-        .love-ripples {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 4;
-            overflow: hidden;
-        }
-
-        .love-ripple {
-            position: absolute;
-            width: 150px;
-            height: 150px;
-            border: 2px solid var(--love-pink);
-            border-radius: 50%;
-            opacity: 0;
-            animation: rippleExpand 6s ease-out infinite;
-        }
-
-        .love-ripple:nth-child(2) {
-            border-color: var(--warm-rose);
-            animation-delay: 2s;
-        }
-
-        .love-ripple:nth-child(3) {
-            border-color: var(--family-gold);
-            animation-delay: 4s;
-        }
-
-        @keyframes rippleExpand {
-            0% {
-                transform: scale(0);
-                opacity: 1;
-            }
-            100% {
-                transform: scale(5);
-                opacity: 0;
+                transform: translateY(-20vh) translateX(30px);
+                opacity: 0.3;
             }
         }
 
@@ -260,341 +83,141 @@
             margin: 0 auto;
             padding: 40px 20px;
             position: relative;
-            z-index: 10;
+            z-index: 100;
         }
 
         .header {
             text-align: center;
             margin-bottom: 60px;
-            animation: headerReveal 2s ease-out forwards;
-            opacity: 0;
-            transform: translateY(50px);
-        }
-
-        @keyframes headerReveal {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            animation: fadeInDown 1s ease-out forwards;
         }
 
         .header h1 {
             font-size: clamp(2.5rem, 5vw, 3.8rem);
             font-weight: 800;
             margin-bottom: 1rem;
-            background: linear-gradient(45deg, var(--love-pink), var(--warm-rose), var(--family-gold));
-            background-size: 300% 300%;
+            background: linear-gradient(45deg, var(--family-primary), var(--family-secondary));
+            background-size: 200% 200%;
             -webkit-background-clip: text;
             background-clip: text;
             -webkit-text-fill-color: transparent;
-            letter-spacing: 1px;
-            animation: loveGradientShift 4s ease-in-out infinite, heartGlow 3s ease-in-out infinite alternate;
-            position: relative;
+            animation: fadeInDown 1s ease-out forwards, subtleGradient 8s ease-in-out infinite;
         }
 
-        @keyframes loveGradientShift {
+        @keyframes subtleGradient {
             0%, 100% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
         }
 
-        @keyframes heartGlow {
-            0% {
-                filter: drop-shadow(0 0 15px var(--love-pink));
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
             }
-            100% {
-                filter: drop-shadow(0 0 25px var(--warm-rose));
-            }
-        }
-
-        /* Loving Heartbeat Effect */
-        .heartbeat-text {
-            animation: gentleHeartbeat 2s ease-in-out infinite;
-        }
-
-        @keyframes gentleHeartbeat {
-            0%, 60%, 100% {
-                transform: scale(1);
-            }
-            30% {
-                transform: scale(1.03);
+            to {
+                opacity: 1;
+                transform: translateY(0);
             }
         }
 
         .header p {
             font-size: clamp(1.1rem, 2vw, 1.4rem);
-            color: #ffcccc;
-            margin-bottom: 2rem;
-            animation: subtitleFade 2.5s ease-out 0.5s forwards;
+            color: var(--text-secondary);
+            animation: fadeInDown 1.2s ease-out 0.2s forwards;
+            opacity: 0;
+        }
+
+        .content-section {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 30px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            animation: fadeInUp 1s ease-out forwards;
             opacity: 0;
             transform: translateY(30px);
         }
 
-        @keyframes subtitleFade {
+        .content-section:nth-child(2) { animation-delay: 0.3s; }
+        .content-section:nth-child(3) { animation-delay: 0.6s; }
+        .content-section:nth-child(4) { animation-delay: 0.9s; }
+
+        @keyframes fadeInUp {
             to {
                 opacity: 1;
                 transform: translateY(0);
             }
         }
 
-        .content-section {
-            background: rgba(255, 255, 255, 0.04);
-            backdrop-filter: blur(20px);
-            border-radius: 25px;
-            padding: 50px;
-            margin-bottom: 40px;
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3),
-                        inset 0 1px 0 rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 105, 180, 0.3);
-            position: relative;
-            overflow: hidden;
-            animation: sectionReveal 2s ease-out 1s forwards;
-            opacity: 0;
-            transform: translateY(50px) scale(0.95);
-        }
-
-        @keyframes sectionReveal {
-            to {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
-        }
-
-        /* Warm Light Stream */
-        .content-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, 
-                transparent, 
-                rgba(255, 105, 180, 0.15), 
-                rgba(255, 107, 107, 0.15),
-                transparent);
-            animation: warmLightStream 6s ease-in-out infinite;
-        }
-
-        @keyframes warmLightStream {
-            0% { left: -100%; }
-            50% { left: 100%; }
-            100% { left: 100%; }
-        }
-
         .content-section:hover {
-            transform: translateY(-8px) scale(1.02);
-            border-color: rgba(255, 105, 180, 0.6);
-            box-shadow: 0 30px 60px rgba(255, 105, 180, 0.3),
-                        inset 0 1px 0 rgba(255, 255, 255, 0.2);
-            transition: all 0.4s ease;
+            transform: translateY(-5px);
+            border-color: rgba(255, 159, 243, 0.4);
+            box-shadow: var(--subtle-glow);
         }
 
         .content-section h2 {
-            font-size: clamp(2rem, 4vw, 2.8rem);
-            color: #ffffff;
-            margin-bottom: 30px;
-            position: relative;
-            padding-left: 60px;
-            animation: titleWarmGlow 4s ease-in-out infinite alternate;
-        }
-
-        @keyframes titleWarmGlow {
-            0% {
-                text-shadow: 0 0 15px var(--love-pink);
-            }
-            100% {
-                text-shadow: 0 0 25px var(--warm-rose), 0 0 35px var(--family-gold);
-            }
+            font-size: clamp(2rem, 4vw, 2.5rem);
+            color: var(--text-primary);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
         }
 
         .content-section h2::before {
             content: '❤️';
-            position: absolute;
-            left: 0;
-            font-size: 2.2rem;
-            animation: heartPulse 2.5s ease-in-out infinite;
-        }
-
-        @keyframes heartPulse {
-            0%, 100% {
-                transform: scale(1) rotate(-2deg);
-                filter: drop-shadow(0 0 10px var(--love-pink));
-            }
-            50% {
-                transform: scale(1.2) rotate(2deg);
-                filter: drop-shadow(0 0 20px var(--warm-rose));
-            }
+            font-size: 2rem;
         }
 
         .content-section p {
-            font-size: clamp(1rem, 2vw, 1.3rem);
-            color: #ffe0e0;
-            margin-bottom: 25px;
+            font-size: clamp(1rem, 2vw, 1.2rem);
+            color: var(--text-secondary);
+            margin-bottom: 20px;
             line-height: 1.8;
-            animation: textReveal 2.5s ease-out 1.5s forwards;
-            opacity: 0;
-            transform: translateX(-20px);
-        }
-
-        @keyframes textReveal {
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
         }
 
         .memories-grid {
-            background: rgba(255, 105, 180, 0.12);
-            backdrop-filter: blur(15px);
-            color: #ffffff;
-            padding: 45px;
-            border-radius: 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
             margin: 30px 0;
-            box-shadow: 0 20px 40px rgba(255, 105, 180, 0.4),
-                        inset 0 1px 0 rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 105, 180, 0.4);
-            position: relative;
-            overflow: hidden;
-            animation: memoriesReveal 2s ease-out 2s forwards;
-            opacity: 0;
-            transform: translateY(40px);
-        }
-
-        @keyframes memoriesReveal {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Family Connection Waves */
-        .memories-grid::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            background: radial-gradient(circle, rgba(255, 105, 180, 0.2) 0%, transparent 70%);
-            animation: connectionWave 10s ease-out infinite;
-            transform: translate(-50%, -50%);
-        }
-
-        @keyframes connectionWave {
-            0% {
-                width: 0;
-                height: 0;
-                opacity: 1;
-            }
-            100% {
-                width: 1000px;
-                height: 1000px;
-                opacity: 0;
-            }
-        }
-
-        .memories-grid h3 {
-            font-size: clamp(1.8rem, 3vw, 2.3rem);
-            margin-bottom: 35px;
-            text-align: center;
-            color: #ffffff;
-            text-shadow: 0 0 20px var(--love-pink);
-            animation: memoryTitleGlow 5s ease-in-out infinite alternate;
-        }
-
-        @keyframes memoryTitleGlow {
-            0% {
-                text-shadow: 0 0 20px var(--love-pink);
-            }
-            100% {
-                text-shadow: 0 0 30px var(--warm-rose), 0 0 40px var(--family-gold);
-            }
-        }
-
-        .memory-grid {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 25px;
-            margin: 30px 0;
-            justify-content: center;
         }
 
         .memory-item {
-            background: rgba(255, 255, 255, 0.06);
+            background: var(--card-bg);
             backdrop-filter: blur(10px);
             border-radius: 15px;
             padding: 25px;
             text-align: center;
-            border: 1px solid rgba(255, 105, 180, 0.3);
-            flex: 1 1 280px;
-            max-width: 320px;
-            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            position: relative;
-            overflow: hidden;
-            animation: memoryItemReveal 2.5s ease-out forwards;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+            animation: fadeInUp 1.2s ease-out forwards;
             opacity: 0;
-            transform: translateY(30px) scale(0.9);
+            transform: translateY(20px);
         }
 
-        .memory-item:nth-child(1) { animation-delay: 2.2s; }
-        .memory-item:nth-child(2) { animation-delay: 2.4s; }
-        .memory-item:nth-child(3) { animation-delay: 2.6s; }
-        .memory-item:nth-child(4) { animation-delay: 2.8s; }
-
-        @keyframes memoryItemReveal {
-            to {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
-        }
-
-        /* Golden Memory Line */
-        .memory-item::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 3px;
-            background: linear-gradient(90deg, transparent, var(--family-gold), var(--love-pink), transparent);
-            animation: memoryLine 5s ease-in-out infinite;
-        }
-
-        @keyframes memoryLine {
-            0% { left: -100%; }
-            50% { left: 100%; }
-            100% { left: 100%; }
-        }
+        .memory-item:nth-child(1) { animation-delay: 1s; }
+        .memory-item:nth-child(2) { animation-delay: 1.2s; }
+        .memory-item:nth-child(3) { animation-delay: 1.4s; }
+        .memory-item:nth-child(4) { animation-delay: 1.6s; }
 
         .memory-item:hover {
-            transform: translateY(-10px) scale(1.05);
-            border-color: rgba(255, 105, 180, 0.7);
-            box-shadow: 0 25px 50px rgba(255, 105, 180, 0.5),
-                        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            transform: translateY(-8px) scale(1.02);
+            border-color: rgba(255, 159, 243, 0.5);
+            box-shadow: var(--subtle-glow);
         }
 
-        .memory-item:hover::before {
-            animation-duration: 2s;
-        }
-
-        .memory-item h4 {
+        .memory-item h3 {
             font-size: 1.5rem;
-            color: #ffcccc;
+            color: var(--family-primary);
             margin-bottom: 15px;
-            animation: memoryTitleGlow 4s ease-in-out infinite alternate;
-        }
-
-        @keyframes memoryTitleGlow {
-            0% {
-                text-shadow: 0 0 10px var(--love-pink);
-            }
-            100% {
-                text-shadow: 0 0 20px var(--warm-rose);
-            }
         }
 
         .memory-item p {
-            color: #ffe0e0;
+            color: var(--text-secondary);
             font-size: 1rem;
         }
 
@@ -602,587 +225,171 @@
             font-size: 3rem;
             margin-bottom: 15px;
             display: block;
-            animation: memoryIconDance 3s ease-in-out infinite;
+            transition: transform 0.3s ease;
         }
 
-        @keyframes memoryIconDance {
-            0%, 100% {
-                transform: translateY(0) rotate(0deg) scale(1);
-            }
-            25% {
-                transform: translateY(-5px) rotate(-3deg) scale(1.05);
-            }
-            75% {
-                transform: translateY(-3px) rotate(3deg) scale(1.02);
-            }
+        .memory-item:hover .memory-icon {
+            transform: scale(1.1);
         }
 
-        .values-grid {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            margin: 30px 0;
-            justify-content: center;
-        }
-
-        .value-item {
-            background: rgba(255, 255, 255, 0.04);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
+        .values-list {
+            background: rgba(255, 159, 243, 0.08);
+            border-radius: 15px;
             padding: 30px;
-            text-align: center;
-            border: 1px solid rgba(255, 105, 180, 0.3);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
-            flex: 1 1 250px;
-            max-width: 300px;
-            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            position: relative;
-            overflow: hidden;
-            animation: valueReveal 2.5s ease-out forwards;
-            opacity: 0;
-            transform: translateY(30px) scale(0.9);
+            margin: 25px 0;
         }
 
-        .value-item:nth-child(1) { animation-delay: 3s; }
-        .value-item:nth-child(2) { animation-delay: 3.2s; }
-        .value-item:nth-child(3) { animation-delay: 3.4s; }
-        .value-item:nth-child(4) { animation-delay: 3.6s; }
-
-        @keyframes valueReveal {
-            to {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
+        .values-list h3 {
+            color: var(--family-primary);
+            margin-bottom: 20px;
+            font-size: 1.8rem;
         }
 
-        .value-item:hover {
-            transform: translateY(-10px) scale(1.05);
-            border-color: rgba(255, 105, 180, 0.7);
-            box-shadow: 0 25px 50px rgba(255, 105, 180, 0.4),
-                        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+        .values-list ul {
+            list-style: none;
+            padding: 0;
         }
 
-        .value-item h4 {
-            font-size: 1.4rem;
-            color: #ffcccc;
-            margin-bottom: 15px;
-            animation: valueTitleGlow 4s ease-in-out infinite alternate;
+        .values-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255, 159, 243, 0.1);
+            color: var(--text-secondary);
         }
 
-        @keyframes valueTitleGlow {
-            0% {
-                text-shadow: 0 0 10px var(--family-gold);
-            }
-            100% {
-                text-shadow: 0 0 20px var(--love-pink);
-            }
-        }
-
-        .value-item p {
-            color: #ffe0e0;
-            font-size: 1rem;
-        }
-
-        .value-icon {
-            font-size: 2.5rem;
-            margin-bottom: 15px;
-            display: block;
-            animation: valueIconTwinkle 4s ease-in-out infinite;
-        }
-
-        @keyframes valueIconTwinkle {
-            0%, 100% {
-                transform: scale(1) rotate(0deg);
-                filter: drop-shadow(0 0 10px var(--family-gold));
-            }
-            50% {
-                transform: scale(1.15) rotate(10deg);
-                filter: drop-shadow(0 0 20px var(--love-pink));
-            }
+        .values-list li::before {
+            content: '💕 ';
+            margin-right: 10px;
         }
 
         .nav-section {
             text-align: center;
             margin-top: 60px;
-            animation: navReveal 2s ease-out 4s forwards;
+            animation: fadeInUp 1.5s ease-out 1.8s forwards;
             opacity: 0;
-            transform: translateY(30px);
-        }
-
-        @keyframes navReveal {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
         }
 
         .nav-button {
             display: inline-block;
-            background: linear-gradient(45deg, var(--love-pink), var(--warm-rose));
-            background-size: 200% 200%;
-            color: #ffffff;
+            background: linear-gradient(45deg, var(--family-primary), var(--family-secondary));
+            color: #000000;
             padding: 15px 35px;
             text-decoration: none;
             border-radius: 30px;
             font-weight: 700;
             font-size: 1.1rem;
-            border: 2px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 10px 25px rgba(255, 105, 180, 0.4);
             margin: 0 10px;
-            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            position: relative;
-            overflow: hidden;
-            animation: buttonLoveGlow 4s ease-in-out infinite alternate;
-        }
-
-        @keyframes buttonLoveGlow {
-            0% {
-                box-shadow: 0 10px 25px rgba(255, 105, 180, 0.4);
-            }
-            100% {
-                box-shadow: 0 15px 35px rgba(255, 107, 107, 0.6), 
-                           0 0 20px rgba(255, 105, 180, 0.5);
-            }
-        }
-
-        .nav-button::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-            transition: left 0.6s ease;
-        }
-
-        .nav-button:hover::before {
-            left: 100%;
+            transition: all 0.3s ease;
+            box-shadow: var(--subtle-glow);
         }
 
         .nav-button:hover {
-            transform: translateY(-5px) scale(1.05);
-            background-position: 100% 50%;
-            box-shadow: 0 20px 40px rgba(255, 105, 180, 0.7),
-                        0 0 30px rgba(255, 107, 107, 0.5);
-        }
-
-        .nav-button:focus {
-            outline: 3px solid var(--love-pink);
-            outline-offset: 3px;
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 15px 30px rgba(255, 159, 243, 0.4);
         }
 
         /* Responsive design */
         @media (max-width: 768px) {
-            .content-section { padding: 30px; }
-            .memories-grid { padding: 30px; }
-            .memory-grid { flex-direction: column; }
-            .memory-item { max-width: none; }
-            .values-grid { flex-direction: column; }
-            .value-item { max-width: none; }
-            .nav-button { display: block; margin: 10px auto; max-width: 250px; }
-            .family-icon { font-size: 18px; }
+            .container { padding: 20px 15px; }
+            .content-section { padding: 25px; }
+            .memories-grid { grid-template-columns: 1fr; }
+            .nav-button { padding: 12px 25px; font-size: 1rem; margin: 5px; }
         }
 
-        @media (max-width: 480px) {
-            .content-section { padding: 20px; }
-            .memories-grid { padding: 20px; }
-            .memory-item { padding: 20px; }
-            .value-item { padding: 25px; }
-        }
-
-        /* Reduced motion */
+        /* Reduced motion support */
         @media (prefers-reduced-motion: reduce) {
-            *,
-            *::before,
-            *::after {
+            *, *::before, *::after {
                 animation-duration: 0.01ms !important;
                 animation-iteration-count: 1 !important;
                 transition-duration: 0.01ms !important;
             }
         }
-
-        /* High contrast mode */
-        @media (prefers-contrast: high) {
-            :root {
-                --love-pink: #ff00ff;
-                --warm-rose: #ff0000;
-                --family-gold: #ffff00;
-            }
-        }
     </style>
 </head>
 <body>
-    <!-- Heart Particles -->
-    <div class="heart-particles" aria-hidden="true"></div>
-
-    <!-- Memory Sparkles -->
-    <div class="memory-sparkles" aria-hidden="true"></div>
-
-    <!-- Floating Family Icons -->
-    <div class="floating-family-icons" aria-hidden="true"></div>
-
-    <!-- Love Ripples -->
-    <div class="love-ripples" aria-hidden="true">
-        <div class="love-ripple"></div>
-        <div class="love-ripple"></div>
-        <div class="love-ripple"></div>
+    <!-- Minimal Family Elements -->
+    <div class="family-elements" aria-hidden="true">
+        <div class="family-element" style="left: 20%; animation-delay: 0s;">❤️</div>
+        <div class="family-element" style="left: 60%; animation-delay: 12s;">🏠</div>
+        <div class="family-element" style="left: 85%; animation-delay: 24s;">👨‍👩‍👧‍👦</div>
     </div>
 
     <div class="container">
         <div class="header">
-            <h1 class="heartbeat-text">Quality Time with Family & Friends</h1>
-            <p>Creating meaningful memories with the people I love most</p>
+            <h1>Quality Time with Family & Friends</h1>
+            <p>Creating meaningful memories and nurturing the relationships that matter most</p>
         </div>
-        
-        <section class="content-section">
-            <h2>My Family Values</h2>
-            <p>Family and friends are the foundation of my happiness and well-being. I believe that quality time spent with loved ones is one of the most valuable investments we can make in our lives.</p>
-            
-            <p>Whether it's sharing a meal, watching a movie together, or simply having a meaningful conversation, these moments create lasting memories and strengthen the bonds that matter most.</p>
-            
-            <p>I make it a priority to nurture these relationships and create opportunities for connection, even with my busy schedule as a student.</p>
-        </section>
 
-        <section class="memories-grid">
-            <h3>Favorite Activities Together</h3>
-            <div class="memory-grid">
+        <div class="content-section">
+            <h2>The Heart of My Life</h2>
+            <p>Family and friends form the foundation of who I am. In our fast-paced world, I've learned that the most precious gift we can give each other is our time and undivided attention.</p>
+            <p>Whether it's deep conversations over coffee, watching movies together, or exploring new places during vacations, these moments create the memories that truly last a lifetime.</p>
+        </div>
+
+        <div class="content-section">
+            <h2>Our Favorite Activities</h2>
+            <div class="memories-grid">
                 <div class="memory-item">
                     <div class="memory-icon">☕</div>
-                    <h4>Coffee Shop Visits</h4>
-                    <p>Enjoying quality conversations over coffee, sharing stories and catching up on each other's lives.</p>
+                    <h3>Coffee Shop Visits</h3>
+                    <p>Exploring cozy coffee shops, trying new blends, and having heart-to-heart conversations that deepen our connections.</p>
                 </div>
                 
                 <div class="memory-item">
                     <div class="memory-icon">🎬</div>
-                    <h4>Movie Nights</h4>
-                    <p>Watching films together, discussing plots, and sharing laughter over our favorite scenes.</p>
+                    <h3>Movie Nights</h3>
+                    <p>Regular movie nights at home with loved ones, complete with popcorn, blankets, and lots of laughter.</p>
                 </div>
                 
                 <div class="memory-item">
                     <div class="memory-icon">✈️</div>
-                    <h4>Family Vacations</h4>
-                    <p>Exploring new places together, creating unforgettable memories and strengthening our bonds.</p>
+                    <h3>Vacation Adventures</h3>
+                    <p>Planning and going on memorable trips together, creating shared experiences and discovering new places.</p>
                 </div>
                 
                 <div class="memory-item">
                     <div class="memory-icon">🍽️</div>
-                    <h4>Family Dinners</h4>
-                    <p>Sharing meals together, discussing our day, and enjoying each other's company around the table.</p>
+                    <h3>Family Dinners</h3>
+                    <p>Regular family meals where we share stories, celebrate achievements, and support each other through challenges.</p>
                 </div>
             </div>
-        </section>
+        </div>
 
-        <section class="content-section">
-            <h2>What These Moments Mean</h2>
-            <div class="values-grid">
-                <div class="value-item">
-                    <div class="value-icon">💝</div>
-                    <h4>Unconditional Love</h4>
-                    <p>Experiencing and giving love without conditions, creating a safe space for emotional support.</p>
-                </div>
-                
-                <div class="value-item">
-                    <div class="value-icon">🤝</div>
-                    <h4>Support System</h4>
-                    <p>Having people who believe in me, encourage my dreams, and help me through challenges.</p>
-                </div>
-                
-                <div class="value-item">
-                    <div class="value-icon">🎯</div>
-                    <h4>Perspective</h4>
-                    <p>Gaining different viewpoints and wisdom from family members who know me best.</p>
-                </div>
-                
-                <div class="value-item">
-                    <div class="value-icon">🌟</div>
-                    <h4>Joy & Laughter</h4>
-                    <p>Creating moments of pure happiness and shared laughter that brighten my life.</p>
-                </div>
+        <div class="content-section">
+            <h2>What Family Means to Me</h2>
+            <div class="values-list">
+                <h3>Core Values</h3>
+                <ul>
+                    <li>Creating a safe space where everyone feels heard and valued</li>
+                    <li>Being present in the moment and putting devices away during quality time</li>
+                    <li>Supporting each other's dreams and celebrating successes together</li>
+                    <li>Maintaining regular communication and checking in with loved ones</li>
+                    <li>Making traditions and creating new memories that will last forever</li>
+                </ul>
             </div>
-        </section>
-        
+            <p>Family isn't just about blood relations – it's about the people who choose to be part of your life journey, who celebrate your victories and support you through challenges. These relationships require nurturing, time, and intentional effort, but they provide the love and stability that make everything else possible.</p>
+        </div>
+
         <div class="nav-section">
-            <a href="workout.html" class="nav-button">← Previous: Workout</a>
-            <a href="../activities-list.html" class="nav-button">Back to Activities</a>
-            <a href="../index.html" class="nav-button">Home</a>
+            <a href="../activities-list.html" class="nav-button">← Back to Activities</a>
+            <a href="../index.html" class="nav-button">← Home</a>
         </div>
     </div>
 
     <script>
+        // Minimal, performance-focused JavaScript
         document.addEventListener('DOMContentLoaded', function() {
-            // Create Heart Particles
-            function createHeartParticles() {
-                const heartContainer = document.querySelector('.heart-particles');
-                const hearts = ['❤️', '💕', '💖', '💗', '💝', '💞', '💓', '💘'];
-                const colors = ['', 'rose', 'gold'];
-                
-                for (let i = 0; i < 18; i++) {
-                    const heart = document.createElement('div');
-                    heart.className = `heart-particle ${colors[i % 3]}`;
-                    heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
-                    heart.style.left = Math.random() * 100 + '%';
-                    heart.style.animationDelay = Math.random() * 12 + 's';
-                    heart.style.animationDuration = (10 + Math.random() * 5) + 's';
-                    
-                    heartContainer.appendChild(heart);
-                }
-            }
-
-            // Create Memory Sparkles
-            function createMemorySparkles() {
-                const sparkleContainer = document.querySelector('.memory-sparkles');
-                
-                for (let i = 0; i < 30; i++) {
-                    const sparkle = document.createElement('div');
-                    sparkle.className = 'sparkle';
-                    
-                    if (i % 3 === 0) sparkle.classList.add('pink');
-                    else if (i % 3 === 1) sparkle.classList.add('purple');
-                    
-                    sparkle.style.left = Math.random() * 100 + '%';
-                    sparkle.style.animationDelay = Math.random() * 15 + 's';
-                    
-                    sparkleContainer.appendChild(sparkle);
-                }
-            }
-
-            // Create Floating Family Icons
-            function createFloatingFamilyIcons() {
-                const iconContainer = document.querySelector('.floating-family-icons');
-                const familyIcons = ['❤️', '👨‍👩‍👧‍👦', '🏠', '💝', '🤗', '🌟', '☕', '🎬', '✈️', '🍽️', '💞', '👑'];
-                const colors = ['love', 'warm', 'golden'];
-                
-                for (let i = 0; i < 16; i++) {
-                    const icon = document.createElement('div');
-                    icon.className = `family-icon ${colors[i % 3]}`;
-                    icon.textContent = familyIcons[Math.floor(Math.random() * familyIcons.length)];
-                    icon.style.left = Math.random() * 100 + '%';
-                    icon.style.animationDelay = Math.random() * 14 + 's';
-                    icon.style.animationDuration = (12 + Math.random() * 6) + 's';
-                    
-                    iconContainer.appendChild(icon);
-                }
-            }
-
-            // Create Love Ripples
-            function createLoveRipples() {
-                const rippleContainer = document.querySelector('.love-ripples');
-                
-                setInterval(() => {
-                    const ripple = document.createElement('div');
-                    ripple.className = 'love-ripple';
-                    ripple.style.left = Math.random() * 100 + '%';
-                    ripple.style.top = Math.random() * 100 + '%';
-                    
-                    rippleContainer.appendChild(ripple);
-                    
-                    // Remove ripple after animation
-                    setTimeout(() => {
-                        if (ripple.parentNode) {
-                            ripple.parentNode.removeChild(ripple);
-                        }
-                    }, 6000);
-                }, 3000);
-            }
-
-            // Love Connection Effect
-            function addLoveConnectionEffect() {
-                const memoryItems = document.querySelectorAll('.memory-item');
-                
-                memoryItems.forEach((item, index) => {
-                    item.addEventListener('mouseenter', function() {
-                        this.style.background = 'rgba(255, 105, 180, 0.15)';
-                        this.style.borderColor = 'rgba(255, 105, 180, 0.8)';
-                        this.style.transform = 'translateY(-10px) scale(1.05) rotateY(5deg)';
-                    });
-                    
-                    item.addEventListener('mouseleave', function() {
-                        this.style.background = 'rgba(255, 255, 255, 0.06)';
-                        this.style.borderColor = 'rgba(255, 105, 180, 0.3)';
-                        this.style.transform = 'translateY(0) scale(1) rotateY(0deg)';
-                    });
-                });
-            }
-
-            // Value Warmth Effect
-            function addValueWarmthEffect() {
-                const valueItems = document.querySelectorAll('.value-item');
-                
-                valueItems.forEach((item, index) => {
-                    item.addEventListener('mouseenter', function() {
-                        const icon = this.querySelector('.value-icon');
-                        icon.style.transform = 'scale(1.3) rotateZ(360deg)';
-                        icon.style.transition = 'transform 0.8s ease';
-                        
-                        this.style.background = 'rgba(243, 156, 18, 0.1)';
-                        this.style.borderColor = 'rgba(243, 156, 18, 0.6)';
-                    });
-                    
-                    item.addEventListener('mouseleave', function() {
-                        const icon = this.querySelector('.value-icon');
-                        icon.style.transform = 'scale(1) rotateZ(0deg)';
-                        
-                        this.style.background = 'rgba(255, 255, 255, 0.04)';
-                        this.style.borderColor = 'rgba(255, 105, 180, 0.3)';
-                    });
-                });
-            }
-
-            // Heartbeat Intensity Effect
-            function addHeartbeatIntensityEffect() {
-                const header = document.querySelector('.header h1');
-                let heartbeatLevel = 1;
-                
-                setInterval(() => {
-                    heartbeatLevel = heartbeatLevel === 1 ? 1.05 : 1;
-                    header.style.transform = `scale(${heartbeatLevel})`;
-                    header.style.transition = 'transform 0.4s ease';
-                }, 2000);
-            }
-
-            // Love Trail Effect
-            function addLoveTrailEffect() {
-                const container = document.querySelector('.container');
-                
-                container.addEventListener('mousemove', function(e) {
-                    if (Math.random() > 0.7) { // Only create trail sometimes
-                        const trail = document.createElement('div');
-                        trail.textContent = '💕';
-                        trail.style.position = 'absolute';
-                        trail.style.left = e.clientX + 'px';
-                        trail.style.top = e.clientY + 'px';
-                        trail.style.fontSize = '12px';
-                        trail.style.pointerEvents = 'none';
-                        trail.style.zIndex = '5';
-                        trail.style.color = 'var(--love-pink)';
-                        trail.style.textShadow = '0 0 10px var(--love-pink)';
-                        trail.style.animation = 'loveTrailFade 2s ease-out forwards';
-                        
-                        document.body.appendChild(trail);
-                        
-                        setTimeout(() => {
-                            if (trail.parentNode) {
-                                trail.parentNode.removeChild(trail);
-                            }
-                        }, 2000);
-                    }
-                });
-                
-                // Add CSS for love trail fade animation
-                const style = document.createElement('style');
-                style.textContent = `
-                    @keyframes loveTrailFade {
-                        0% {
-                            opacity: 1;
-                            transform: scale(1) translateY(0);
-                        }
-                        100% {
-                            opacity: 0;
-                            transform: scale(1.5) translateY(-20px);
-                        }
-                    }
-                `;
-                document.head.appendChild(style);
-            }
-
-            // Family Bond Lines
-            function addFamilyBondLines() {
-                const container = document.querySelector('.container');
-                
-                // Create connecting lines between elements occasionally
-                setInterval(() => {
-                    const elements = document.querySelectorAll('.memory-item, .value-item');
-                    if (elements.length >= 2) {
-                        const element1 = elements[Math.floor(Math.random() * elements.length)];
-                        const element2 = elements[Math.floor(Math.random() * elements.length)];
-                        
-                        if (element1 !== element2) {
-                            createConnectionLine(element1, element2);
-                        }
-                    }
-                }, 8000);
-            }
-
-            function createConnectionLine(elem1, elem2) {
-                const rect1 = elem1.getBoundingClientRect();
-                const rect2 = elem2.getBoundingClientRect();
-                
-                const line = document.createElement('div');
-                line.style.position = 'absolute';
-                line.style.background = 'linear-gradient(90deg, var(--love-pink), var(--family-gold))';
-                line.style.height = '2px';
-                line.style.zIndex = '1';
-                line.style.opacity = '0.6';
-                line.style.pointerEvents = 'none';
-                line.style.animation = 'connectionFade 3s ease-out forwards';
-                
-                const x1 = rect1.left + rect1.width / 2;
-                const y1 = rect1.top + rect1.height / 2;
-                const x2 = rect2.left + rect2.width / 2;
-                const y2 = rect2.top + rect2.height / 2;
-                
-                const length = Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
-                const angle = Math.atan2(y2 - y1, x2 - x1) * 180 / Math.PI;
-                
-                line.style.width = length + 'px';
-                line.style.left = x1 + 'px';
-                line.style.top = y1 + 'px';
-                line.style.transform = `rotate(${angle}deg)`;
-                line.style.transformOrigin = '0 0';
-                
-                document.body.appendChild(line);
-                
-                setTimeout(() => {
-                    if (line.parentNode) {
-                        line.parentNode.removeChild(line);
-                    }
-                }, 3000);
-                
-                // Add CSS for connection fade
-                if (!document.querySelector('#connection-fade-style')) {
-                    const style = document.createElement('style');
-                    style.id = 'connection-fade-style';
-                    style.textContent = `
-                        @keyframes connectionFade {
-                            0% { opacity: 0; transform: scaleX(0); }
-                            50% { opacity: 0.8; transform: scaleX(1); }
-                            100% { opacity: 0; transform: scaleX(1); }
-                        }
-                    `;
-                    document.head.appendChild(style);
-                }
-            }
-
-            // Initialize all effects
-            createHeartParticles();
-            createMemorySparkles();
-            createFloatingFamilyIcons();
-            createLoveRipples();
-            addLoveConnectionEffect();
-            addValueWarmthEffect();
-            addHeartbeatIntensityEffect();
-            addLoveTrailEffect();
-            addFamilyBondLines();
-
-            // Performance optimization
+            // Simple performance check
             if (navigator.hardwareConcurrency && navigator.hardwareConcurrency < 4) {
-                // Reduce particle count on low-end devices
-                document.querySelectorAll('.heart-particle, .sparkle, .family-icon').forEach((el, index) => {
-                    if (index % 2 === 0) el.remove();
-                });
+                document.body.classList.add('low-performance');
             }
 
-            // Parallax scrolling for family elements
-            window.addEventListener('scroll', function() {
-                const scrolled = window.pageYOffset;
-                const parallaxElements = document.querySelectorAll('.heart-particles, .memory-sparkles, .floating-family-icons');
-                
-                parallaxElements.forEach(element => {
-                    const speed = scrolled * 0.2;
-                    element.style.transform = `translateY(${speed}px)`;
+            // Ensure content is visible
+            setTimeout(() => {
+                document.querySelectorAll('.content-section, .memory-item').forEach(element => {
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
                 });
-            });
+            }, 100);
         });
     </script>
 </body>
