@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Learning & Exploring New Technologies</title>
     <style>
-        /* Clean Tech-Themed Design */
+        /* Clean Tech-Themed Design - Optimized for Performance */
         * {
             margin: 0;
             padding: 0;
@@ -14,13 +14,14 @@
 
         :root {
             --tech-primary: #64ffda;
-            --tech-secondary: #4fc3f7;
+            --tech-secondary: #00d9ff;
             --dark-bg: #0f0f23;
-            --card-bg: rgba(255, 255, 255, 0.05);
+            --card-bg: rgba(15, 15, 35, 0.95);
             --border-color: rgba(100, 255, 218, 0.2);
             --text-primary: #ffffff;
             --text-secondary: #b8c5ff;
             --subtle-glow: 0 0 20px rgba(100, 255, 218, 0.2);
+            --smooth-ease: cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         body {
@@ -32,7 +33,7 @@
             overflow-x: hidden;
         }
 
-        /* Subtle Tech Background */
+        /* Subtle Tech Background - Static for Performance */
         body::before {
             content: '';
             position: fixed;
@@ -40,11 +41,15 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: radial-gradient(ellipse at center, rgba(100, 255, 218, 0.03) 0%, transparent 70%);
+            background: 
+                radial-gradient(ellipse at 25% 25%, rgba(100, 255, 218, 0.08) 0%, transparent 40%),
+                radial-gradient(ellipse at 75% 75%, rgba(0, 217, 255, 0.06) 0%, transparent 40%),
+                var(--dark-bg);
             z-index: -1;
+            will-change: transform;
         }
 
-        /* Minimal Tech Elements */
+        /* GPU-Optimized Tech Elements */
         .tech-elements {
             position: fixed;
             top: 0;
@@ -59,22 +64,30 @@
         .tech-element {
             position: absolute;
             font-size: 18px;
-            opacity: 0.2;
+            opacity: 0;
             color: var(--tech-primary);
-            animation: gentleTechFloat 25s ease-in-out infinite;
+            will-change: transform, opacity;
+            animation: gentleTechFloat3D 25s var(--smooth-ease) infinite;
         }
 
-        @keyframes gentleTechFloat {
-            0%, 100% {
-                transform: translateY(100vh) translateX(0px);
+        @keyframes gentleTechFloat3D {
+            0% {
+                transform: translate3d(0, 100vh, 0);
                 opacity: 0;
             }
-            10%, 90% {
+            10% {
                 opacity: 0.2;
             }
             50% {
-                transform: translateY(-20vh) translateX(40px);
+                transform: translate3d(40px, -20vh, 0);
                 opacity: 0.3;
+            }
+            90% {
+                opacity: 0.2;
+            }
+            100% {
+                transform: translate3d(0, 100vh, 0);
+                opacity: 0;
             }
         }
 
@@ -89,7 +102,8 @@
         .header {
             text-align: center;
             margin-bottom: 60px;
-            animation: fadeInDown 1s ease-out forwards;
+            will-change: transform, opacity;
+            animation: fadeInDown3D 1s var(--smooth-ease) forwards;
         }
 
         .header h1 {
@@ -101,7 +115,8 @@
             -webkit-background-clip: text;
             background-clip: text;
             -webkit-text-fill-color: transparent;
-            animation: fadeInDown 1s ease-out forwards, subtleGradient 8s ease-in-out infinite;
+            will-change: background-position;
+            animation: fadeInDown3D 1s var(--smooth-ease) forwards, subtleGradient 8s ease-in-out infinite;
         }
 
         @keyframes subtleGradient {
@@ -109,51 +124,62 @@
             50% { background-position: 100% 50%; }
         }
 
-        @keyframes fadeInDown {
+        @keyframes fadeInDown3D {
             from {
                 opacity: 0;
-                transform: translateY(-20px);
+                transform: translate3d(0, -20px, 0);
             }
             to {
                 opacity: 1;
-                transform: translateY(0);
+                transform: translate3d(0, 0, 0);
             }
         }
 
         .header p {
             font-size: clamp(1.1rem, 2vw, 1.4rem);
             color: var(--text-secondary);
-            animation: fadeInDown 1.2s ease-out 0.2s forwards;
             opacity: 0;
+            will-change: transform, opacity;
+            animation: fadeInDown3D 1.2s var(--smooth-ease) 0.2s forwards;
         }
 
+        /* Optimized Content Sections */
         .content-section {
             background: var(--card-bg);
-            backdrop-filter: blur(10px);
+            background-image: 
+                linear-gradient(135deg, rgba(100, 255, 218, 0.03) 0%, transparent 50%);
             border-radius: 20px;
             padding: 40px;
             margin-bottom: 30px;
             border: 1px solid var(--border-color);
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            transition: all 0.3s ease;
-            animation: fadeInUp 1s ease-out forwards;
             opacity: 0;
-            transform: translateY(30px);
+            transform: translate3d(0, 30px, 0);
+            will-change: transform, opacity;
+            transition: none;
+            animation: fadeInUp3D 1s var(--smooth-ease) forwards;
         }
 
         .content-section:nth-child(2) { animation-delay: 0.3s; }
         .content-section:nth-child(3) { animation-delay: 0.6s; }
         .content-section:nth-child(4) { animation-delay: 0.9s; }
 
-        @keyframes fadeInUp {
+        @keyframes fadeInUp3D {
             to {
                 opacity: 1;
-                transform: translateY(0);
+                transform: translate3d(0, 0, 0);
             }
         }
 
+        /* Simplified Hover - Single Transform */
+        .content-section {
+            transition: transform 0.3s var(--smooth-ease), 
+                        border-color 0.3s var(--smooth-ease),
+                        box-shadow 0.3s var(--smooth-ease);
+        }
+
         .content-section:hover {
-            transform: translateY(-5px);
+            transform: translate3d(0, -5px, 0);
             border-color: rgba(100, 255, 218, 0.4);
             box-shadow: var(--subtle-glow);
         }
@@ -181,22 +207,27 @@
 
         .tech-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 20px;
             margin: 30px 0;
         }
 
+        /* Optimized Tech Items */
         .tech-item {
-            background: var(--card-bg);
-            backdrop-filter: blur(10px);
+            background: rgba(15, 15, 35, 0.9);
+            background-image: 
+                linear-gradient(135deg, rgba(100, 255, 218, 0.05) 0%, transparent 50%);
             border-radius: 15px;
             padding: 25px;
             text-align: center;
             border: 1px solid var(--border-color);
-            transition: all 0.3s ease;
-            animation: fadeInUp 1.2s ease-out forwards;
             opacity: 0;
-            transform: translateY(20px);
+            transform: translate3d(0, 20px, 0);
+            will-change: transform, opacity;
+            animation: fadeInUp3D 1.2s var(--smooth-ease) forwards;
+            transition: transform 0.3s var(--smooth-ease), 
+                        border-color 0.3s var(--smooth-ease),
+                        box-shadow 0.3s var(--smooth-ease);
         }
 
         .tech-item:nth-child(1) { animation-delay: 1s; }
@@ -204,8 +235,9 @@
         .tech-item:nth-child(3) { animation-delay: 1.4s; }
         .tech-item:nth-child(4) { animation-delay: 1.6s; }
 
+        /* Simplified Hover Effect */
         .tech-item:hover {
-            transform: translateY(-8px) scale(1.02);
+            transform: translate3d(0, -8px, 0);
             border-color: rgba(100, 255, 218, 0.5);
             box-shadow: var(--subtle-glow);
         }
@@ -225,18 +257,20 @@
             font-size: 3rem;
             margin-bottom: 15px;
             display: block;
-            transition: transform 0.3s ease;
+            will-change: transform;
+            transition: transform 0.3s var(--smooth-ease);
         }
 
         .tech-item:hover .tech-icon {
-            transform: scale(1.1);
+            transform: scale3d(1.1, 1.1, 1);
         }
 
         .nav-section {
             text-align: center;
             margin-top: 60px;
-            animation: fadeInUp 1.5s ease-out 1.8s forwards;
             opacity: 0;
+            will-change: transform, opacity;
+            animation: fadeInUp3D 1.5s var(--smooth-ease) 1.8s forwards;
         }
 
         .nav-button {
@@ -249,13 +283,48 @@
             font-weight: 700;
             font-size: 1.1rem;
             margin: 0 10px;
-            transition: all 0.3s ease;
+            will-change: transform;
+            transition: transform 0.3s var(--smooth-ease),
+                        box-shadow 0.3s var(--smooth-ease),
+                        background-size 0.3s var(--smooth-ease);
             box-shadow: var(--subtle-glow);
+            background-size: 100% 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Enhanced hover animation */
+        .nav-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s var(--smooth-ease);
         }
 
         .nav-button:hover {
-            transform: translateY(-3px) scale(1.02);
+            transform: translate3d(0, -3px, 0);
             box-shadow: 0 15px 30px rgba(100, 255, 218, 0.4);
+            background-size: 110% 110%;
+        }
+
+        .nav-button:hover::before {
+            left: 100%;
+        }
+
+        /* Performance Classes */
+        .low-performance * {
+            animation: none !important;
+            transition: none !important;
+        }
+
+        .low-performance .content-section,
+        .low-performance .tech-item {
+            opacity: 1 !important;
+            transform: none !important;
         }
 
         /* Responsive design */
@@ -263,7 +332,14 @@
             .container { padding: 20px 15px; }
             .content-section { padding: 25px; }
             .tech-grid { grid-template-columns: 1fr; }
-            .nav-button { padding: 12px 25px; font-size: 1rem; margin: 5px; }
+            .nav-button { 
+                padding: 12px 25px; 
+                font-size: 1rem; 
+                margin: 5px;
+                display: block;
+                width: fit-content;
+                margin: 5px auto;
+            }
         }
 
         /* Reduced motion support */
@@ -277,7 +353,7 @@
     </style>
 </head>
 <body>
-    <!-- Minimal Tech Elements -->
+    <!-- GPU-Optimized Tech Elements -->
     <div class="tech-elements" aria-hidden="true">
         <div class="tech-element" style="left: 10%; animation-delay: 0s;">💻</div>
         <div class="tech-element" style="left: 50%; animation-delay: 8s;">⚡</div>
@@ -302,31 +378,31 @@
                 <div class="tech-item">
                     <div class="tech-icon">🤖</div>
                     <h3>Artificial Intelligence</h3>
-                    <p>Exploring machine learning algorithms, neural networks, and AI applications in real-world solutions.</p>
+                    <p>Exploring machine learning, neural networks, and AI applications in real-world scenarios.</p>
                 </div>
                 
                 <div class="tech-item">
-                    <div class="tech-icon">🌐</div>
-                    <h3>Web Development</h3>
-                    <p>Mastering modern frameworks like React, Vue, and backend technologies for full-stack development.</p>
-                </div>
-                
-                <div class="tech-item">
-                    <div class="tech-icon">📱</div>
-                    <h3>Mobile Development</h3>
-                    <p>Building cross-platform mobile applications using React Native and native development approaches.</p>
+                    <div class="tech-icon">⚛️</div>
+                    <h3>Modern Web Development</h3>
+                    <p>Building responsive applications with React, Next.js, and modern JavaScript frameworks.</p>
                 </div>
                 
                 <div class="tech-item">
                     <div class="tech-icon">☁️</div>
                     <h3>Cloud Computing</h3>
-                    <p>Learning cloud platforms like AWS, Azure, and Google Cloud for scalable application deployment.</p>
+                    <p>Learning AWS, Docker, and Kubernetes for scalable application deployment.</p>
+                </div>
+                
+                <div class="tech-item">
+                    <div class="tech-icon">🔒</div>
+                    <h3>Cybersecurity</h3>
+                    <p>Understanding security principles, ethical hacking, and protecting digital assets.</p>
                 </div>
             </div>
         </div>
 
         <div class="content-section">
-            <h2>Learning Approach</h2>
+            <h2>Learning Philosophy</h2>
             <p>I believe in hands-on learning combined with theoretical understanding. My approach includes:</p>
             <p>• Building real projects to apply new concepts immediately</p>
             <p>• Following industry best practices and clean code principles</p>
@@ -336,26 +412,48 @@
         </div>
 
         <div class="nav-section">
-            <a href="../activities-list.html" class="nav-button">← Back to Activities</a>
-            <a href="../index.html" class="nav-button">← Home</a>
+            <a href="family-time.html" class="nav-button">← Previous Activity</a>
+            <a href="../index.html" class="nav-button">Home</a>
+            <a href="workout.html" class="nav-button">Next Activity →</a>
         </div>
     </div>
 
     <script>
-        // Minimal, performance-focused JavaScript
+        // Optimized Performance JavaScript
         document.addEventListener('DOMContentLoaded', function() {
-            // Simple performance check
-            if (navigator.hardwareConcurrency && navigator.hardwareConcurrency < 4) {
+            // Performance check
+            const isLowPerf = navigator.hardwareConcurrency && navigator.hardwareConcurrency < 4;
+            if (isLowPerf) {
                 document.body.classList.add('low-performance');
             }
 
-            // Ensure content is visible
-            setTimeout(() => {
-                document.querySelectorAll('.content-section, .tech-item').forEach(element => {
-                    element.style.opacity = '1';
-                    element.style.transform = 'translateY(0)';
+            // Force hardware acceleration
+            const animatedElements = document.querySelectorAll('.content-section, .tech-item, .nav-section');
+            
+            // Use Intersection Observer for better performance
+            if ('IntersectionObserver' in window && !isLowPerf) {
+                const observerOptions = {
+                    threshold: 0.1,
+                    rootMargin: '50px'
+                };
+
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.style.willChange = 'auto';
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, observerOptions);
+
+                animatedElements.forEach(el => observer.observe(el));
+            } else {
+                // Fallback for older browsers
+                animatedElements.forEach(el => {
+                    el.style.opacity = '1';
+                    el.style.transform = 'none';
                 });
-            }, 100);
+            }
         });
     </script>
 </body>
