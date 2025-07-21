@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Abdulrahman's Frontend Development Assignments - HTML Lists, Links & Images, and Favorite Activities">
+    <meta name="author" content="Abdulrahman">
+    <title>Frontend Assignments - Abdulrahman</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .container {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            max-width: 600px;
+            width: 100%;
+            text-align: center;
+        }
+        
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 2.5em;
+        }
+        
+        .subtitle {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 1.1em;
+        }
+        
+        .assignments {
+            display: grid;
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .assignment-card {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            border-radius: 15px;
+            padding: 25px;
+            text-decoration: none;
+            color: #333;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 2px solid transparent;
+        }
+        
+        .assignment-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+            border-color: #667eea;
+        }
+        
+        .assignment-number {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+        
+        .assignment-title {
+            font-size: 1.3em;
+            margin-bottom: 8px;
+            color: #333;
+        }
+        
+        .assignment-description {
+            color: #666;
+            font-size: 0.95em;
+        }
+        
+        .footer {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+            color: #888;
+            font-size: 0.9em;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 30px 20px;
+            }
+            
+            h1 {
+                font-size: 2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Frontend Assignments</h1>
+        <p class="subtitle">by Abdulrahman - Software Engineering Student</p>
+        
+        <div class="assignments">
+            <a href="assignment2/" class="assignment-card">
+                <div class="assignment-number">Assignment 2</div>
+                <div class="assignment-title">HTML Lists</div>
+                <div class="assignment-description">
+                    Demonstrating unordered, ordered, and nested lists with personal content
+                </div>
+            </a>
+            
+            <a href="assignment3/" class="assignment-card">
+                <div class="assignment-number">Assignment 3</div>
+                <div class="assignment-title">Links & Images</div>
+                <div class="assignment-description">
+                    External links, internal navigation, and image implementation
+                </div>
+            </a>
+            
+            <a href="assignment4/" class="assignment-card">
+                <div class="assignment-number">Assignment 4</div>
+                <div class="assignment-title">My Favorite Activities</div>
+                <div class="assignment-description">
+                    Complete website showcasing technology, fitness, and family time
+                </div>
+            </a>
+        </div>
+        
+        <div class="footer">
+            <p>Third-year Software Engineering Student</p>
+            <p>Passionate about AI, Data Science, and Full Stack Development</p>
+        </div>
+    </div>
+</body>
+</html> 
