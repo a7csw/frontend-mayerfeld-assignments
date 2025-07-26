@@ -1,20 +1,20 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&family=Lora:wght@600&display=swap');
 
-/* --- Balanced Premium Theme: White, Grey & Blue --- */
+/* --- Optimized Darker Theme: Performance & Smoothness --- */
 
 :root {
-    --bg-color: #f1f5f9;
-    --primary-color: #ffffff;
-    --secondary-color: #e2e8f0;
-    --tertiary-color: #cbd5e1;
+    --bg-color: #e2e8f0;
+    --primary-color: #f8fafc;
+    --secondary-color: #cbd5e1;
+    --tertiary-color: #94a3b8;
     --accent-color: #3b82f6;
     --accent-hover-color: #2563eb;
-    --text-color: #475569;
+    --text-color: #334155;
     --header-color: #1e293b;
-    --subtle-border: rgba(30, 41, 59, 0.15);
-    --card-bg: rgba(255, 255, 255, 0.9);
-    --shadow-color: rgba(30, 41, 59, 0.2);
-    --glow-color: rgba(59, 130, 246, 0.3);
+    --subtle-border: rgba(30, 41, 59, 0.2);
+    --card-bg: rgba(248, 250, 252, 0.95);
+    --shadow-color: rgba(30, 41, 59, 0.25);
+    --glow-color: rgba(59, 130, 246, 0.4);
 
     --font-primary: 'Inter', sans-serif;
     --font-secondary: 'Lora', serif;
@@ -32,7 +32,7 @@ html {
 }
 
 body {
-    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 30%, #cbd5e1 70%, #f1f5f9 100%);
+    background: linear-gradient(135deg, #cbd5e1 0%, #94a3b8 50%, #e2e8f0 100%);
     background-attachment: fixed;
     color: var(--text-color);
     font-family: var(--font-primary);
@@ -47,9 +47,10 @@ body {
     -moz-osx-font-smoothing: grayscale;
     position: relative;
     overflow-x: hidden;
+    will-change: scroll-position;
 }
 
-/* Elegant Background Particles */
+/* Simplified Background - No Heavy Effects */
 body::before {
     content: '';
     position: fixed;
@@ -58,38 +59,28 @@ body::before {
     width: 100%;
     height: 100%;
     background-image: 
-        radial-gradient(circle at 20% 80%, rgba(59, 130, 246, 0.08) 0%, transparent 50%),
-        radial-gradient(circle at 80% 20%, rgba(59, 130, 246, 0.06) 0%, transparent 50%),
-        radial-gradient(circle at 40% 40%, rgba(30, 41, 59, 0.04) 0%, transparent 50%);
-    animation: backgroundFloat 30s ease-in-out infinite;
+        radial-gradient(circle at 20% 80%, rgba(59, 130, 246, 0.06) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(30, 41, 59, 0.04) 0%, transparent 50%);
     pointer-events: none;
     z-index: -1;
 }
 
-@keyframes backgroundFloat {
-    0%, 100% { transform: translateY(0px) rotate(0deg); }
-    50% { transform: translateY(-12px) rotate(0.3deg); }
-}
-
-/* Sophisticated Container */
+/* Optimized Container */
 .container {
     width: 100%;
     max-width: 1100px;
     margin: 0 auto;
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(25px);
-    -webkit-backdrop-filter: blur(25px);
-    border-radius: 24px;
+    background: var(--card-bg);
+    border-radius: 20px;
     padding: clamp(30px, 6vw, 60px);
     box-shadow: 
-        0 25px 60px var(--shadow-color),
-        0 0 0 1px rgba(30, 41, 59, 0.1),
-        inset 0 1px 0 rgba(255, 255, 255, 0.8);
+        0 20px 40px var(--shadow-color),
+        0 0 0 1px rgba(30, 41, 59, 0.15);
     border: 1px solid var(--subtle-border);
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
     position: relative;
-    overflow: hidden;
     text-align: center;
+    will-change: transform;
 }
 
 .container::before {
@@ -99,8 +90,8 @@ body::before {
     left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.05), transparent);
-    transition: left 0.8s ease-in-out;
+    background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.04), transparent);
+    transition: left 0.6s ease;
 }
 
 .container:hover::before {
@@ -108,18 +99,17 @@ body::before {
 }
 
 .container:hover {
-    transform: translateY(-4px);
+    transform: translateY(-3px);
     box-shadow: 
-        0 30px 70px var(--shadow-color),
-        0 0 0 1px rgba(59, 130, 246, 0.25),
-        inset 0 1px 0 rgba(255, 255, 255, 0.9);
+        0 25px 50px var(--shadow-color),
+        0 0 0 1px rgba(59, 130, 246, 0.2);
 }
 
-/* Premium Typography */
+/* Optimized Typography */
 h1, h2, h3, .assignment-number {
     font-family: var(--font-secondary);
     color: var(--header-color);
-    text-shadow: 0 2px 4px rgba(30, 41, 59, 0.1);
+    text-shadow: 0 1px 3px rgba(30, 41, 59, 0.2);
     position: relative;
     text-align: center;
 }
@@ -129,16 +119,10 @@ h1 {
     margin-bottom: 30px;
     padding-bottom: 25px;
     border-bottom: 1px solid var(--subtle-border);
-    background: linear-gradient(135deg, var(--header-color) 0%, var(--accent-color) 60%, #6366f1 100%);
+    background: linear-gradient(135deg, var(--header-color) 0%, var(--accent-color) 70%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    animation: textGlow 5s ease-in-out infinite alternate;
-}
-
-@keyframes textGlow {
-    from { filter: drop-shadow(0 0 4px rgba(59, 130, 246, 0.3)); }
-    to { filter: drop-shadow(0 0 12px rgba(59, 130, 246, 0.5)); }
 }
 
 h2 {
@@ -155,13 +139,12 @@ h2::before {
     content: '';
     position: absolute;
     left: 50%;
-    bottom: -8px;
+    bottom: -6px;
     transform: translateX(-50%);
-    width: 80px;
-    height: 4px;
-    background: linear-gradient(90deg, var(--accent-color), var(--accent-hover-color), #6366f1);
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent-color), var(--accent-hover-color));
     border-radius: 2px;
-    box-shadow: 0 0 10px var(--glow-color);
 }
 
 h2::after {
@@ -171,9 +154,9 @@ h2::after {
     top: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, rgba(59, 130, 246, 0.08), transparent 70%);
+    background: linear-gradient(90deg, rgba(59, 130, 246, 0.06), transparent 70%);
     transform: translateX(-100%);
-    transition: transform 0.6s ease;
+    transition: transform 0.5s ease;
 }
 
 h2:hover::after {
@@ -191,14 +174,13 @@ h3 {
 h3::after {
     content: '';
     position: absolute;
-    bottom: -6px;
+    bottom: -4px;
     left: 50%;
     transform: translateX(-50%);
     width: 0;
-    height: 3px;
-    background: linear-gradient(90deg, var(--accent-color), var(--accent-hover-color));
-    border-radius: 2px;
-    transition: width 0.5s ease;
+    height: 2px;
+    background: var(--accent-color);
+    transition: width 0.4s ease;
 }
 
 h3:hover::after {
@@ -209,8 +191,8 @@ p {
     font-size: 1.15rem;
     margin: 0 auto 24px auto;
     max-width: 70ch;
-    opacity: 0.95;
-    transition: opacity 0.3s ease;
+    opacity: 0.9;
+    transition: opacity 0.2s ease;
     text-align: center;
     font-weight: 400;
 }
@@ -219,13 +201,13 @@ p:hover {
     opacity: 1;
 }
 
-/* Enhanced Links & Buttons */
+/* Optimized Links & Buttons */
 a {
     color: var(--accent-color);
     text-decoration: none;
     font-weight: 500;
     position: relative;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: color 0.2s ease, transform 0.2s ease;
 }
 
 a::before {
@@ -236,8 +218,8 @@ a::before {
     transform: translateX(-50%);
     width: 0;
     height: 2px;
-    background: linear-gradient(90deg, var(--accent-color), var(--accent-hover-color));
-    transition: width 0.4s ease;
+    background: var(--accent-color);
+    transition: width 0.3s ease;
 }
 
 a:hover::before {
@@ -246,7 +228,6 @@ a:hover::before {
 
 a:hover, a:focus-visible {
     color: var(--accent-hover-color);
-    text-shadow: 0 0 8px var(--glow-color);
     outline: none;
     transform: translateY(-1px);
 }
@@ -255,19 +236,18 @@ a:hover, a:focus-visible {
     display: inline-block;
     padding: 16px 35px;
     border-radius: 50px;
-    background: linear-gradient(135deg, var(--accent-color), var(--accent-hover-color), #6366f1);
+    background: linear-gradient(135deg, var(--accent-color), var(--accent-hover-color));
     color: #ffffff;
     text-decoration: none;
     text-align: center;
     font-weight: 700;
     border: 2px solid transparent;
-    box-shadow: 
-        0 10px 30px rgba(59, 130, 246, 0.3),
-        inset 0 1px 0 rgba(255, 255, 255, 0.25);
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3);
+    transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
     margin: 10px;
+    will-change: transform;
 }
 
 .back-link::before, .cta-button::before, .portfolio-link::before {
@@ -277,42 +257,35 @@ a:hover, a:focus-visible {
     left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-    transition: left 0.6s ease;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+    transition: left 0.5s ease;
 }
 
 .back-link:hover, .cta-button:hover, .portfolio-link:hover {
-    transform: translateY(-4px) scale(1.03);
-    box-shadow: 
-        0 15px 35px rgba(59, 130, 246, 0.4),
-        0 0 25px rgba(59, 130, 246, 0.3);
-    text-shadow: none;
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 12px 25px rgba(59, 130, 246, 0.4);
 }
 
 .back-link:hover::before, .cta-button:hover::before, .portfolio-link:hover::before {
     left: 100%;
 }
 
-/* Premium Cards */
+/* Performance-Optimized Cards */
 .assignment-card, .activity-card {
     display: block;
     background: var(--card-bg);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border-radius: 20px;
+    border-radius: 16px;
     padding: 35px;
     text-decoration: none;
     color: var(--text-color);
     border: 1px solid var(--subtle-border);
-    box-shadow: 
-        0 15px 35px rgba(30, 41, 59, 0.15),
-        inset 0 1px 0 rgba(255, 255, 255, 0.8);
+    box-shadow: 0 10px 25px rgba(30, 41, 59, 0.2);
     position: relative;
     overflow: hidden;
-    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-    transform-style: preserve-3d;
+    transition: all 0.3s ease;
     text-align: center;
     margin: 0 auto;
+    will-change: transform;
 }
 
 .assignment-card::before, .activity-card::before {
@@ -322,46 +295,20 @@ a:hover, a:focus-visible {
     left: 0;
     width: 100%;
     height: 100%;
-    background: radial-gradient(circle at 50% 50%, rgba(59, 130, 246, 0.1), transparent 70%);
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.05), transparent 60%);
     opacity: 0;
-    transition: opacity 0.5s ease;
+    transition: opacity 0.3s ease;
     pointer-events: none;
 }
 
-.assignment-card::after, .activity-card::after {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: conic-gradient(from 0deg, transparent, var(--accent-color), transparent);
-    opacity: 0;
-    transition: all 0.6s ease;
-    animation: rotate 8s linear infinite;
-    z-index: -1;
-}
-
-@keyframes rotate {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-
 .assignment-card:hover, .activity-card:hover {
-    transform: translateY(-10px) rotateX(3deg);
-    box-shadow: 
-        0 25px 50px rgba(30, 41, 59, 0.2),
-        0 0 0 1px rgba(59, 130, 246, 0.4),
-        inset 0 1px 0 rgba(255, 255, 255, 0.9);
+    transform: translateY(-6px);
+    box-shadow: 0 15px 35px rgba(30, 41, 59, 0.25);
     text-decoration: none;
 }
 
 .assignment-card:hover::before, .activity-card:hover::before {
     opacity: 1;
-}
-
-.assignment-card:hover::after, .activity-card:hover::after {
-    opacity: 0.08;
 }
 
 .assignment-number, .assignment-title, .assignment-description,
@@ -373,14 +320,8 @@ a:hover, a:focus-visible {
 .assignment-number {
     font-size: 2rem;
     color: var(--accent-color);
-    text-shadow: 0 0 10px var(--glow-color);
-    animation: pulse 4s ease-in-out infinite;
+    text-shadow: 0 0 8px var(--glow-color);
     margin-bottom: 15px;
-}
-
-@keyframes pulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.85; }
 }
 
 .assignment-title, .activity-title {
@@ -388,7 +329,7 @@ a:hover, a:focus-visible {
     color: var(--header-color);
     margin: 15px 0;
     font-family: var(--font-secondary);
-    transition: color 0.3s ease;
+    transition: color 0.2s ease;
 }
 
 .assignment-card:hover .assignment-title,
@@ -399,8 +340,8 @@ a:hover, a:focus-visible {
 .assignment-description, .activity-summary {
     font-size: 1.05rem;
     font-weight: 400;
-    opacity: 0.85;
-    transition: opacity 0.3s ease;
+    opacity: 0.8;
+    transition: opacity 0.2s ease;
     line-height: 1.6;
 }
 
@@ -413,15 +354,15 @@ a:hover, a:focus-visible {
     font-size: 3.5em;
     margin-bottom: 20px;
     line-height: 1;
-    filter: drop-shadow(0 4px 8px rgba(30, 41, 59, 0.2));
-    transition: transform 0.4s ease;
+    filter: drop-shadow(0 3px 6px rgba(30, 41, 59, 0.3));
+    transition: transform 0.3s ease;
 }
 
 .activity-card:hover .activity-icon {
-    transform: scale(1.08) rotateY(8deg);
+    transform: scale(1.05);
 }
 
-/* Styled Lists */
+/* Simplified Lists */
 ul, ol {
     padding-left: 0;
     margin: 0 auto 25px auto;
@@ -433,12 +374,11 @@ ul, ol {
 ul li, ol li {
     padding: 15px 25px;
     margin: 8px 0;
-    border-radius: 12px;
-    background: rgba(59, 130, 246, 0.05);
-    border: 1px solid rgba(59, 130, 246, 0.1);
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: 10px;
+    background: rgba(59, 130, 246, 0.08);
+    border: 1px solid rgba(59, 130, 246, 0.15);
+    transition: all 0.3s ease;
     position: relative;
-    overflow: hidden;
     counter-increment: item;
 }
 
@@ -477,32 +417,27 @@ ul li {
 }
 
 ul li:hover, ol li:hover {
-    background: rgba(59, 130, 246, 0.12);
+    background: rgba(59, 130, 246, 0.15);
     border-color: var(--accent-color);
-    transform: translateX(8px);
-    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.2);
+    transform: translateX(6px);
 }
 
-/* Enhanced Images */
+/* Optimized Images */
 img {
     max-width: 100%;
     height: auto;
-    border-radius: 16px;
+    border-radius: 12px;
     border: 1px solid var(--subtle-border);
-    box-shadow: 
-        0 15px 40px var(--shadow-color),
-        inset 0 1px 0 rgba(255, 255, 255, 0.6);
+    box-shadow: 0 10px 25px var(--shadow-color);
     display: block;
     margin: 40px auto;
-    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-    position: relative;
+    transition: all 0.3s ease;
+    will-change: transform;
 }
 
 img:hover {
-    transform: scale(1.04) rotateY(3deg) rotateX(2deg);
-    box-shadow: 
-        0 20px 50px var(--shadow-color),
-        0 0 30px rgba(59, 130, 246, 0.25);
+    transform: scale(1.02);
+    box-shadow: 0 15px 30px var(--shadow-color);
 }
 
 /* Layout Components */
@@ -512,29 +447,27 @@ img:hover {
 }
 
 .assignment-section {
-    background: rgba(255, 255, 255, 0.7);
+    background: rgba(248, 250, 252, 0.8);
     padding: 35px;
-    border-radius: 16px;
+    border-radius: 12px;
     margin: 40px auto;
     max-width: 800px;
     border: 1px solid var(--subtle-border);
-    backdrop-filter: blur(15px);
-    transition: all 0.3s ease;
+    transition: all 0.2s ease;
     text-align: center;
-    box-shadow: 0 8px 25px rgba(30, 41, 59, 0.1);
+    box-shadow: 0 6px 20px rgba(30, 41, 59, 0.15);
 }
 
 .assignment-section:hover {
-    background: rgba(255, 255, 255, 0.85);
-    transform: translateY(-3px);
-    box-shadow: 0 12px 35px rgba(30, 41, 59, 0.15);
+    background: rgba(248, 250, 252, 0.9);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(30, 41, 59, 0.2);
 }
 
 .activities-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
     gap: 35px;
-    perspective: 1000px;
     max-width: 1200px;
     margin: 0 auto;
 }
@@ -546,7 +479,7 @@ img:hover {
     border-top: 1px solid var(--subtle-border);
     color: var(--text-color);
     font-size: 0.95em;
-    opacity: 0.75;
+    opacity: 0.7;
     max-width: 600px;
     margin-left: auto;
     margin-right: auto;
@@ -572,9 +505,9 @@ img:hover {
     }
 }
 
-/* Custom Scrollbar */
+/* Performance-Optimized Scrollbar */
 ::-webkit-scrollbar {
-    width: 10px;
+    width: 8px;
 }
 
 ::-webkit-scrollbar-track {
@@ -582,8 +515,8 @@ img:hover {
 }
 
 ::-webkit-scrollbar-thumb {
-    background: linear-gradient(45deg, var(--accent-color), var(--accent-hover-color));
-    border-radius: 5px;
+    background: var(--accent-color);
+    border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
@@ -594,4 +527,23 @@ img:hover {
 ::selection {
     background: rgba(59, 130, 246, 0.25);
     color: var(--header-color);
+}
+
+/* Performance Optimizations */
+* {
+    transform-style: flat;
+}
+
+.container, .assignment-card, .activity-card, img {
+    backface-visibility: hidden;
+    perspective: 1000px;
+}
+
+/* Reduce motion for better performance */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
 } 
