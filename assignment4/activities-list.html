@@ -4,23 +4,41 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Favorite Activities - List</title>
+    <link rel="stylesheet" href="../css/global-style.css">
 </head>
 <body>
-    <h1>My Three Favorite Activities</h1>
-    <p>Click on any activity to learn more about it!</p>
-    
-    <h2><a href="activities/learning-tech.html">Learning & Exploring New Technologies</a></h2>
-    <p>Continuously expanding my knowledge in programming, AI, and cutting-edge technologies that shape our digital world.</p>
-    <a href="activities/learning-tech.html">Read More</a>
-    
-    <h2><a href="activities/workout.html">Weekly Workout & Calisthenics Training</a></h2>
-    <p>Staying fit and strong through dedicated calisthenics training and armwrestling practice every week.</p>
-    <a href="activities/workout.html">Read More</a>
-    
-    <h2><a href="activities/family-time.html">Quality Time with Family & Friends</a></h2>
-    <p>Creating meaningful memories through coffee shop visits, movie nights, and memorable vacations with loved ones.</p>
-    <a href="activities/family-time.html">Read More</a>
-    
-    <a href="index.html">Back to Home</a>
+    <div class="container">
+        <div class="assignment-header">
+            <h1>My Three Favorite Activities</h1>
+            <p style="text-align: center; font-size: 1.2em; color: #34495e;">Click on any activity to learn more about it!</p>
+        </div>
+        
+        <div class="activities-grid">
+            <div class="activity-card">
+                <div class="activity-icon">🚀</div>
+                <a href="activities/learning-tech.html" class="activity-title">Learning & Exploring New Technologies</a>
+                <p>Continuously expanding my knowledge in programming, AI, and cutting-edge technologies that shape our digital world.</p>
+                <a href="activities/learning-tech.html">Read More →</a>
+            </div>
+            
+            <div class="activity-card">
+                <div class="activity-icon">💪</div>
+                <a href="activities/workout.html" class="activity-title">Weekly Workout & Calisthenics Training</a>
+                <p>Staying fit and strong through dedicated calisthenics training and armwrestling practice every week.</p>
+                <a href="activities/workout.html">Read More →</a>
+            </div>
+            
+            <div class="activity-card">
+                <div class="activity-icon">❤️</div>
+                <a href="activities/family-time.html" class="activity-title">Quality Time with Family & Friends</a>
+                <p>Creating meaningful memories through coffee shop visits, movie nights, and memorable vacations with loved ones.</p>
+                <a href="activities/family-time.html">Read More →</a>
+            </div>
+        </div>
+        
+        <div class="nav-section">
+            <a href="index.html" class="back-link">← Back to Home</a>
+        </div>
+    </div>
 </body>
 </html> 
